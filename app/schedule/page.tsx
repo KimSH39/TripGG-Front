@@ -6,6 +6,9 @@ import BottomNavigation from '@/components/bottom-navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import BusIcon from '@/components/icons/BusIcon';
+import CarIcon from '@/components/icons/CarIcon';
+import QuestionIcon from '@/components/icons/QuestionIcon';
 
 export default function SchedulePage() {
     const [currentStep, setCurrentStep] = useState(1);
@@ -179,11 +182,18 @@ export default function SchedulePage() {
     };
 
     const regions = [
-        { id: 'seoul', name: '수도권', color: 'bg-gray-100' },
-        { id: 'gangwon', name: '강원', color: 'bg-blue-100' },
-        { id: 'gyeongsang', name: '경상', color: 'bg-green-100' },
-        { id: 'jeolla', name: '전라', color: 'bg-yellow-100' },
-        { id: 'chungcheong', name: '충청', color: 'bg-purple-100' },
+        { id: 'suwon', name: '수원' },
+        { id: 'gapyeong', name: '가평' },
+        { id: 'uijeongbu', name: '의정부' },
+        { id: 'namyangju', name: '남양주' },
+        { id: 'pangyo', name: '판교' },
+        { id: 'paju', name: '파주' },
+        { id: 'seongnam', name: '성남' },
+        { id: 'anyang', name: '안양' },
+        { id: 'yongin', name: '용인' },
+        { id: 'goyang', name: '고양' },
+        { id: 'bucheon', name: '부천' },
+        { id: 'hwaSeong', name: '화성' },
     ];
 
     const companions = [
@@ -391,39 +401,104 @@ export default function SchedulePage() {
                 <p className="text-gray-600 text-sm">선택하신 지역을 바탕으로 추천 장소를 찾아드려요</p>
             </div>
 
-            <div className="grid grid-cols-5 gap-2 mb-8">
+            <div className="grid grid-cols-4 gap-2 mb-8">
+                {' '}
+                {/* 그리드 열과 간격 조정 */}
                 {regions.map((region) => (
                     <button
                         key={region.id}
                         onClick={() => setSelectedRegion(region.id)}
-                        className={`p-3 rounded-lg text-center transition-colors ${
-                            selectedRegion === region.id ? 'bg-blue-500 text-white' : `${region.color} hover:opacity-80`
-                        }`}
+                        className={`
+                        p-2 rounded-full text-center transition-colors border
+                        ${
+                            selectedRegion === region.id
+                                ? 'bg-blue-50 text-blue-600 border-blue-500' // 선택 시 파란색 배경, 텍스트, 테두리
+                                : 'bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-200' // 비선택 시 회색 배경, 텍스트, 테두리
+                        }
+                    `}
                     >
                         <div className="text-sm font-medium">{region.name}</div>
                     </button>
                 ))}
             </div>
+        </div>
+    );
 
+    const renderTravelStyleSelection = () => (
+        <div className="p-4">
             <div className="mb-6">
-                <h3 className="text-lg font-semibold mb-4">어떤 이동 수단을 원하시나요?</h3>
-                <div className="grid grid-cols-5 gap-2">
-                    {travelStyles.map((style) => (
-                        <button
-                            key={style.id}
-                            className="p-3 bg-gray-100 rounded-lg text-center hover:bg-gray-200 transition-colors"
-                        >
-                            <div className="text-sm font-medium">{style.name}</div>
-                            <div className="text-xs text-gray-600 mt-1">{style.desc}</div>
-                        </button>
-                    ))}
-                </div>
+                <h2 className="text-xl font-bold text-gray-800 mb-2">어떤 이동 수단을 원하시나요?</h2>
+                <p className="text-gray-600 text-sm">선택하신 교통 수단을 바탕으로 이동 경로를 구성할게요</p>
             </div>
 
-            <Button onClick={nextStep} disabled={!selectedRegion} className="w-full bg-blue-500 hover:bg-blue-600 h-12">
+            <div className="space-y-4 mb-8">
+                <button
+                    onClick={() => setSelectedTravelStyle('car')}
+                    className={`
+                    w-full p-4 rounded-lg border-2 transition-colors text-left
+                    ${
+                        selectedTravelStyle === 'car'
+                            ? 'border-blue-500 bg-blue-50'
+                            : 'border-gray-200 hover:border-gray-300'
+                    }
+                `}
+                >
+                    <div className="flex items-center space-x-4">
+                        <CarIcon isSelected={selectedTravelStyle === 'car'} />
+                        <div>
+                            <div className="font-semibold">자차</div>
+                            <div className="text-sm text-gray-600 mt-1">개인 차량 이용</div>
+                        </div>
+                    </div>
+                </button>
+                <button
+                    onClick={() => setSelectedTravelStyle('public')}
+                    className={`
+    w-full p-4 rounded-lg border-2 transition-colors text-left
+    ${selectedTravelStyle === 'public' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}
+`}
+                >
+                    <div className="flex items-center space-x-4">
+                        <BusIcon isSelected={selectedTravelStyle === 'public'} />
+                        <div>
+                            <div className="font-semibold">대중교통</div>
+                            <div className="text-sm text-gray-600 mt-1">버스, 지하철 등</div>
+                        </div>
+                    </div>
+                </button>
+                <button
+                    onClick={() => setSelectedTravelStyle('undecided')}
+                    className={`
+    w-full p-4 rounded-lg border-2 transition-colors text-left
+    ${selectedTravelStyle === 'undecided' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}
+`}
+                >
+                    <div className="flex items-center space-x-4">
+                        <QuestionIcon isSelected={selectedTravelStyle === 'undecided'} />
+                        <div>
+                            <div className="font-semibold">상관없음</div>
+                            <div className="text-sm text-gray-600 mt-1">추천에 따라 결정</div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    );
+
+    const [selectedTravelStyle, setSelectedTravelStyle] = useState('');
+
+    const renderRegionAndTravelSelection = () => (
+        <>
+            {renderRegionSelection()}
+            {renderTravelStyleSelection()}
+            <Button
+                onClick={nextStep}
+                disabled={!selectedRegion || !selectedTravelStyle} // 두 상태 모두 선택해야 버튼 활성화
+                className="w-full bg-blue-500 hover:bg-blue-600 h-12 mb-20"
+            >
                 여행 일정 만들기
             </Button>
-        </div>
+        </>
     );
 
     const renderCompanionSelection = () => (
@@ -1113,7 +1188,7 @@ export default function SchedulePage() {
             </div>
 
             {currentStep === 1 && renderDateSelection()}
-            {currentStep === 2 && renderRegionSelection()}
+            {currentStep === 2 && renderRegionAndTravelSelection()}
             {currentStep === 3 && renderCompanionSelection()}
             {currentStep === 4 && renderPlanTypeSelection()}
 
