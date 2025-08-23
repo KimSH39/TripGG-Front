@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { ChevronLeft } from 'lucide-react';
-import BottomNavigation from '@/components/bottom-navigation';
 import DateSelection from '@/components/schedule/DateSelection';
 import ScheduleManual from '@/components/schedule/ScheduleManual';
 import RegionTravelSelection from '@/components/schedule/RegionTravelSelection';
@@ -201,7 +200,6 @@ export default function SchedulePage() {
                     </div>
                 </div>
                 <AIRecommendedSchedule aiRecommendedScheduleByDay={aiRecommendedScheduleByDay} />
-                <BottomNavigation currentTab="schedule" />
             </div>
         );
     }
@@ -261,8 +259,6 @@ export default function SchedulePage() {
                     setIsManualPlanning={setIsManualPlanning}
                 />
             )}
-
-            <BottomNavigation currentTab="schedule" />
         </div>
     );
 }
