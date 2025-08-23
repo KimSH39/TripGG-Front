@@ -3,7 +3,6 @@
 import { Clock, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import BottomNavigation from '@/components/bottom-navigation';
 
 export default function HomePage() {
     // 이미지에 나온 일정 데이터를 기반으로 한 예시 데이터입니다.
@@ -112,8 +111,6 @@ export default function HomePage() {
                     )}
                 </div>
             </div>
-
-            <BottomNavigation currentTab="home" />
         </div>
     );
 }
