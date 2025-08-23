@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export default function SplashPage() {
     const router = useRouter();
@@ -19,8 +20,17 @@ export default function SplashPage() {
             <div className="relative z-10 text-center px-8 mt-[-35vh]">
                 {' '}
                 <div className="mb-8">
-                    <p className="text-lg font-xs mb-3">Road to Find My life</p>
-                    <img src="/tripgg-logo.svg" alt="TripGG 로고" className="h-25 mx-auto mb-3" />
+                    <p className="text-xl font-xs mb-3">Road to Find My life</p>
+
+                    {/* width와 height를 원하는 크기로 직접 지정 */}
+                    <Image
+                        src="/tripgg-logo.svg"
+                        alt="TripGG 로고"
+                        width={220} // 원하는 로고 너비
+                        height={220} // 원하는 로고 높이
+                        className="mx-auto mb-3" // 중앙 정렬
+                    />
+
                     <p className="text-sm opacity-80">v 1.0.0</p>
                 </div>
                 {isLoading && (

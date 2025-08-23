@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import { GeistSans } from 'geist/font/sans';
-import { GeistMono } from 'geist/font/mono';
+import '@fontsource/asta-sans';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -19,11 +18,9 @@ export default function RootLayout({
             <head>
                 <style>{`
 html {
-  font-family: ${GeistSans.style.fontFamily};
-  --font-sans: ${GeistSans.variable};
-  --font-mono: ${GeistMono.variable};
+  font-family: 'Asta Sans', sans-serif;
 }
-        `}</style>
+                `}</style>
             </head>
             <body>
                 <div className="max-w-3xl mx-auto w-full">{children}</div>
