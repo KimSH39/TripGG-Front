@@ -26,7 +26,7 @@ html {
         `}</style>
             </head>
             <body>
-                <div className="max-w-3xl mx-auto w-full px-5">{children}</div>
+                <div className="max-w-3xl mx-auto w-full">{children}</div>
             </body>
         </html>
     );
