@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@fontsource/asta-sans':
+        specifier: ^5.2.1
+        version: 5.2.1
       '@hookform/resolvers':
         specifier: ^3.10.0
         version: 3.10.0(react-hook-form@7.62.0(react@19.1.1))
@@ -214,6 +217,9 @@ packages:
 
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
+
+  '@fontsource/asta-sans@5.2.1':
+    resolution: {integrity: sha512-cns9Y4y7JNQNBGnT9ePxbz7Jmjp4ZPMx+9AUjE+8CGWtY2BeVdRu4jtjiYdz3Wnwim2DgiqhMNvz+0qmjc6Aag==}
 
   '@hookform/resolvers@3.10.0':
     resolution: {integrity: sha512-79Dv+3mDF7i+2ajj7SkypSKHhl1cbln1OGavqrsF7p6mbUv11xpqpacPsGDCTRvCSjEEIez2ef1NveSVL3b0Ag==}
@@ -1791,6 +1797,8 @@ snapshots:
       react-dom: 19.1.1(react@19.1.1)
 
   '@floating-ui/utils@0.2.10': {}
+
+  '@fontsource/asta-sans@5.2.1': {}
 
   '@hookform/resolvers@3.10.0(react-hook-form@7.62.0(react@19.1.1))':
     dependencies:
