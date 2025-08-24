@@ -1,6 +1,10 @@
 import React from 'react';
 
-const QuestionIcon = ({ isSelected }) => {
+interface QuestionIconProps {
+    isSelected: boolean;
+}
+
+const QuestionIcon = ({ isSelected }: QuestionIconProps) => {
     // Define colors based on the selected state
     const selectedFill = '#005FE2'; // A vibrant blue for selected state
     const unselectedFill = '#525252'; // A dark gray for unselected state

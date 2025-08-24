@@ -1,6 +1,10 @@
 import React from 'react';
 
-const CarIcon = ({ isSelected }) => {
+interface CarIconProps {
+    isSelected: boolean;
+}
+
+const CarIcon = ({ isSelected }: CarIconProps) => {
     const selectedFill = '#005FE2';
     const unselectedFill = '#525252';
     const backgroundFill = isSelected ? '#E0F2FE' : '#F5F5F5';

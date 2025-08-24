@@ -17,7 +17,7 @@ export default function RootLayout({
         <html lang="en">
             <head>
                 <style>{`
-html {
+html { 
   font-family: 'Asta Sans', sans-serif;
 }
                 `}</style>

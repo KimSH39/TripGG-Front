@@ -14,7 +14,14 @@ export default function SplashPage() {
     return (
         <div className="min-h-screen bg-gradient-to-b from-[#0047AB] to-[#4169E1] flex flex-col items-center justify-center text-white relative overflow-hidden">
             <div className="absolute inset-0 opacity-70">
-                <img src="/Trippgg-background.png" alt="Tripgg 배경" className="w-full h-full object-cover blur-sm" />
+                <Image
+                    src="/Trippgg-background.png"
+                    alt="Tripgg 배경"
+                    className="w-full h-full object-cover blur-sm"
+                    width={1920}
+                    height={1080}
+                    priority
+                />
             </div>
 
             <div className="relative z-10 text-center px-8 mt-[-35vh]">
@@ -24,6 +31,7 @@ export default function SplashPage() {
 
                     {/* width와 height를 원하는 크기로 직접 지정 */}
                     <Image
+                        priority
                         src="/tripgg-logo.svg"
                         alt="TripGG 로고"
                         width={220} // 원하는 로고 너비
@@ -46,7 +54,6 @@ export default function SplashPage() {
                 </button>
             </div>
 
-            {/* Image Source Text */}
             <div className="absolute bottom-4 text-xs opacity-60">
                 이미지 출처: 경기관광공사 포토갤러리 포천 평강랜드
             </div>
