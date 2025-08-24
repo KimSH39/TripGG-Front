@@ -1,0 +1,14 @@
+export { default as Activity } from './Activity';
+export { default as Ai } from './Ai';
+export { default as Alone } from './Alone';
+export { default as Art } from './Art';
+export { default as Bus } from './Bus';
+export { default as Couple } from './Couple';
+export { default as Eat } from './Eat';
+export { default as Emotion } from './Emotion';
+export { default as Family } from './Family';
+export { default as History } from './History';
+export { default as Leaf } from './Leaf';
+export { default as Pic } from './Pic';
+export { default as Question } from './Question';
+export { default as Self } from './Self';
