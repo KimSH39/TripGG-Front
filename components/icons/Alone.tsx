@@ -3,18 +3,18 @@ import * as React from 'react';
 import type { SVGProps } from 'react';
 
 // isSelected prop을 추가하여 선택 상태를 전달받음
-interface AloneIconProps {
+interface AloneIconProps extends SVGProps<SVGSVGElement> {
     isSelected: boolean;
 }
 
-const SvgAlone = ({ isSelected }: AloneIconProps) => {
+const SvgAlone = ({ isSelected, ...props }: AloneIconProps) => {
     // isSelected 값에 따라 색상 값 동적 할당
     const primaryColor = isSelected ? '#005FE2' : '#525252';
     const backgroundColor = isSelected ? '#E0F2FE' : '#F5F5F5';
     const strokeColor = isSelected ? '#E0F2FE' : '#F5F5F5';
 
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 42 42">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 42 42" {...props}>
             <path fill={backgroundColor} d="M34 0a8 8 0 0 1 8 8v26a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V8a8 8 0 0 1 8-8z" />
             <path stroke={strokeColor} d="M34 0a8 8 0 0 1 8 8v26a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V8a8 8 0 0 1 8-8z" />
             <path stroke={strokeColor} d="M27.5 31H15V11h12.5z" />

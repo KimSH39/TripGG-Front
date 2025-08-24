@@ -20,28 +20,6 @@ export default function SchedulePage() {
     const [isManualPlanning, setIsManualPlanning] = useState(false);
     const [isAIPlanning, setIsAIPlanning] = useState(false);
 
-    // 이외의 모든 상태와 더미 데이터는 여기에 유지합니다.
-    const regions = [
-        { id: 'suwon', name: '수원' },
-        { id: 'gapyeong', name: '가평' },
-        { id: 'uijeongbu', name: '의정부' },
-        { id: 'namyangju', name: '남양주' },
-        { id: 'pangyo', name: '판교' },
-        { id: 'paju', name: '파주' },
-        { id: 'seongnam', name: '성남' },
-        { id: 'anyang', name: '안양' },
-        { id: 'yongin', name: '용인' },
-        { id: 'goyang', name: '고양' },
-        { id: 'bucheon', name: '부천' },
-        { id: 'hwaSeong', name: '화성' },
-    ];
-    const companions = [
-        { id: 'family', name: '가족과 함께', icon: '🏠', desc: '온 가족이 함께하는' },
-        { id: 'couple', name: '연인과 함께', icon: '💕', desc: '달콤한 둘만의' },
-        { id: 'solo', name: '나홀로 여행', icon: '🚶', desc: '혼자만의 자유로운' },
-        { id: 'friends', name: '친구와 함께', icon: '👥', desc: '친구들과 즐거운' },
-        { id: 'colleagues', name: '직장 동료', icon: '💼', desc: '동료들과 함께하는' },
-    ];
     const aiRecommendedScheduleByDay = {
         1: [
             {
@@ -239,7 +217,6 @@ export default function SchedulePage() {
                     setSelectedRegion={setSelectedRegion}
                     selectedTravelStyle={selectedTravelStyle}
                     setSelectedTravelStyle={setSelectedTravelStyle}
-                    regions={regions}
                     nextStep={nextStep}
                 />
             )}
@@ -247,10 +224,12 @@ export default function SchedulePage() {
                 <CompanionSelection
                     selectedCompanion={selectedCompanion}
                     setSelectedCompanion={setSelectedCompanion}
-                    companions={companions}
+                    selectedStyle={selectedTravelStyle}
+                    setSelectedStyle={setSelectedTravelStyle}
                     nextStep={nextStep}
                 />
             )}
+
             {currentStep === 4 && (
                 <PlanTypeSelection
                     selectedPlanType={selectedPlanType}
