@@ -11,19 +11,19 @@ export default function HomePage() {
             name: '경기 의왕 레일파크',
             location: '경기 의왕시 월암동 525-9',
             time: '오전 10:00 - 오전 11:30',
-            image: 'https://placehold.co/100x100/e2e8f0/334155?text=레일파크',
+            image: '/placeholder-1llmm.png',
         },
         {
             name: '정통밥집',
             location: '경기 의왕시 왕송못동로 207-13',
             time: '오후 12:00 - 오후 14:00',
-            image: 'https://placehold.co/100x100/e2e8f0/334155?text=밥집',
+            image: '/placeholder-1llmm.png',
         },
         {
             name: '의왕 조류 생태 과학관',
             location: '경기 의왕시 왕송못동로 209',
             time: '오후 15:00 - 오후 17:00',
-            image: 'https://placehold.co/100x100/e2e8f0/334155?text=과학관',
+            image: '/placeholder-1llmm.png',
         },
     ];
     // 일정이 없는 경우를 테스트하려면 위 배열을 빈 배열로 바꾸세요. -> const scheduleItems = []
@@ -75,23 +75,25 @@ export default function HomePage() {
 
                     {/* 조건부 렌더링: 일정이 있을 때와 없을 때 */}
                     {scheduleItems.length > 0 ? (
-                        <div className="space-y-3">
+                        <div className="space-y-2">
                             {scheduleItems.map((item, index) => (
-                                <Card key={index} className="hover:shadow-md transition-shadow bg-white rounded-xl">
-                                    <CardContent className="p-3">
-                                        <div className="flex items-center space-x-4">
+                                <Card key={index} className="hover:shadow-md transition-shadow bg-white rounded-[10px] h-[93px]">
+                                    <CardContent className="p-0 h-full flex items-center">
+                                        <div className="flex items-center">
                                             <img
                                                 src={item.image}
                                                 alt={item.name}
-                                                className="w-16 h-16 rounded-lg object-cover"
+                                                className="w-[93px] h-[93px] rounded-l-[10px] rounded-r-none object-cover"
                                             />
-                                            <div className="flex-1">
-                                                <h3 className="font-bold text-md">{item.name}</h3>
-                                                <div className="flex items-center text-xs text-gray-500 mt-1">
+                                            <div className="flex-1 ml-4">
+                                                <h3 className="text-[18px] font-medium text-[#1B1E28] leading-[18.6px] tracking-[0.5px] mb-1">
+                                                    {item.name}
+                                                </h3>
+                                                <div className="flex items-center text-[12px] text-[#7D848D] font-normal mb-2">
                                                     <MapPin className="h-3 w-3 mr-1.5" />
                                                     <p>{item.location}</p>
                                                 </div>
-                                                <div className="flex items-center text-xs text-gray-500 mt-1">
+                                                <div className="flex items-center text-[12px] text-[#7D848D] font-medium">
                                                     <Clock className="h-3 w-3 mr-1.5" />
                                                     <p>{item.time}</p>
                                                 </div>
