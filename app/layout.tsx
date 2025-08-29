@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import '@fontsource/asta-sans/500.css'; // Import Asta Sans SemiBold (assuming 500 is semibold)
 import '@fontsource/asta-sans';
 import './globals.css';
-import I18nProvider from '@/components/i18n-provider';
 
 export const metadata: Metadata = {
     title: 'tripgg-front',
@@ -25,9 +24,7 @@ html {
                 `}</style>
             </head>
             <body>
-                <I18nProvider>
-                    <div className="max-w-3xl mx-auto w-full">{children}</div>
-                </I18nProvider>
+                <div className="max-w-3xl mx-auto w-full">{children}</div>
             </body>
         </html>
     );
