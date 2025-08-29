@@ -59,9 +59,9 @@ export default function HomePage() {
             {/* 메인 콘텐츠 영역 */}
             <div className="p-4">
                 {/* 날짜 및 일정 안내 */}
-                <div className="mb-6">
-                    <p className="text-lg font-bold">{formattedDate},</p>
-                    <p className="text-lg font-bold">오늘 일정을 알려 드릴게요!</p>
+                <div className="mb-4">
+                    <p className="text-base font-medium">{formattedDate},</p>
+                    <p className="text-base font-bold">오늘 일정을 알려 드릴게요!</p>
                 </div>
 
                 {/* 내 일정 섹션 */}
@@ -77,13 +77,13 @@ export default function HomePage() {
                     {scheduleItems.length > 0 ? (
                         <div className="space-y-4">
                             {scheduleItems.map((item, index) => (
-                                <Card key={index} className="hover:shadow-md transition-shadow bg-white rounded-[10px] h-[93px]">
+                                <Card key={index} className="hover:shadow-md transition-shadow bg-white rounded-[10px] h-[80px]">
                                     <CardContent className="p-0 h-full flex items-center">
                                         <div className="flex items-center">
                                             <img
                                                 src={item.image}
                                                 alt={item.name}
-                                                className="w-[93px] h-[93px] rounded-l-[10px] rounded-r-none object-cover"
+                                                className="w-[80px] h-[80px] rounded-l-[10px] rounded-r-none object-cover"
                                             />
                                             <div className="flex-1 ml-4">
                                                 <h3 className="text-[18px] font-medium text-[#1B1E28] leading-[18.6px] tracking-[0.5px] mb-1">
