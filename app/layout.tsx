@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import '@fontsource/asta-sans/500.css'; // Import Asta Sans SemiBold (assuming 500 is semibold)
 import '@fontsource/asta-sans';
 import './globals.css';
 
@@ -17,8 +18,8 @@ export default function RootLayout({
         <html lang="en">
             <head>
                 <style>{`
-html { 
-  font-family: 'Asta Sans', sans-serif;
+html {
+  font-family: 'Asta Sans SemiBold', 'Asta Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', 'Noto Sans CJK JP', 'Noto Sans CJK SC', 'Noto Sans CJK KR', 'Noto Sans CJK TC', 'Noto Sans Vietnamese';
 }
                 `}</style>
             </head>
