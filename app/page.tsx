@@ -8,7 +8,7 @@ export default function SplashPage() {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const handleStartClick = () => {
-        router.push('/home');
+        router.push('/language-select');
     };
 
     return (
