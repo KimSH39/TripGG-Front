@@ -36,7 +36,7 @@ export default function HomePage() {
 
     return (
         // 전체 페이지 배경색과 하단 패딩을 설정합니다.
-        <div className="min-h-screen bg-[#FDFDFD] pt-12">
+        <div className="min-h-screen bg-[#FDFDFD] pt-8">
             {/* 상단 배너 섹션 */}
             <div
                 className="relative h-48 bg-cover bg-center text-white p-4 flex flex-col justify-end"
