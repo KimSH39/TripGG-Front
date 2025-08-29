@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 export default function LanguageSelectPage() {
     const router = useRouter();
-    const [selectedLanguage, setSelectedLanguage] = useState('Korean'); // Default to Korean
+    const [selectedLanguage, setSelectedLanguage] = useState(''); // No default selection
 
     const languages = [
         { name: 'Korean(한국어)', value: 'Korean', flag: '/images/korea_flag.png' }, // Assuming flag images will be added
@@ -19,10 +19,14 @@ export default function LanguageSelectPage() {
 
     const handleLanguageSelect = (languageValue: string) => {
         setSelectedLanguage(languageValue);
-        // Here you would typically save the language selection to a context, local storage, or a store
-        // For now, we'll just log it and navigate
-        console.log(`Selected language: ${languageValue}`);
-        router.push('/home'); // Redirect to home page after selection
+        console.log(`Language selected: ${languageValue}`);
+    };
+
+    const handleConfirm = () => {
+        if (selectedLanguage) {
+            console.log(`Language confirmed: ${selectedLanguage}`);
+            router.push('/home'); // Redirect to home page after confirmation
+        }
     };
 
     return (
@@ -32,7 +36,7 @@ export default function LanguageSelectPage() {
                 {languages.map((lang) => (
                     <button
                         key={lang.value}
-                        className={`flex items-center w-full p-4 mb-4 rounded-lg shadow-sm transition-all duration-200
+                        className={`flex items-center w-full p-3 mb-3 rounded-lg shadow-sm transition-all duration-200
                                     ${
                                         selectedLanguage === lang.value
                                             ? 'bg-blue-50 border-2 border-blue-500'
@@ -41,13 +45,26 @@ export default function LanguageSelectPage() {
                         onClick={() => handleLanguageSelect(lang.value)}
                     >
                         {/* Placeholder for flag image */}
-                        <div className="mr-4 flex items-center justify-center overflow-hidden">
+                        <div className="mr-3 flex items-center justify-center overflow-hidden">
                             {/* You'll need to add actual flag images to your public/images directory */}
-                            <Image src={lang.flag} alt={`${lang.name} flag`} width={40} height={24} />
+                            <Image src={lang.flag} alt={`${lang.name} flag`} width={32} height={20} />
                         </div>
-                        <span className="text-lg font-medium">{lang.name}</span>
+                        <span className="text-base font-medium">{lang.name}</span>
                     </button>
                 ))}
+                
+                {/* 확인 버튼 */}
+                <button
+                    onClick={handleConfirm}
+                    disabled={!selectedLanguage}
+                    className={`w-full p-4 font-semibold rounded-lg transition-colors duration-200 mt-6 ${
+                        selectedLanguage
+                            ? 'bg-blue-500 text-white hover:bg-blue-600 cursor-pointer'
+                            : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    }`}
+                >
+                    확인
+                </button>
             </div>
         </div>
     );
