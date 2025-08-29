@@ -1,40 +1,45 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronRight, ArrowLeft } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { format } from 'date-fns';
+import { getPlans, TravelPlan } from '@/lib/mockApi';
 
 export default function MyTravelPage() {
     const [currentView, setCurrentView] = useState('profile'); // profile, schedule, shorts
+    const router = useRouter();
+    const [mySchedules, setMySchedules] = useState<any[]>([]);
+
+    useEffect(() => {
+        const fetchPlans = async () => {
+            try {
+                const storedPlans = await getPlans();
+                setMySchedules(
+                    storedPlans.map((plan: TravelPlan) => ({
+                        id: plan.id,
+                        title: plan.title,
+                        date: `${format(new Date(plan.startDate), 'yyyy.MM.dd')} - ${format(
+                            new Date(plan.endDate),
+                            'yyyy.MM.dd'
+                        )}`,
+                        places: plan.places.map((p) => p.name), // Extract place names
+                        status: '완료', // Assuming all saved plans are '완료' for now
+                    }))
+                );
+            } catch (error) {
+                console.error('Error loading plans from mock API', error);
+                setMySchedules([]); // Fallback to empty array on error
+            }
+        };
+        fetchPlans();
+    }, []);
 
     const user = {
         name: '김지현',
         email: 'travel@example.com',
         avatar: '/placeholder.svg?height=80&width=80&text=김지현',
     };
-
-    const mySchedules = [
-        {
-            id: 1,
-            title: '강릉 2박 3일 여행',
-            date: '2024.03.15 - 2024.03.17',
-            places: ['경포대', '오죽헌', '강릉커피거리'],
-            status: '완료',
-        },
-        {
-            id: 2,
-            title: '속초 당일치기',
-            date: '2024.02.28',
-            places: ['설악산', '속초해수욕장'],
-            status: '완료',
-        },
-        {
-            id: 3,
-            title: '동해안 드라이브',
-            date: '2024.04.10 - 2024.04.12',
-            places: ['정동진', '망상해수욕장', '무릉계곡'],
-            status: '예정',
-        },
-    ];
 
     const myShorts = [
         {
@@ -151,51 +156,58 @@ export default function MyTravelPage() {
         </div>
     );
 
-    const ScheduleView = () => (
-        <div className="min-h-screen bg-white pb-20">
-            {/* Header */}
-            <div className="flex items-center p-4 border-b border-gray-100">
-                <button onClick={() => setCurrentView('profile')} className="mr-3">
-                    <ArrowLeft className="w-6 h-6 text-gray-600" />
-                </button>
-                <h1 className="text-lg font-semibold text-gray-800">내가 짠 일정</h1>
-                <div className="ml-auto text-sm text-blue-500">편집</div>
-            </div>
+    const ScheduleView = () => {
+        const router = useRouter();
+        return (
+            <div className="min-h-screen bg-white pb-20">
+                {/* Header */}
+                <div className="flex items-center p-4 border-b border-gray-100">
+                    <button onClick={() => setCurrentView('profile')} className="mr-3">
+                        <ArrowLeft className="w-6 h-6 text-gray-600" />
+                    </button>
+                    <h1 className="text-lg font-semibold text-gray-800">내가 짠 일정</h1>
+                    <div className="ml-auto text-sm text-blue-500">편집</div>
+                </div>
 
-            {/* Schedule List */}
-            <div className="p-4 space-y-4">
-                {mySchedules.map((schedule) => (
-                    <div key={schedule.id} className="bg-white border border-gray-200 rounded-lg p-4">
-                        <div className="flex items-start justify-between mb-2">
-                            <div className="flex-1">
-                                <h3 className="font-semibold text-gray-800 mb-1">{schedule.title}</h3>
-                                <p className="text-sm text-gray-500 mb-2">{schedule.date}</p>
-                                <div className="flex flex-wrap gap-1 mb-2">
-                                    {schedule.places.map((place, index) => (
-                                        <span
-                                            key={index}
-                                            className="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded"
-                                        >
-                                            {place}
-                                        </span>
-                                    ))}
+                {/* Schedule List */}
+                <div className="p-4 space-y-4">
+                    {mySchedules.map((schedule) => (
+                        <button
+                            key={schedule.id}
+                            onClick={() => router.push(`/myplan/${schedule.id}`)}
+                            className="w-full text-left bg-white border border-gray-200 rounded-lg p-4"
+                        >
+                            <div className="flex items-start justify-between mb-2">
+                                <div className="flex-1">
+                                    <h3 className="font-semibold text-gray-800 mb-1">{schedule.title}</h3>
+                                    <p className="text-sm text-gray-500 mb-2">{schedule.date}</p>
+                                    <div className="flex flex-wrap gap-1 mb-2">
+                                        {schedule.places.map((place: string, index: number) => (
+                                            <span
+                                                key={index}
+                                                className="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded"
+                                            >
+                                                {place}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    <span
+                                        className={`text-xs px-2 py-1 rounded ${
+                                            schedule.status === '완료'
+                                                ? 'bg-green-50 text-green-600'
+                                                : 'bg-orange-50 text-orange-600'
+                                        }`}
+                                    >
+                                        {schedule.status}
+                                    </span>
                                 </div>
-                                <span
-                                    className={`text-xs px-2 py-1 rounded ${
-                                        schedule.status === '완료'
-                                            ? 'bg-green-50 text-green-600'
-                                            : 'bg-orange-50 text-orange-600'
-                                    }`}
-                                >
-                                    {schedule.status}
-                                </span>
                             </div>
-                        </div>
-                    </div>
-                ))}
+                        </button>
+                    ))}
+                </div>
             </div>
-        </div>
-    );
+        );
+    };
 
     const ShortsView = () => (
         <div className="min-h-screen bg-white pb-20">

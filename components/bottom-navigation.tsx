@@ -21,7 +21,13 @@ export default function BottomNavigation() {
 
     // 현재 pathname을 기반으로 활성 탭을 결정합니다.
     // 'home'이 기본값이며, pathname이 tab.path로 시작하면 해당 탭을 활성화합니다.
-    const activeTab = tabs.find((tab) => pathname.startsWith(tab.path))?.id || 'home';
+    const activeTab =
+        tabs.find((tab) => {
+            if (tab.id === 'mytravel') {
+                return pathname.startsWith(tab.path) || pathname.startsWith('/myplan');
+            }
+            return pathname.startsWith(tab.path);
+        })?.id || 'home';
 
     return (
         <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 max-w-3xl mx-auto">
