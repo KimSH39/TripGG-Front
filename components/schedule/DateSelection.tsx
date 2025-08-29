@@ -128,13 +128,13 @@ export default function DateSelection({ startDate, setStartDate, endDate, setEnd
                                         <button
                                             onClick={() => handleDateClick(date)}
                                             className={`
-                                                w-full h-full flex items-center justify-center text- transition-colors font-medium
+                                                w-full h-full flex items-center justify-center text- transition-colors font-medium rounded-lg
                                                 ${
                                                     isStartDate(date) || isEndDate(date)
-                                                        ? 'bg-blue-600 text-white font-semibold rounded-lg'
+                                                        ? 'bg-blue-600 text-white font-semibold'
                                                         : isDateInRange(date)
                                                         ? 'text-blue-700'
-                                                        : 'hover:bg-gray-100 rounded-lg'
+                                                        : 'hover:bg-gray-100'
                                                 }
                                             `}
                                         >
@@ -153,7 +153,7 @@ export default function DateSelection({ startDate, setStartDate, endDate, setEnd
                     nextStep();
                 }}
                 disabled={!startDate || !endDate}
-                className={`w-full h-12 mt-6 text-lg font-semibold ${
+                className={`w-full h-14 mt-6 text-lg font-semibold ${
                     !startDate || !endDate
                         ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                         : 'bg-blue-500 hover:bg-blue-600 text-white'
