@@ -17,13 +17,13 @@ export default function SplashPage() {
                 <Image
                     src="/Trippgg-background.png"
                     alt="Tripgg 배경"
-                    className="w-full h-full object-cover"
-                    width={1920}
-                    height={1080}
+                    fill
+                    className="object-cover"
                     priority
                     quality={75}
                     placeholder="blur"
-                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                    blurDataURL="/Trippgg-background-small.png"
+                    sizes="100vw" // 화면 전체 너비에 맞춤
                 />
             </div>
 
