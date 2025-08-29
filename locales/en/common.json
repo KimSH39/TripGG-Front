@@ -1,0 +1,11 @@
+{
+    "confirm_button": "Confirm",
+    "select_language_title": "Select Language",
+    "navigation": {
+        "home": "Home",
+        "schedule": "Schedule",
+        "shorts": "Shorts",
+        "chat": "Chat",
+        "mytravel": "My Travel"
+    }
+}

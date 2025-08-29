@@ -2,17 +2,19 @@
 
 import { useRouter, usePathname } from 'next/navigation';
 import { Home, Calendar, Video, MessageCircle, User } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export default function BottomNavigation() {
     const router = useRouter();
     const pathname = usePathname();
+    const { t } = useTranslation();
 
     const tabs = [
-        { id: 'home', label: '홈', icon: Home, path: '/home' },
-        { id: 'schedule', label: '일정', icon: Calendar, path: '/schedule' },
-        { id: 'shorts', label: '쇼츠', icon: Video, path: '/shorts' },
-        { id: 'chat', label: '채팅', icon: MessageCircle, path: '/chat' },
-        { id: 'mytravel', label: '나의여행', icon: User, path: '/mytravel' },
+        { id: 'home', label: t('navigation.home'), icon: Home, path: '/home' },
+        { id: 'schedule', label: t('navigation.schedule'), icon: Calendar, path: '/schedule' },
+        { id: 'shorts', label: t('navigation.shorts'), icon: Video, path: '/shorts' },
+        { id: 'chat', label: t('navigation.chat'), icon: MessageCircle, path: '/chat' },
+        { id: 'mytravel', label: t('navigation.mytravel'), icon: User, path: '/mytravel' },
     ];
 
     const handleTabClick = (path: string) => {

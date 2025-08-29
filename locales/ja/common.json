@@ -1,0 +1,11 @@
+{
+    "confirm_button": "確認",
+    "select_language_title": "言語を選択してください!",
+    "navigation": {
+        "home": "ホーム",
+        "schedule": "スケジュール",
+        "shorts": "ショート動画",
+        "chat": "チャット",
+        "mytravel": "私の旅行"
+    }
+}
