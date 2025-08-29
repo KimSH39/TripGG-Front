@@ -29,14 +29,23 @@ export default function AIRecommendedSchedule({ aiRecommendedScheduleByDay }: AI
 
     const getCategoryStats = () => {
         const stats = { 관광: 0, 식사: 0, 카페: 0, 기타: 0 };
+
+        if (!aiRecommendedScheduleByDay || !aiRecommendedScheduleByDay[selectedDay]) {
+            return stats; // 데이터 없으면 기본값 리턴
+        }
+
         const currentSchedule = aiRecommendedScheduleByDay[selectedDay] || [];
 
-        currentSchedule.forEach((item) => {
+        currentSchedule.forEach((item: any) => {
             const startTime = new Date(`2000-01-01 ${item.time}:00`);
-            const endTime = new Date(`2000-01-01 ${item.endTime}:00`);
-            const duration = (endTime.getTime() - startTime.getTime()) / (1000 * 60 * 60);
-            stats[item.category as keyof typeof stats] += duration;
+            const hour = startTime.getHours();
+
+            if (hour >= 9 && hour < 12) stats['관광']++;
+            else if (hour >= 12 && hour < 14) stats['식사']++;
+            else if (hour >= 14 && hour < 17) stats['카페']++;
+            else stats['기타']++;
         });
+
         return stats;
     };
 
