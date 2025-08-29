@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronLeft } from 'lucide-react';
 import DateSelection from '@/components/schedule/DateSelection';
 import ScheduleManual from '@/components/schedule/ScheduleManual';
@@ -8,9 +8,11 @@ import RegionTravelSelection from '@/components/schedule/RegionTravelSelection';
 import CompanionSelection from '@/components/schedule/CompanionSelection';
 import PlanTypeSelection from '@/components/schedule/PlanTypeSelection';
 import AIRecommendedSchedule from '@/components/schedule/AIRecommendedSchedule';
+import { useUiStore } from '@/store/uiStore'; //
 
 export default function SchedulePage() {
     const [currentStep, setCurrentStep] = useState(1);
+    const { setHideBottomNav } = useUiStore(); //
     const [startDate, setStartDate] = useState<Date | null>(null);
     const [endDate, setEndDate] = useState<Date | null>(null);
     const [selectedRegion, setSelectedRegion] = useState('');
@@ -162,6 +164,19 @@ export default function SchedulePage() {
     const nextStep = () => setCurrentStep(currentStep + 1);
     const prevStep = () => setCurrentStep(currentStep - 1);
     const steps = ['기간 선택', '지역/교통 선택', '동반자 선택', '일정 생성 방법 선택'];
+
+    // Effect to control bottom navigation visibility
+    useEffect(() => {
+        if (currentStep > 1 || isAIPlanning || isManualPlanning) {
+            setHideBottomNav(true);
+        } else {
+            setHideBottomNav(false);
+        }
+
+        return () => {
+            setHideBottomNav(false);
+        };
+    }, [currentStep, isAIPlanning, isManualPlanning, setHideBottomNav]);
 
     if (isAIPlanning) {
         return (
