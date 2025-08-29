@@ -1,391 +1,383 @@
 'use client';
 
-import { useState } from 'react';
-import { ChevronLeft, Plus, Search, Clock, MapPin } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ChevronLeft, Plus, Search, Clock, MapPin, CalendarDays, ChevronRight, Navigation } from 'lucide-react';
+import React from 'react'; //
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { format, addDays, isSameDay } from 'date-fns';
+import { ko } from 'date-fns/locale';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
+import { useRouter } from 'next/navigation';
+import { savePlan, TravelPlan } from '@/lib/mockApi';
+import { regions } from '@/constants/travelData';
 
 interface ScheduleManualProps {
     setIsManualPlanning: (value: boolean) => void;
+    startDate: Date | null;
+    endDate: Date | null;
+    selectedRegion: string;
 }
 
-export default function ScheduleManual({ setIsManualPlanning }: ScheduleManualProps) {
+export default function ScheduleManual({
+    setIsManualPlanning,
+    startDate,
+    endDate,
+    selectedRegion,
+}: ScheduleManualProps) {
     const [planningStep, setPlanningStep] = useState(1);
-    const [searchQuery, setSearchQuery] = useState('');
     const [selectedPlaces, setSelectedPlaces] = useState<any[]>([]);
-    const [currentPlace, setCurrentPlace] = useState<any>(null);
-    const [selectedTime, setSelectedTime] = useState('');
+    const router = useRouter();
+
     const [directPlanningData, setDirectPlanningData] = useState({
         region: '',
         time: '',
+        endTime: '',
         location: '',
-        category: '',
+        category: '기타', // 기본 카테고리 '기타'
     });
 
     const categoryColors = {
-        관광: 'bg-blue-100 text-blue-800',
-        카페: 'bg-orange-100 text-orange-800',
-        식사: 'bg-green-100 text-green-800',
-        기타: 'bg-gray-100 text-gray-800',
+        관광: 'bg-green-500 text-white',
+        카페: 'bg-purple-500 text-white',
+        식사: 'bg-orange-500 text-white',
+        기타: 'bg-blue-500 text-white',
     };
-    const regions = [
-        { id: 'suwon', name: '수원' },
-        { id: 'gapyeong', name: '가평' },
-        { id: 'uijeongbu', name: '의정부' },
-        { id: 'namyangju', name: '남양주' },
-        { id: 'pangyo', name: '판교' },
-        { id: 'paju', name: '파주' },
-        { id: 'seongnam', name: '성남' },
-        { id: 'anyang', name: '안양' },
-        { id: 'yongin', name: '용인' },
-        { id: 'goyang', name: '고양' },
-        { id: 'bucheon', name: '부천' },
-        { id: 'hwaSeong', name: '화성' },
-    ];
+
+    const [currentDay, setCurrentDay] = useState<Date | null>(startDate);
+
+    useEffect(() => {
+        if (startDate) {
+            setCurrentDay(startDate);
+        }
+    }, [startDate]);
+
+    const days = [];
+    if (startDate && endDate) {
+        let day = startDate;
+        while (day <= endDate) {
+            days.push(day);
+            day = addDays(day, 1);
+        }
+    }
+
+    const handleSavePlan = async () => {
+        if (!startDate || !endDate || selectedPlaces.length === 0) {
+            alert('일정을 저장하려면 시작일, 종료일, 그리고 최소 하나 이상의 장소를 추가해야 합니다.'); // Use translation
+            return;
+        }
+
+        const planTitle = selectedRegion ? `${selectedRegion} 여행 일정` : '새로운 여행 일정';
+
+        const planToSave: Omit<TravelPlan, 'id'> = {
+            title: planTitle,
+            startDate: startDate.toISOString(),
+            endDate: endDate.toISOString(),
+            places: selectedPlaces.map((place) => ({
+                ...place,
+                date: place.date.toISOString(), // Ensure date is ISO string
+            })),
+        };
+
+        try {
+            const newPlan = await savePlan(planToSave);
+            router.push(`/myplan/${newPlan.id}`);
+        } catch (error) {
+            console.error('Error saving plan', error);
+            alert('일정 저장 중 오류가 발생했습니다.'); // Use translation
+        }
+    };
+
+    const calculateCategorySummary = (day: Date) => {
+        const summary: { [key: string]: number } = {
+            관광: 0,
+            식사: 0,
+            카페: 0,
+            기타: 0,
+        };
+
+        const placesForDay = selectedPlaces.filter((place) => isSameDay(new Date(place.date), day));
+
+        placesForDay.forEach((place) => {
+            if (place.category in summary) {
+                const [startHour, startMinute] = place.time.split(':').map(Number);
+                const [endHour, endMinute] = place.endTime.split(':').map(Number);
+
+                const startTimeInMinutes = startHour * 60 + startMinute;
+                const endTimeInMinutes = endHour * 60 + endMinute;
+
+                let duration = endTimeInMinutes - startTimeInMinutes;
+
+                // Handle overnight durations, assuming schedules don't span more than 24 hours in a single entry
+                if (duration < 0) {
+                    duration += 24 * 60; // Add 24 hours in minutes
+                }
+
+                summary[place.category] += duration;
+            }
+        });
+        return summary;
+    };
+
+    const generateTimeOptions = () => {
+        const times = [];
+        for (let i = 0; i < 24; i++) {
+            for (let j = 0; j < 60; j += 30) {
+                const hour = String(i).padStart(2, '0');
+                const minute = String(j).padStart(2, '0');
+                times.push(`${hour}:${minute}`);
+            }
+        }
+        return times;
+    };
+
+    const timeOptions = generateTimeOptions();
 
     // 이 컴포넌트 내부에 모든 render 함수를 정의합니다.
     const renderDirectPlanning = () => (
-        <div className="p-4">
+        <div className="p-4 relative">
             <div className="space-y-4 mb-8">
                 <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <div className="flex-1">
-                        <Input
-                            placeholder="여행지역"
-                            value={directPlanningData.region}
-                            onChange={(e) => setDirectPlanningData({ ...directPlanningData, region: e.target.value })}
-                            className="border-0 border-b border-gray-300 rounded-none px-0 focus:border-blue-500"
-                        />
+                    <CalendarDays className="h-5 w-5 text-gray-500" />
+                    <div className="flex-1 flex items-center space-x-3">
+                        <div className="flex-1 bg-gray-100 p-1.5 rounded-lg">
+                            <Input
+                                placeholder=""
+                                value={directPlanningData.region}
+                                onChange={(e) =>
+                                    setDirectPlanningData({ ...directPlanningData, region: e.target.value })
+                                }
+                                className="border-0 bg-transparent px-0 focus-visible:ring-0 focus-visible:ring-offset-0 shadow-none w-full"
+                            />
+                        </div>
+                        {/* Category Dropdown */}
+                        <Select
+                            onValueChange={(value) => setDirectPlanningData({ ...directPlanningData, category: value })}
+                            value={directPlanningData.category}
+                        >
+                            <SelectTrigger
+                                className={`w-13 h-13 rounded-md bg-gray-100 flex items-center justify-center p-0 border-0 [&>span]:hidden
+                                    `}
+                            >
+                                <div
+                                    className={`w-10 h-10 flex items-center justify-center text-xs font-semibold rounded-full
+                                        ${
+                                            directPlanningData.category
+                                                ? categoryColors[
+                                                      directPlanningData.category as keyof typeof categoryColors
+                                                  ]
+                                                : 'bg-gray-400 text-white'
+                                        }`}
+                                >
+                                    {directPlanningData.category ? directPlanningData.category : '유형'}
+                                </div>
+                            </SelectTrigger>
+                            <SelectContent className="p-1 space-y-2 h-auto rounded-md border shadow-md bg-gray-100">
+                                {Object.keys(categoryColors).map((category) => (
+                                    <SelectItem
+                                        key={category}
+                                        value={category}
+                                        className={`flex items-center justify-center p-0 w-13 h-13 rounded-md bg-gray-100 cursor-pointer hover:bg-blue-200`}
+                                    >
+                                        <div
+                                            className={`w-10 h-10 flex items-center justify-center text-xs font-semibold rounded-full
+                                            ${categoryColors[category as keyof typeof categoryColors]}
+                                        `}
+                                        >
+                                            {category}
+                                        </div>
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
                     </div>
                 </div>
                 <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
-                    <div className="flex-1">
-                        <Input
-                            placeholder="시간"
+                    <Clock className="h-5 w-5 text-gray-500" />
+                    <div className="flex-1 flex space-x-2">
+                        <Select
+                            onValueChange={(value) => setDirectPlanningData({ ...directPlanningData, time: value })}
                             value={directPlanningData.time}
-                            onChange={(e) => setDirectPlanningData({ ...directPlanningData, time: e.target.value })}
-                            className="border-0 border-b border-gray-300 rounded-none px-0 focus:border-blue-500"
-                        />
+                        >
+                            <SelectTrigger className="flex-1 bg-gray-100 p-1.5 rounded-lg border-0 shadow-none">
+                                <SelectValue placeholder="시작 시간" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {timeOptions.map((time) => (
+                                    <SelectItem key={time} value={time}>
+                                        {time}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                        <span className="text-gray-400 flex items-center">~</span>
+                        <Select
+                            onValueChange={(value) => setDirectPlanningData({ ...directPlanningData, endTime: value })}
+                            value={directPlanningData.endTime}
+                        >
+                            <SelectTrigger className="flex-1 bg-gray-100 p-1.5 rounded-lg border-0 shadow-none">
+                                <SelectValue placeholder="종료 시간" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {timeOptions.map((time) => (
+                                    <SelectItem key={time} value={time}>
+                                        {time}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
                     </div>
                 </div>
                 <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
-                    <div className="flex-1">
+                    <MapPin className="h-5 w-5 text-gray-500" />
+                    <div className="flex-1 bg-gray-100 p-1.5 rounded-lg">
                         <Input
-                            placeholder="경기 여천시 여천동로 1200"
+                            placeholder=""
                             value={directPlanningData.location}
                             onChange={(e) => setDirectPlanningData({ ...directPlanningData, location: e.target.value })}
-                            className="border-0 border-b border-gray-300 rounded-none px-0 focus:border-blue-500"
-                        />
-                    </div>
-                </div>
-                <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    <div className="flex-1">
-                        <Input
-                            placeholder="추가 정보"
-                            value={directPlanningData.category}
-                            onChange={(e) => setDirectPlanningData({ ...directPlanningData, category: e.target.value })}
-                            className="border-0 border-b border-gray-300 rounded-none px-0 focus:border-blue-500"
+                            className="border-0 bg-transparent px-0 focus-visible:ring-0 focus-visible:ring-offset-0 shadow-none w-full"
                         />
                     </div>
                 </div>
             </div>
+
             <Button
                 onClick={() => {
-                    if (directPlanningData.location) {
+                    if (directPlanningData.location && directPlanningData.region) {
                         setSelectedPlaces([
                             ...selectedPlaces,
                             {
-                                name: directPlanningData.location,
-                                time: directPlanningData.time || '10:00',
+                                name: directPlanningData.region,
+                                time: directPlanningData.time || '00:00',
+                                endTime: directPlanningData.endTime || '00:00',
                                 address: directPlanningData.location,
-                                category: '기타',
+                                category: directPlanningData.category || '기타',
+                                date: currentDay || new Date(),
                             },
                         ]);
+                        setDirectPlanningData({
+                            region: '',
+                            time: '',
+                            endTime: '',
+                            location: '',
+                            category: '기타',
+                        });
                         setPlanningStep(1);
                     }
                 }}
                 className="w-full bg-blue-500 hover:bg-blue-600 h-12"
-                disabled={!directPlanningData.location}
+                disabled={!directPlanningData.location || !directPlanningData.region}
             >
-                일정 추가하기
+                {'일정 추가하기'}
             </Button>
         </div>
     );
 
-    // 비어있는 일정 화면
-    const renderEmptySchedule = () => (
-        <div className="p-4">
-            <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center space-x-2">
-                    <MapPin className="h-5 w-5 text-gray-400" />
-                    <span className="text-gray-400">장소</span>
-                </div>
-                <button
-                    onClick={() => setPlanningStep(2)}
-                    className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center"
-                >
-                    <Plus className="h-5 w-5 text-white" />
-                </button>
-            </div>
-            <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center space-x-2">
-                    <Clock className="h-5 w-5 text-gray-400" />
-                    <span className="text-gray-400">시간</span>
-                </div>
-            </div>
-            <div className="flex items-center justify-between mb-8">
-                <div className="flex items-center space-x-2">
-                    <MapPin className="h-5 w-5 text-gray-400" />
-                    <span className="text-gray-400">장소</span>
-                </div>
-            </div>
-            <Button onClick={() => setPlanningStep(2)} className="w-full bg-blue-500 hover:bg-blue-600 h-12">
-                장소 추가하기
-            </Button>
-        </div>
-    );
+    // 비어있는 일정 화면 -> 일정 개요 화면으로 변경
+    const renderScheduleOverview = () => {
+        if (selectedPlaces.length > 0) {
+            return renderScheduleWithPlaces();
+        }
 
-    // 장소 검색 화면
-    const renderPlaceSearch = () => (
-        <div className="p-4">
-            <div className="mb-4">
-                <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                    <Input
-                        placeholder="강릉"
-                        value={searchQuery || '강릉'}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="pl-10 h-12 bg-gray-50"
-                    />
-                </div>
-            </div>
-            <div className="space-y-2">
-                {regions.map((region) => (
-                    <button
-                        key={region.id}
-                        onClick={() => {
-                            setCurrentPlace(region);
-                            setPlanningStep(3);
-                        }}
-                        className="w-full p-3 bg-white rounded-lg text-left hover:bg-gray-50 transition-colors border"
-                    >
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <div className="font-medium text-sm">{region.name}</div>
-                                <div className="text-xs text-gray-500">{region.id}</div>
-                            </div>
-                            <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                                <Plus className="h-4 w-4 text-white" />
-                            </div>
-                        </div>
-                    </button>
-                ))}
-            </div>
-            <Button onClick={() => setPlanningStep(1)} variant="outline" className="w-full mt-6 h-12">
-                장소 추가하기
-            </Button>
-        </div>
-    );
-
-    // 장소 상세 화면
-    const renderPlaceDetail = () => (
-        <div className="p-4">
-            {currentPlace && (
-                <>
-                    <div className="mb-6">
-                        <div className="bg-white border rounded-lg p-4 mb-4">
-                            <div className="flex items-center justify-between mb-3">
-                                <span
-                                    className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                        categoryColors[currentPlace.name as keyof typeof categoryColors] ||
-                                        categoryColors['기타']
-                                    }`}
-                                >
-                                    {currentPlace.name}
-                                </span>
-                            </div>
-                            <div className="space-y-2">
-                                <div className="font-semibold text-lg">{currentPlace.name}</div>
-                                <div className="flex items-center space-x-2 text-gray-600">
-                                    <Clock className="h-4 w-4" />
-                                    <button onClick={() => setPlanningStep(4)} className="text-blue-500 text-sm">
-                                        {selectedTime || '시간 선택'}
-                                    </button>
-                                </div>
-                                <div className="flex items-center space-x-2 text-gray-600">
-                                    <MapPin className="h-4 w-4" />
-                                    <span className="text-sm">{currentPlace.address}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <Button
-                        onClick={() => {
-                            setSelectedPlaces([
-                                ...selectedPlaces,
-                                { ...currentPlace, time: selectedTime || '10:00', address: currentPlace.address },
-                            ]);
-                            setPlanningStep(1);
-                            setCurrentPlace(null);
-                            setSelectedTime('');
-                        }}
-                        className="w-full bg-blue-500 hover:bg-blue-600 h-12"
-                    >
-                        장소 추가하기
-                    </Button>
-                </>
-            )}
-        </div>
-    );
-
-    // 시간 선택 화면
-    const renderTimeSelection = () => (
-        <div className="p-4">
-            <div className="mb-6">
-                <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center space-x-2">
-                        <Clock className="h-5 w-5 text-gray-400" />
-                        <span className="text-gray-400">시간</span>
-                    </div>
-                </div>
-                <div className="bg-white border rounded-lg">
-                    {['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'].map(
-                        (time, index) => (
-                            <button
-                                key={time}
-                                onClick={() => setSelectedTime(time)}
-                                className={`w-full p-3 text-left hover:bg-gray-50 transition-colors ${
-                                    index !== 8 ? 'border-b' : ''
-                                } ${selectedTime === time ? 'bg-blue-50 text-blue-600' : ''}`}
-                            >
-                                {time}
-                            </button>
-                        )
-                    )}
-                </div>
-            </div>
-            <Button onClick={() => setPlanningStep(3)} className="w-full bg-blue-500 hover:bg-blue-600 h-12">
-                장소 추가하기
-            </Button>
-        </div>
-    );
-
-    // 장소가 포함된 일정 화면
-    const renderScheduleWithPlaces = () => (
-        <div className="pb-20">
-            <div className="h-64 bg-gradient-to-b from-blue-100 to-blue-200 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-blue-100">
-                    <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-blue-300 to-transparent opacity-60"></div>
-                    <svg className="absolute inset-0 w-full h-full">
-                        {selectedPlaces.length > 1 && (
-                            <path
-                                d={`M 80,60 Q 120,80 160,100 Q 200,120 240,140`}
-                                stroke="#3B82F6"
-                                strokeWidth="3"
-                                fill="none"
-                                strokeDasharray="5,5"
-                            />
-                        )}
-                        {selectedPlaces.map((place, index) => {
-                            const positions = [
-                                { x: 80, y: 60 },
-                                { x: 160, y: 100 },
-                                { x: 240, y: 140 },
-                                { x: 180, y: 180 },
-                                { x: 120, y: 200 },
-                            ];
-                            const pos = positions[index] || positions[0];
-                            return (
-                                <g key={index}>
-                                    <circle cx={pos.x + 2} cy={pos.y + 2} r="12" fill="rgba(0,0,0,0.2)" />
-                                    <circle
-                                        cx={pos.x}
-                                        cy={pos.y}
-                                        r="12"
-                                        fill="#3B82F6"
-                                        stroke="white"
-                                        strokeWidth="3"
-                                    />
-                                    <text
-                                        x={pos.x}
-                                        y={pos.y + 4}
-                                        textAnchor="middle"
-                                        fill="white"
-                                        fontSize="12"
-                                        fontWeight="bold"
-                                    >
-                                        {index + 1}
-                                    </text>
-                                </g>
-                            );
-                        })}
-                    </svg>
-                </div>
-            </div>
+        return (
             <div className="p-4">
-                <div className="space-y-3 mb-6">
-                    {selectedPlaces
-                        .sort((a, b) => a.time.localeCompare(b.time))
-                        .map((place, index) => (
-                            <div key={index} className="bg-white border rounded-lg p-4 shadow-sm">
-                                <div className="flex items-start space-x-3">
-                                    <div className="flex flex-col items-center">
-                                        <div className="text-sm font-bold text-gray-800">{place.time}</div>
-                                        <div
-                                            className={`w-3 h-3 rounded-full mt-1 ${
-                                                place.category === '관광'
-                                                    ? 'bg-blue-500'
-                                                    : place.category === '카페'
-                                                    ? 'bg-orange-500'
-                                                    : place.category === '식사'
-                                                    ? 'bg-green-500'
-                                                    : 'bg-purple-500'
-                                            }`}
-                                        ></div>
-                                    </div>
-                                    <div className="flex-1">
-                                        <div className="font-semibold text-gray-800 mb-1">{place.name}</div>
-                                        <div className="text-sm text-gray-600 mb-2">{place.address}</div>
-                                        <div className="text-xs text-gray-500">
-                                            {place.category === '관광'
-                                                ? '관광지 방문'
-                                                : place.category === '카페'
-                                                ? '커피 한잔 및 휴식'
-                                                : place.category === '식사'
-                                                ? '맛있는 식사'
-                                                : '기타 활동'}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
+                <div className="flex flex-col items-center justify-center h-[calc(100vh-200px)] text-gray-400">
+                    <p className="text-lg mb-4">{'일정이 없습니다!'}</p>
                 </div>
-                <button
-                    onClick={() => setPlanningStep(2)}
-                    className="w-full mt-6 p-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-500 hover:border-gray-400 transition-colors flex flex-col items-center"
-                >
-                    <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mb-2">
-                        <Plus className="h-6 w-6 text-white" />
-                    </div>
-                    <span className="text-sm">장소 추가하기</span>
-                </button>
             </div>
-        </div>
-    );
+        );
+    };
+    // 장소가 포함된 일정 화면
+    const renderScheduleWithPlaces = () => {
+        const placesForCurrentDay = selectedPlaces
+            .filter((place) => currentDay && isSameDay(new Date(place.date), currentDay))
+            .sort((a, b) => {
+                const timeA = new Date(`2000/01/01 ${a.time}`);
+                const timeB = new Date(`2000/01/01 ${b.time}`);
+                return timeA.getTime() - timeB.getTime();
+            });
+
+        if (placesForCurrentDay.length === 0) {
+            return (
+                <div className="p-4">
+                    <div className="flex flex-col items-center justify-center h-[calc(100vh-300px)] text-gray-400">
+                        <p className="text-lg mb-4">{'일정이 없습니다!'}</p>
+                    </div>
+                </div>
+            );
+        }
+
+        return (
+            <div className="pb-20">
+                <div className="relative pt-4 pl-8 pr-4">
+                    {placesForCurrentDay.map((place, index) => (
+                        <div key={index} className="relative flex items-start mb-12 last:mb-0">
+                            {/* Time */}
+                            <div className="text-sm font-bold text-gray-800 absolute top-0 left-[-5px] w-[45px] text-right z-10">
+                                {place.time}
+                            </div>
+                            {/* Dot */}
+                            <div
+                                className={`w-3 h-3 rounded-full flex-shrink-0 absolute left-[50px] top-[6px] z-10 ${
+                                    categoryColors[place.category as keyof typeof categoryColors]
+                                }`}
+                            ></div>
+
+                            {/* Vertical connecting line */}
+                            {index < placesForCurrentDay.length - 1 ? (
+                                <div
+                                    className="absolute left-[56px] top-[12px] w-0.5 bg-gray-300 z-0"
+                                    style={{ height: `calc(100% + 54px)` }}
+                                ></div>
+                            ) : (
+                                <div
+                                    className="absolute left-[56px] top-[12px] w-0.5 bg-gray-300 z-0"
+                                    style={{ height: `calc(100% - 12px)` }}
+                                ></div>
+                            )}
+
+                            {/* Right Card Content Column */}
+                            <div className="flex-1 ml-[70px] bg-white border rounded-lg p-4 shadow-sm z-10">
+                                <div className="font-semibold text-gray-800 mb-1">{place.name}</div>
+                                <div className="text-sm text-gray-600 mb-2">
+                                    {place.time}-{place.endTime}
+                                </div>
+                                <div className="text-sm text-gray-600 mb-2">{place.address}</div>
+                            </div>
+
+                            {/* 이동 경로 확인 link (between items) */}
+                            {index < placesForCurrentDay.length - 1 && (
+                                <div className="absolute left-[70px] top-[calc(100%+10px)] z-20">
+                                    <span className="inline-flex items-center space-x-1 px-3 py-1 text-gray-500 text-xs font-medium ">
+                                        <Navigation className="h-3 w-3" fill="currentColor" />
+                                        <span>{'이동 경로 확인'}</span>
+                                        <ChevronRight className="h-3 w-3" />
+                                    </span>
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+    };
 
     return (
-        <div className="min-h-screen bg-white">
-            <div className="bg-white border-b p-4">
-                <div className="flex items-center space-x-3">
+        <div className="bg-white relative flex flex-col">
+            <div className="bg-white border-b py-6 px-4 sticky top-0 z-10">
+                <div className="flex items-center space-x-3 mb-4">
                     <button
                         onClick={() => {
-                            if (planningStep > 1) {
-                                setPlanningStep(planningStep - 1);
-                            } else {
+                            if (planningStep === 1) {
                                 setIsManualPlanning(false);
+                            } else if (planningStep === 2) {
+                                // Changed this logic to handle going back from direct planning
+                                setPlanningStep(1);
+                            } else if (planningStep === 3) {
+                                setPlanningStep(1); // Go back from search to overview if coming from add button
+                            } else {
+                                setPlanningStep(planningStep - 1);
                             }
                         }}
                         className="p-1"
@@ -393,19 +385,132 @@ export default function ScheduleManual({ setIsManualPlanning }: ScheduleManualPr
                         <ChevronLeft className="h-6 w-6" />
                     </button>
                     <div>
-                        <h1 className="text-lg font-bold">경기도 여행 일정</h1>
-                        <p className="text-sm text-gray-600">여행일정 만들기</p>
+                        <h1 className="text-lg font-bold">
+                            {selectedRegion ? `${selectedRegion} 여행 일정` : '새로운 여행 일정'}
+                        </h1>
+                        <p className="text-sm text-gray-600">
+                            {format(startDate || new Date(), 'yyyy.MM.dd')} -{' '}
+                            {format(days[days.length - 1] || new Date(), 'yyyy.MM.dd')}
+                        </p>
                     </div>
                 </div>
+
+                {planningStep === 1 && (
+                    <div className="mb-0">
+                        <div className="flex space-x-2 pb-2">
+                            <Carousel opts={{ align: 'start' }} className="w-full pl-0">
+                                <CarouselContent className="-ml-0">
+                                    {days.map((day, index) => (
+                                        <CarouselItem key={index} className="basis-1/4 pl-0">
+                                            <button
+                                                onClick={() => setCurrentDay(day)}
+                                                className={`flex-shrink-0 text-sm font-medium w-full h-full border-r py-3
+                                                    ${
+                                                        isSameDay(day, currentDay || new Date())
+                                                            ? 'bg-blue-500 text-white border-blue-500'
+                                                            : 'bg-gray-100 text-gray-700 border-gray-200'
+                                                    }`}
+                                            >
+                                                <div className="text-center">
+                                                    <div>
+                                                        {index + 1}
+                                                        {'일차'}
+                                                    </div>
+                                                    <div className="text-xs opacity-80">{format(day, 'MM.dd')}</div>
+                                                </div>
+                                            </button>
+                                        </CarouselItem>
+                                    ))}
+                                    <CarouselItem key={days.length} className="basis-1/4 pl-0 bg-gray-100 ">
+                                        <button
+                                            onClick={() => {
+                                                /* Adding days is not applicable on this page */
+                                            }}
+                                            className="flex-shrink-0 text-sm font-medium text-gray-700 h-full flex items-center justify-center w-full py-4 "
+                                        >
+                                            <Plus className="h-5 w-5 bg-gray-100 text-gray-700 border-gray-200" />
+                                        </button>
+                                    </CarouselItem>
+                                </CarouselContent>
+                            </Carousel>
+                        </div>
+                        {currentDay && (
+                            <div className="mt-4 p-0 bg-gray-50 rounded-lg flex flex-col space-y-2">
+                                <div className="flex items-center justify-between text-gray-700">
+                                    <div className="flex items-center space-x-2">
+                                        {/* You can replace this with a weather icon component */}
+                                        <span role="img" aria-label="weather">
+                                            ☁️
+                                        </span>
+                                        <span className="font-semibold">
+                                            {currentDay
+                                                ? `${
+                                                      days.findIndex((day) => isSameDay(day, currentDay)) + 1
+                                                  }일차 - ${format(currentDay, 'M월 d일 (EEE)', { locale: ko })}`
+                                                : ''}
+                                        </span>
+                                    </div>
+                                    <span className="text-sm text-gray-500">
+                                        {'총 '}
+                                        {
+                                            selectedPlaces.filter((place) =>
+                                                isSameDay(new Date(place.date), currentDay)
+                                            ).length
+                                        }
+                                        {'개 일정'}
+                                    </span>
+                                </div>
+                                <div className="flex items-center justify-between text-xs text-gray-600 py-2">
+                                    {Object.entries(calculateCategorySummary(currentDay)).map(
+                                        ([category, duration]) => {
+                                            const hours = Math.floor(duration / 60);
+                                            const minutes = duration % 60;
+                                            const durationString =
+                                                [hours > 0 ? `${hours}시간` : '', minutes > 0 ? `${minutes}분` : '']
+                                                    .filter(Boolean)
+                                                    .join(' ') || '0분';
+                                            return (
+                                                <div key={category} className="flex items-center space-x-1">
+                                                    <span
+                                                        className={`w-2 h-2 rounded-full ${
+                                                            categoryColors[category as keyof typeof categoryColors]
+                                                        }`}
+                                                    ></span>
+                                                    <span>
+                                                        {category} {durationString}
+                                                    </span>
+                                                </div>
+                                            );
+                                        }
+                                    )}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                )}
             </div>
 
-            {/* planningStep 상태에 따라 다른 화면을 렌더링합니다. */}
-            <div>
-                {planningStep === 1 && renderEmptySchedule()}
-                {planningStep === 2 && renderPlaceSearch()}
-                {planningStep === 3 && renderPlaceDetail()}
-                {planningStep === 4 && renderTimeSelection()}
+            {/* planningStep 상태에 따라 다른 화면을 렌더링 */}
+            <div className="flex-grow overflow-y-auto">
+                {planningStep === 1 && renderScheduleOverview()}
+                {planningStep === 2 && renderDirectPlanning()}
             </div>
+
+            {planningStep === 1 && (
+                <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg flex justify-center z-50">
+                    <div className="max-w-3xl mx-auto w-full p-4 relative">
+                        <Button onClick={handleSavePlan} className="w-full bg-blue-500 hover:bg-blue-600 h-12">
+                            {'저장하기'}
+                        </Button>
+                        <button
+                            onClick={() => setPlanningStep(2)}
+                            className="absolute bottom-20 right-4 w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white shadow-lg z-50"
+                        >
+                            <Plus className="h-8 w-8" />
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

@@ -198,7 +198,14 @@ export default function SchedulePage() {
     }
 
     if (isManualPlanning) {
-        return <ScheduleManual setIsManualPlanning={setIsManualPlanning} />;
+        return (
+            <ScheduleManual
+                setIsManualPlanning={setIsManualPlanning}
+                startDate={startDate}
+                endDate={endDate}
+                selectedRegion={selectedRegion}
+            />
+        );
     }
 
     return (
