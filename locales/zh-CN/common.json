@@ -1,0 +1,11 @@
+{
+    "confirm_button": "确认",
+    "select_language_title": "请选择你的语言!",
+    "navigation": {
+        "home": "首页",
+        "schedule": "行程",
+        "shorts": "短片",
+        "chat": "聊天",
+        "mytravel": "我的旅行"
+    }
+}
