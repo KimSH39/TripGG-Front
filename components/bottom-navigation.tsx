@@ -24,7 +24,7 @@ export default function BottomNavigation() {
     const activeTab = tabs.find((tab) => pathname.startsWith(tab.path))?.id || 'home';
 
     return (
-        <div className="fixed bottom-12 left-0 right-0 bg-white border-t border-gray-200 z-50 max-w-3xl mx-auto">
+        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 max-w-3xl mx-auto">
             <div className="flex justify-around px-4 py-1">
                 {tabs.map((tab) => {
                     const Icon = tab.icon;
