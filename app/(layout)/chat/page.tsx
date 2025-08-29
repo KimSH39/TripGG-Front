@@ -66,37 +66,39 @@ export default function ChatPage() {
             </div>
 
             {/* 채팅창 */}
-            <div className="flex-1 p-4 space-y-4 overflow-y-auto mb-32">
-                {messages.map((msg) => (
-                    <div key={msg.id} className={`flex items-end ${msg.isMine ? 'justify-end' : 'justify-start'}`}>
-                        {/* 상대방 메시지 */}
-                        {!msg.isMine && (
-                            <div className="flex items-end">
-                                <img src={'/tripgg-icon.png'} alt={msg.sender} className="h-8 w-8 rounded-full mr-2" />
+            <div className="flex-1 p-4">
+                <div className="space-y-4 overflow-y-auto mb-32">
+                    {messages.map((msg) => (
+                        <div key={msg.id} className={`flex items-end ${msg.isMine ? 'justify-end' : 'justify-start'}`}>
+                            {/* 상대방 메시지 */}
+                            {!msg.isMine && (
                                 <div className="flex items-end">
+                                    <img src={'/tripgg-icon.png'} alt={msg.sender} className="h-8 w-8 rounded-full mr-2" />
+                                    <div className="flex items-end">
+                                        <div
+                                            className={`px-4 py-2 rounded-2xl max-w-xs lg:max-w-md break-words bg-gray-100 text-gray-800`}
+                                        >
+                                            {msg.message}
+                                        </div>
+                                        <span className={`text-xs mt-1 text-gray-500`}>{msg.time}</span>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* 내 메시지 */}
+                            {msg.isMine && (
+                                <div className="flex items-end">
+                                    <span className={`text-xs text-gray-500 mr-2`}>{msg.time}</span>
                                     <div
-                                        className={`px-4 py-2 rounded-2xl max-w-xs lg:max-w-md break-words bg-gray-100 text-gray-800`}
+                                        className={`px-4 py-2 rounded-2xl max-w-xs lg:max-w-md break-words bg-blue-500 text-white`}
                                     >
                                         {msg.message}
                                     </div>
-                                    <span className={`text-xs mt-1 text-gray-500`}>{msg.time}</span>
                                 </div>
-                            </div>
-                        )}
-
-                        {/* 내 메시지 */}
-                        {msg.isMine && (
-                            <div className="flex items-end">
-                                <span className={`text-xs text-gray-500 mr-2`}>{msg.time}</span>
-                                <div
-                                    className={`px-4 py-2 rounded-2xl max-w-xs lg:max-w-md break-words bg-blue-500 text-white`}
-                                >
-                                    {msg.message}
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                ))}
+                            )}
+                        </div>
+                    ))}
+                </div>
             </div>
 
             {/* 입력바 */}

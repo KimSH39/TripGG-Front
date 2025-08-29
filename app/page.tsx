@@ -17,10 +17,13 @@ export default function SplashPage() {
                 <Image
                     src="/Trippgg-background.png"
                     alt="Tripgg 배경"
-                    className="w-full h-full object-cover blur-sm"
+                    className="w-full h-full object-cover"
                     width={1920}
                     height={1080}
                     priority
+                    quality={75}
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                 />
             </div>
 
@@ -48,7 +51,7 @@ export default function SplashPage() {
                 )}
             </div>
 
-            <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2">
+            <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2">
                 <button onClick={handleStartClick} className="flex items-center">
                     <img
                         src="kakao_login_large_wide.png"

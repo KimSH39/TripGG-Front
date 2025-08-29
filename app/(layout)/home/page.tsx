@@ -36,7 +36,7 @@ export default function HomePage() {
 
     return (
         // 전체 페이지 배경색과 하단 패딩을 설정합니다.
-        <div className="min-h-screen bg-slate-50">
+        <div className="min-h-screen bg-[#FDFDFD] pt-12">
             {/* 상단 배너 섹션 */}
             <div
                 className="relative h-48 bg-cover bg-center text-white p-4 flex flex-col justify-end"
@@ -67,7 +67,7 @@ export default function HomePage() {
                 {/* 내 일정 섹션 */}
                 <div>
                     <div className="flex justify-between items-center mb-3">
-                        <h2 className="text-lg font-bold">내 일정</h2>
+                        <h2 className="text-2xl font-bold">내 일정</h2>
                         {scheduleItems.length > 0 && (
                             <button className="text-sm text-gray-500 hover:text-gray-800">더보기</button>
                         )}
@@ -75,7 +75,7 @@ export default function HomePage() {
 
                     {/* 조건부 렌더링: 일정이 있을 때와 없을 때 */}
                     {scheduleItems.length > 0 ? (
-                        <div className="space-y-2">
+                        <div className="space-y-4">
                             {scheduleItems.map((item, index) => (
                                 <Card key={index} className="hover:shadow-md transition-shadow bg-white rounded-[10px] h-[93px]">
                                     <CardContent className="p-0 h-full flex items-center">
