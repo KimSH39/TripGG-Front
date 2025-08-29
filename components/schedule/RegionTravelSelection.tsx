@@ -32,11 +32,11 @@ export default function RegionTravelSelection({
                     {regions.map((region) => (
                         <button
                             key={region.id}
-                            onClick={() => setSelectedRegion(region.id)}
+                            onClick={() => setSelectedRegion(region.name)}
                             className={`
                 p-2 rounded-lg text-center transition-colors border
                 ${
-                    selectedRegion === region.id
+                    selectedRegion === region.name
                         ? 'bg-blue-50 text-blue-600 border-blue-500'
                         : 'bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-200'
                 }
