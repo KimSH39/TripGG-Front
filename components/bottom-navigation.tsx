@@ -24,8 +24,8 @@ export default function BottomNavigation() {
     const activeTab = tabs.find((tab) => pathname.startsWith(tab.path))?.id || 'home';
 
     return (
-        <div className="fixed bottom-16 left-0 right-0 bg-white border-t border-gray-200 z-50 max-w-3xl mx-auto">
-            <div className="flex justify-around px-4 py-2">
+        <div className="fixed bottom-12 left-0 right-0 bg-white border-t border-gray-200 z-50 max-w-3xl mx-auto">
+            <div className="flex justify-around px-4 py-1">
                 {tabs.map((tab) => {
                     const Icon = tab.icon;
                     const isActive = activeTab === tab.id;
@@ -34,7 +34,7 @@ export default function BottomNavigation() {
                         <button
                             key={tab.id}
                             onClick={() => handleTabClick(tab.path)}
-                            className={`flex flex-col items-center space-y-1 py-2 px-3 rounded-lg transition-colors ${
+                            className={`flex flex-col items-center space-y-1 py-1 px-3 rounded-lg transition-colors ${
                                 isActive ? 'text-blue-500 bg-blue-50' : 'text-gray-500 hover:text-gray-700'
                             }`}
                         >
