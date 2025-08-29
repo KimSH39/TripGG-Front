@@ -45,7 +45,7 @@ export default function CompanionSelection({
                             <button
                                 key={companion.id}
                                 onClick={() => setSelectedCompanion(companion.id)}
-                                className={`flex items-center p-2 rounded-lg border transition-colors text-left
+                                className={`flex items-center p-1 rounded-lg border transition-colors text-left
           ${isSelected ? 'border-blue-500 bg-blue-50' : 'border-gray-200 bg-white hover:border-gray-300'}
         `}
                             >
@@ -68,12 +68,12 @@ export default function CompanionSelection({
                     <h2 className="text-xl font-bold text-gray-800 mb-2">어떤 여행을 기대하시나요?</h2>
                     <p className="text-gray-600 text-sm">선호하는 여행 스타일을 선택해 주세요</p>
                 </div>
-                <div className="grid grid-cols-2 gap-3 mb-8">
+                <div className="grid grid-cols-2 gap-3 mb-4">
                     {travelStyles.map((style) => (
                         <button
                             key={style.id}
                             onClick={() => setSelectedStyle(style.id)}
-                            className={`flex items-center p-5 rounded-lg border transition-colors text-left
+                            className={`flex items-center p-4 rounded-lg border transition-colors text-left
                 ${
                     selectedStyle === style.id
                         ? 'border-blue-500 bg-blue-50'
@@ -92,13 +92,15 @@ export default function CompanionSelection({
                         </button>
                     ))}
                 </div>
-            </div>
-
-            <div className="p-4 bg-white border-t border-gray-200">
                 <Button
                     onClick={nextStep}
                     disabled={!selectedCompanion || !selectedStyle}
-                    className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold h-12 rounded-lg"
+                    className={`w-full h-14 mt-6 text-lg font-semibold
+                    ${
+                        !selectedCompanion || !selectedStyle
+                            ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                            : 'bg-blue-500 hover:bg-blue-600 text-white'
+                    }`}
                 >
                     여행 타입 정하기
                 </Button>

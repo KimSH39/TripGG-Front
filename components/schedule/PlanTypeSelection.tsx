@@ -1,6 +1,8 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import SvgAi from '@/components/icons/Ai';
+import SvgSelf from '@/components/icons/Self';
 
 interface PlanTypeSelectionProps {
     selectedPlanType: string;
@@ -16,7 +18,7 @@ export default function PlanTypeSelection({
     setIsManualPlanning,
 }: PlanTypeSelectionProps) {
     return (
-        <div className="p-4">
+        <div className="p-4 pb-24">
             <div className="mb-6">
                 <h2 className="text-xl font-bold text-gray-800 mb-2">어떻게 일정을 구성할까요?</h2>
                 <p className="text-gray-600 text-sm">
@@ -28,15 +30,15 @@ export default function PlanTypeSelection({
             <div className="space-y-4 mb-8">
                 <button
                     onClick={() => setSelectedPlanType('ai')}
-                    className={`w-full p-6 rounded-lg border-2 transition-colors text-left ${
+                    className={`w-full p-4 rounded-lg border-2 transition-colors text-left ${
                         selectedPlanType === 'ai'
                             ? 'border-blue-500 bg-blue-50'
                             : 'border-gray-200 hover:border-gray-300'
                     }`}
                 >
                     <div className="flex items-center space-x-3">
-                        <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                            <span className="text-2xl">🤖</span>
+                        <div className="w-12 h-12 flex items-center justify-center">
+                            <SvgAi isSelected={selectedPlanType === 'ai'} className="w-full h-full" />
                         </div>
                         <div>
                             <div className="font-semibold text-lg">AI 추천 일정 받기</div>
@@ -50,15 +52,15 @@ export default function PlanTypeSelection({
                 </button>
                 <button
                     onClick={() => setSelectedPlanType('manual')}
-                    className={`w-full p-6 rounded-lg border-2 transition-colors text-left ${
+                    className={`w-full p-4 rounded-lg border-2 transition-colors text-left ${
                         selectedPlanType === 'manual'
                             ? 'border-blue-500 bg-blue-50'
                             : 'border-gray-200 hover:border-gray-300'
                     }`}
                 >
                     <div className="flex items-center space-x-3">
-                        <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
-                            <span className="text-2xl">📝</span>
+                        <div className="w-12 h-12 flex items-center justify-center">
+                            <SvgSelf isSelected={selectedPlanType === 'manual'} className="w-full h-full" />
                         </div>
                         <div>
                             <div className="font-semibold text-lg">직접 일정 구성하기</div>
@@ -71,6 +73,7 @@ export default function PlanTypeSelection({
                     </div>
                 </button>
             </div>
+
             <Button
                 onClick={() => {
                     if (selectedPlanType === 'manual') {
@@ -80,7 +83,12 @@ export default function PlanTypeSelection({
                     }
                 }}
                 disabled={!selectedPlanType}
-                className="w-full bg-blue-500 hover:bg-blue-600 h-12"
+                className={`w-full h-14 mt-6 text-lg font-semibold
+                        ${
+                            !selectedPlanType
+                                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                : 'bg-blue-500 hover:bg-blue-600 text-white'
+                        }`}
             >
                 일정 생성하기
             </Button>

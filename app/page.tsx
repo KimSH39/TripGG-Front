@@ -8,7 +8,7 @@ export default function SplashPage() {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const handleStartClick = () => {
-        router.push('/home');
+        router.push('/language-select');
     };
 
     return (
@@ -50,7 +50,11 @@ export default function SplashPage() {
 
             <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2">
                 <button onClick={handleStartClick} className="flex items-center">
-                    <img src="kakao_login_medium_wide.png" alt="카카오로 로그인" />
+                    <img
+                        src="kakao_login_large_wide.png"
+                        alt="카카오로 로그인"
+                        className="w-full max-w-xs min-w-64 h-auto" // 화면에 맞춰 커지되, 최대 320px
+                    />
                 </button>
             </div>
 

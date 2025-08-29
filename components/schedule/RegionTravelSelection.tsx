@@ -34,7 +34,7 @@ export default function RegionTravelSelection({
                             key={region.id}
                             onClick={() => setSelectedRegion(region.id)}
                             className={`
-                p-2 rounded-full text-center transition-colors border
+                p-2 rounded-lg text-center transition-colors border
                 ${
                     selectedRegion === region.id
                         ? 'bg-blue-50 text-blue-600 border-blue-500'
@@ -108,13 +108,20 @@ export default function RegionTravelSelection({
                 </div>
             </div>
 
-            <Button
-                onClick={nextStep}
-                disabled={!selectedRegion || !selectedTravelStyle}
-                className="w-full bg-blue-500 hover:bg-blue-600 h-12 mb-20"
-            >
-                여행 일정 만들기
-            </Button>
+            <div className="bottom-0 left-0 right-0 p-4 ">
+                <Button
+                    onClick={nextStep}
+                    disabled={!selectedRegion || !selectedTravelStyle}
+                    className={`w-full h-14 text-lg font-semibold
+              ${
+                  !selectedRegion || !selectedTravelStyle
+                      ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                      : 'bg-blue-500 hover:bg-blue-600 text-white'
+              }`}
+                >
+                    여행 일정 만들기
+                </Button>
+            </div>
         </>
     );
 }
