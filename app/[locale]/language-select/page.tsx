@@ -5,17 +5,10 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import enCommon from '@/public/locales/en/common.json';
-import koCommon from '@/public/locales/ko/common.json';
-import zhCNCommon from '@/public/locales/zh-CN/common.json';
-import zhTWCommon from '@/public/locales/zh-TW/common.json';
-import jaCommon from '@/public/locales/ja/common.json';
-import viCommon from '@/public/locales/vi/common.json';
-
 export default function LanguageSelectPage() {
     const router = useRouter();
-    const { t, i18n } = useTranslation('common');
-    const [selectedLanguage, setSelectedLanguage] = useState('English'); // Default to English
+    const { t } = useTranslation('common');
+    const [selectedLanguage, setSelectedLanguage] = useState(''); // No default selection
 
     const languages = [
         { name: 'Korean(한국어)', value: 'Korean', flag: '/images/korea_flag.png' }, // Assuming flag images will be added
@@ -26,44 +19,6 @@ export default function LanguageSelectPage() {
         { name: 'Vietnamese (Tiếng Việt)', value: 'Vietnamese', flag: '/images/vietnam_flag.png' },
     ];
 
-    const getConfirmButtonText = () => {
-        switch (selectedLanguage) {
-            case 'Korean':
-                return koCommon.confirm_button;
-            case 'English':
-                return enCommon.confirm_button;
-            case 'Chinese-Simplified':
-                return zhCNCommon.confirm_button;
-            case 'Chinese-Traditional':
-                return zhTWCommon.confirm_button;
-            case 'Japanese':
-                return jaCommon.confirm_button;
-            case 'Vietnamese':
-                return viCommon.confirm_button;
-            default:
-                return t('confirm_button'); // Fallback to current i18n translation
-        }
-    };
-
-    const getTitleText = () => {
-        switch (selectedLanguage) {
-            case 'Korean':
-                return koCommon.select_language_title;
-            case 'English':
-                return enCommon.select_language_title;
-            case 'Chinese-Simplified':
-                return zhCNCommon.select_language_title;
-            case 'Chinese-Traditional':
-                return zhTWCommon.select_language_title;
-            case 'Japanese':
-                return jaCommon.select_language_title;
-            case 'Vietnamese':
-                return viCommon.select_language_title;
-            default:
-                return t('select_language_title'); // Fallback to current i18n translation
-        }
-    };
-
     const handleLanguageSelect = (languageValue: string) => {
         setSelectedLanguage(languageValue);
         console.log(`Language selected: ${languageValue}`);
@@ -71,25 +26,14 @@ export default function LanguageSelectPage() {
 
     const handleConfirm = () => {
         if (selectedLanguage) {
-            const languageCode = {
-                Korean: 'ko',
-                English: 'en',
-                'Chinese-Simplified': 'zh-CN',
-                'Chinese-Traditional': 'zh-TW',
-                Japanese: 'ja',
-                Vietnamese: 'vi',
-            }[selectedLanguage];
-            if (languageCode) {
-                i18n.changeLanguage(languageCode);
-                console.log(`Language confirmed: ${selectedLanguage} (${languageCode})`);
-                router.push('/home'); // Redirect to home page after confirmation
-            }
+            console.log(`Language confirmed: ${selectedLanguage}`);
+            router.push('/home'); // Redirect to home page after confirmation
         }
     };
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-start py-8 px-4 bg-white">
-            <h1 className="text-2xl font-bold mb-8 mt-16">{getTitleText()}</h1>
+            <h1 className="text-2xl font-bold mb-8 mt-16">Please select your language!</h1>
             <div className="w-full max-w-sm">
                 {languages.map((lang) => (
                     <button
@@ -110,7 +54,7 @@ export default function LanguageSelectPage() {
                         <span className="text-base font-medium">{lang.name}</span>
                     </button>
                 ))}
-
+                
                 {/* 확인 버튼 */}
                 <button
                     onClick={handleConfirm}
@@ -121,7 +65,7 @@ export default function LanguageSelectPage() {
                             : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                     }`}
                 >
-                    {getConfirmButtonText()}
+                    {t('confirm_button')}
                 </button>
             </div>
         </div>
