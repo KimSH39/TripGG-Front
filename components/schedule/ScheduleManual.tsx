@@ -4,10 +4,11 @@ import { useState, useEffect } from 'react';
 import { ChevronLeft, Plus, Search, Clock, MapPin, CalendarDays, ChevronRight, Navigation } from 'lucide-react';
 import React from 'react'; //
 import { Button } from '@/components/ui/button';
+import { useTranslation } from 'react-i18next';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { format, addDays, isSameDay } from 'date-fns';
-import { ko } from 'date-fns/locale';
+import { format, addDays, isSameDay, Locale } from 'date-fns';
+import { enUS, ko, zhCN, zhTW, ja, vi } from 'date-fns/locale';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import { useRouter } from 'next/navigation';
 import { savePlan, TravelPlan } from '@/lib/mockApi';
@@ -27,6 +28,8 @@ export default function ScheduleManual({
     selectedRegion,
 }: ScheduleManualProps) {
     const [planningStep, setPlanningStep] = useState(1);
+    const { t } = useTranslation('common');
+    const { i18n } = useTranslation();
     const [selectedPlaces, setSelectedPlaces] = useState<any[]>([]);
     const router = useRouter();
 
@@ -35,14 +38,14 @@ export default function ScheduleManual({
         time: '',
         endTime: '',
         location: '',
-        category: '기타', // 기본 카테고리 '기타'
+        category: t('schedule.manual.category.default'), // 기본 카테고리 '기타'
     });
 
     const categoryColors = {
-        관광: 'bg-green-500 text-white',
-        카페: 'bg-purple-500 text-white',
-        식사: 'bg-orange-500 text-white',
-        기타: 'bg-blue-500 text-white',
+        [t('schedule.manual.category.tourism')]: 'bg-green-500 text-white',
+        [t('schedule.manual.category.cafe')]: 'bg-purple-500 text-white',
+        [t('schedule.manual.category.food')]: 'bg-orange-500 text-white',
+        [t('schedule.manual.category.etc')]: 'bg-blue-500 text-white',
     };
 
     const [currentDay, setCurrentDay] = useState<Date | null>(startDate);
@@ -64,11 +67,13 @@ export default function ScheduleManual({
 
     const handleSavePlan = async () => {
         if (!startDate || !endDate || selectedPlaces.length === 0) {
-            alert('일정을 저장하려면 시작일, 종료일, 그리고 최소 하나 이상의 장소를 추가해야 합니다.'); // Use translation
+            alert(t('schedule.manual.savePlan.validationMessage'));
             return;
         }
 
-        const planTitle = selectedRegion ? `${selectedRegion} 여행 일정` : '새로운 여행 일정';
+        const planTitle = selectedRegion
+            ? `${t(`travelData.${selectedRegion}.name`) || selectedRegion} ${t('schedule.manual.planTitle.region')}`
+            : t('schedule.manual.planTitle.new');
 
         const planToSave: Omit<TravelPlan, 'id'> = {
             title: planTitle,
@@ -85,16 +90,16 @@ export default function ScheduleManual({
             router.push(`/myplan/${newPlan.id}`);
         } catch (error) {
             console.error('Error saving plan', error);
-            alert('일정 저장 중 오류가 발생했습니다.'); // Use translation
+            alert(t('schedule.manual.savePlan.errorMessage'));
         }
     };
 
     const calculateCategorySummary = (day: Date) => {
         const summary: { [key: string]: number } = {
-            관광: 0,
-            식사: 0,
-            카페: 0,
-            기타: 0,
+            [t('schedule.manual.category.tourism')]: 0,
+            [t('schedule.manual.category.food')]: 0,
+            [t('schedule.manual.category.cafe')]: 0,
+            [t('schedule.manual.category.etc')]: 0,
         };
 
         const placesForDay = selectedPlaces.filter((place) => isSameDay(new Date(place.date), day));
@@ -134,6 +139,15 @@ export default function ScheduleManual({
 
     const timeOptions = generateTimeOptions();
 
+    const dateFnsLocales: { [key: string]: Locale } = {
+        en: enUS,
+        ko: ko,
+        'zh-CN': zhCN,
+        'zh-TW': zhTW,
+        ja: ja,
+        vi: vi,
+    };
+
     // 이 컴포넌트 내부에 모든 render 함수를 정의합니다.
     const renderDirectPlanning = () => (
         <div className="p-4 relative">
@@ -170,22 +184,24 @@ export default function ScheduleManual({
                                                 : 'bg-gray-400 text-white'
                                         }`}
                                 >
-                                    {directPlanningData.category ? directPlanningData.category : '유형'}
+                                    {directPlanningData.category
+                                        ? directPlanningData.category
+                                        : t('schedule.manual.category.type')}
                                 </div>
                             </SelectTrigger>
                             <SelectContent className="p-1 space-y-2 h-auto rounded-md border shadow-md bg-gray-100">
-                                {Object.keys(categoryColors).map((category) => (
+                                {Object.entries(categoryColors).map(([categoryKey, className]) => (
                                     <SelectItem
-                                        key={category}
-                                        value={category}
+                                        key={categoryKey}
+                                        value={categoryKey}
                                         className={`flex items-center justify-center p-0 w-13 h-13 rounded-md bg-gray-100 cursor-pointer hover:bg-blue-200`}
                                     >
                                         <div
                                             className={`w-10 h-10 flex items-center justify-center text-xs font-semibold rounded-full
-                                            ${categoryColors[category as keyof typeof categoryColors]}
+                                            ${className}
                                         `}
                                         >
-                                            {category}
+                                            {categoryKey}
                                         </div>
                                     </SelectItem>
                                 ))}
@@ -201,7 +217,7 @@ export default function ScheduleManual({
                             value={directPlanningData.time}
                         >
                             <SelectTrigger className="flex-1 bg-gray-100 p-1.5 rounded-lg border-0 shadow-none">
-                                <SelectValue placeholder="시작 시간" />
+                                <SelectValue placeholder={t('schedule.manual.time.start')} />
                             </SelectTrigger>
                             <SelectContent>
                                 {timeOptions.map((time) => (
@@ -211,13 +227,13 @@ export default function ScheduleManual({
                                 ))}
                             </SelectContent>
                         </Select>
-                        <span className="text-gray-400 flex items-center">~</span>
+                        <span className="text-gray-400 flex items-center">{t('schedule.manual.time.separator')}</span>
                         <Select
                             onValueChange={(value) => setDirectPlanningData({ ...directPlanningData, endTime: value })}
                             value={directPlanningData.endTime}
                         >
                             <SelectTrigger className="flex-1 bg-gray-100 p-1.5 rounded-lg border-0 shadow-none">
-                                <SelectValue placeholder="종료 시간" />
+                                <SelectValue placeholder={t('schedule.manual.time.end')} />
                             </SelectTrigger>
                             <SelectContent>
                                 {timeOptions.map((time) => (
@@ -252,7 +268,7 @@ export default function ScheduleManual({
                                 time: directPlanningData.time || '00:00',
                                 endTime: directPlanningData.endTime || '00:00',
                                 address: directPlanningData.location,
-                                category: directPlanningData.category || '기타',
+                                category: directPlanningData.category || t('schedule.manual.category.default'),
                                 date: currentDay || new Date(),
                             },
                         ]);
@@ -261,7 +277,7 @@ export default function ScheduleManual({
                             time: '',
                             endTime: '',
                             location: '',
-                            category: '기타',
+                            category: t('schedule.manual.category.default'),
                         });
                         setPlanningStep(1);
                     }
@@ -269,7 +285,7 @@ export default function ScheduleManual({
                 className="w-full bg-blue-500 hover:bg-blue-600 h-12"
                 disabled={!directPlanningData.location || !directPlanningData.region}
             >
-                {'일정 추가하기'}
+                {t('schedule.manual.addScheduleButton')}
             </Button>
         </div>
     );
@@ -283,7 +299,7 @@ export default function ScheduleManual({
         return (
             <div className="p-4">
                 <div className="flex flex-col items-center justify-center h-[calc(100vh-200px)] text-gray-400">
-                    <p className="text-lg mb-4">{'일정이 없습니다!'}</p>
+                    <p className="text-lg mb-4">{t('schedule.manual.noSchedule')}</p>
                 </div>
             </div>
         );
@@ -302,7 +318,7 @@ export default function ScheduleManual({
             return (
                 <div className="p-4">
                     <div className="flex flex-col items-center justify-center h-[calc(100vh-300px)] text-gray-400">
-                        <p className="text-lg mb-4">{'일정이 없습니다!'}</p>
+                        <p className="text-lg mb-4">{t('schedule.manual.noSchedule')}</p>
                     </div>
                 </div>
             );
@@ -351,7 +367,7 @@ export default function ScheduleManual({
                                 <div className="absolute left-[70px] top-[calc(100%+10px)] z-20">
                                     <span className="inline-flex items-center space-x-1 px-3 py-1 text-gray-500 text-xs font-medium ">
                                         <Navigation className="h-3 w-3" fill="currentColor" />
-                                        <span>{'이동 경로 확인'}</span>
+                                        <span>{t('schedule.manual.checkRoute')}</span>
                                         <ChevronRight className="h-3 w-3" />
                                     </span>
                                 </div>
@@ -386,7 +402,11 @@ export default function ScheduleManual({
                     </button>
                     <div>
                         <h1 className="text-lg font-bold">
-                            {selectedRegion ? `${selectedRegion} 여행 일정` : '새로운 여행 일정'}
+                            {selectedRegion
+                                ? `${t(`travelData.${selectedRegion}.name`) || selectedRegion} ${t(
+                                      'schedule.manual.planTitle.region'
+                                  )}`
+                                : t('schedule.manual.planTitle.new')}
                         </h1>
                         <p className="text-sm text-gray-600">
                             {format(startDate || new Date(), 'yyyy.MM.dd')} -{' '}
@@ -414,7 +434,7 @@ export default function ScheduleManual({
                                                 <div className="text-center">
                                                     <div>
                                                         {index + 1}
-                                                        {'일차'}
+                                                        {t('schedule.manual.dayCounter')}
                                                     </div>
                                                     <div className="text-xs opacity-80">{format(day, 'MM.dd')}</div>
                                                 </div>
@@ -444,20 +464,26 @@ export default function ScheduleManual({
                                         </span>
                                         <span className="font-semibold">
                                             {currentDay
-                                                ? `${
-                                                      days.findIndex((day) => isSameDay(day, currentDay)) + 1
-                                                  }일차 - ${format(currentDay, 'M월 d일 (EEE)', { locale: ko })}`
+                                                ? `${days.findIndex((day) => isSameDay(day, currentDay)) + 1}${t(
+                                                      'schedule.manual.dayCounter'
+                                                  )} - ${format(
+                                                      currentDay,
+                                                      t('schedule.manual.monthDayWeekdayFormat'),
+                                                      {
+                                                          locale: dateFnsLocales[i18n.language] || enUS,
+                                                      }
+                                                  )}`
                                                 : ''}
                                         </span>
                                     </div>
                                     <span className="text-sm text-gray-500">
-                                        {'총 '}
+                                        {t('schedule.manual.totalSchedulePrefix')}
                                         {
                                             selectedPlaces.filter((place) =>
                                                 isSameDay(new Date(place.date), currentDay)
                                             ).length
                                         }
-                                        {'개 일정'}
+                                        {t('schedule.manual.totalScheduleSuffix')}
                                     </span>
                                 </div>
                                 <div className="flex items-center justify-between text-xs text-gray-600 py-2">
@@ -466,9 +492,16 @@ export default function ScheduleManual({
                                             const hours = Math.floor(duration / 60);
                                             const minutes = duration % 60;
                                             const durationString =
-                                                [hours > 0 ? `${hours}시간` : '', minutes > 0 ? `${minutes}분` : '']
+                                                [
+                                                    hours > 0
+                                                        ? t('schedule.manual.duration.hours', { count: hours })
+                                                        : '',
+                                                    minutes > 0
+                                                        ? t('schedule.manual.duration.minutes', { count: minutes })
+                                                        : '',
+                                                ]
                                                     .filter(Boolean)
-                                                    .join(' ') || '0분';
+                                                    .join(' ') || t('schedule.manual.duration.zeroMinutes');
                                             return (
                                                 <div key={category} className="flex items-center space-x-1">
                                                     <span
@@ -477,7 +510,10 @@ export default function ScheduleManual({
                                                         }`}
                                                     ></span>
                                                     <span>
-                                                        {category} {durationString}
+                                                        {t('schedule.manual.categoryDuration', {
+                                                            category: category,
+                                                            duration: durationString,
+                                                        })}
                                                     </span>
                                                 </div>
                                             );
@@ -500,7 +536,7 @@ export default function ScheduleManual({
                 <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg flex justify-center z-50">
                     <div className="max-w-3xl mx-auto w-full p-4 relative">
                         <Button onClick={handleSavePlan} className="w-full bg-blue-500 hover:bg-blue-600 h-12">
-                            {'저장하기'}
+                            {t('schedule.manual.saveButton')}
                         </Button>
                         <button
                             onClick={() => setPlanningStep(2)}

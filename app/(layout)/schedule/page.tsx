@@ -9,6 +9,8 @@ import CompanionSelection from '@/components/schedule/CompanionSelection';
 import PlanTypeSelection from '@/components/schedule/PlanTypeSelection';
 import AIRecommendedSchedule from '@/components/schedule/AIRecommendedSchedule';
 import { useUiStore } from '@/store/uiStore'; //
+import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/navigation';
 
 export default function SchedulePage() {
     const [currentStep, setCurrentStep] = useState(1);
@@ -22,9 +24,26 @@ export default function SchedulePage() {
     const [isManualPlanning, setIsManualPlanning] = useState(false);
     const [isAIPlanning, setIsAIPlanning] = useState(false);
 
-    const aiRecommendedScheduleByDay = {
+    const { t, i18n } = useTranslation('common');
+
+    const formattedStartDate = startDate
+        ? `${startDate.getFullYear()}.${(startDate.getMonth() + 1).toString().padStart(2, '0')}.${startDate
+              .getDate()
+              .toString()
+              .padStart(2, '0')}`
+        : '';
+    const formattedEndDate = endDate
+        ? `${endDate.getFullYear()}.${(endDate.getMonth() + 1).toString().padStart(2, '0')}.${endDate
+              .getDate()
+              .toString()
+              .padStart(2, '0')}`
+        : '';
+    const dateRange = startDate && endDate ? `${formattedStartDate} - ${formattedEndDate}` : '';
+
+    const [aiRecommendedScheduleByDay, setAiRecommendedScheduleByDay] = useState({
         1: [
             {
+                id: 'day1-item1',
                 time: '11:00',
                 endTime: '11:20',
                 name: '이천터미널',
@@ -33,6 +52,7 @@ export default function SchedulePage() {
                 address: '경기 이천시 이성대로 1200',
             },
             {
+                id: 'day1-item2',
                 time: '11:20',
                 endTime: '12:20',
                 name: '장흥회관',
@@ -41,6 +61,7 @@ export default function SchedulePage() {
                 address: '경기 이천시 중리천로 8-1',
             },
             {
+                id: 'day1-item3',
                 time: '12:40',
                 endTime: '14:20',
                 name: '설봉공원 & 설봉호 산책',
@@ -49,6 +70,7 @@ export default function SchedulePage() {
                 address: '경기 이천시 관고동 408-3',
             },
             {
+                id: 'day1-item4',
                 time: '16:30',
                 endTime: '17:30',
                 name: '카페 밤온 @ 이진상회 (마장면)',
@@ -59,6 +81,7 @@ export default function SchedulePage() {
         ],
         2: [
             {
+                id: 'day2-item1',
                 time: '09:00',
                 endTime: '10:00',
                 name: '강릉역',
@@ -67,6 +90,7 @@ export default function SchedulePage() {
                 address: '강원 강릉시 강릉대로 402',
             },
             {
+                id: 'day2-item2',
                 time: '10:30',
                 endTime: '12:00',
                 name: '경포해변',
@@ -75,6 +99,7 @@ export default function SchedulePage() {
                 address: '강원 강릉시 창해로 514',
             },
             {
+                id: 'day2-item3',
                 time: '12:30',
                 endTime: '13:30',
                 name: '초당순두부마을',
@@ -83,6 +108,7 @@ export default function SchedulePage() {
                 address: '강원 강릉시 초당동',
             },
             {
+                id: 'day2-item4',
                 time: '15:00',
                 endTime: '16:00',
                 name: '안목해변 카페거리',
@@ -93,6 +119,7 @@ export default function SchedulePage() {
         ],
         3: [
             {
+                id: 'day3-item1',
                 time: '08:30',
                 endTime: '09:30',
                 name: '정동진역',
@@ -101,6 +128,7 @@ export default function SchedulePage() {
                 address: '강원 강릉시 강동면 정동진리',
             },
             {
+                id: 'day3-item2',
                 time: '10:00',
                 endTime: '11:30',
                 name: '정동진해변',
@@ -109,6 +137,7 @@ export default function SchedulePage() {
                 address: '강원 강릉시 강동면 정동진리',
             },
             {
+                id: 'day3-item3',
                 time: '12:00',
                 endTime: '13:00',
                 name: '해돋이공원 맛집',
@@ -117,6 +146,7 @@ export default function SchedulePage() {
                 address: '강원 강릉시 강동면 정동진리',
             },
             {
+                id: 'day3-item4',
                 time: '14:30',
                 endTime: '15:30',
                 name: '썬크루즈 리조트',
@@ -127,6 +157,7 @@ export default function SchedulePage() {
         ],
         4: [
             {
+                id: 'day4-item1',
                 time: '09:00',
                 endTime: '10:30',
                 name: '오죽헌',
@@ -135,6 +166,7 @@ export default function SchedulePage() {
                 address: '강원 강릉시 율곡로 3139-6',
             },
             {
+                id: 'day4-item2',
                 time: '11:00',
                 endTime: '12:00',
                 name: '강릉중앙시장',
@@ -143,6 +175,7 @@ export default function SchedulePage() {
                 address: '강원 강릉시 금성로 21',
             },
             {
+                id: 'day4-item3',
                 time: '13:30',
                 endTime: '14:30',
                 name: '테라로사 강릉',
@@ -151,6 +184,7 @@ export default function SchedulePage() {
                 address: '강원 강릉시 구정면 현천길 7',
             },
             {
+                id: 'day4-item4',
                 time: '15:00',
                 endTime: '16:00',
                 name: '강릉역 출발',
@@ -159,11 +193,16 @@ export default function SchedulePage() {
                 address: '강원 강릉시 강릉대로 402',
             },
         ],
-    };
+    });
 
     const nextStep = () => setCurrentStep(currentStep + 1);
     const prevStep = () => setCurrentStep(currentStep - 1);
-    const steps = ['기간 선택', '지역/교통 선택', '동반자 선택', '일정 생성 방법 선택'];
+    const steps = [
+        t('schedule.steps.step1'),
+        t('schedule.steps.step2'),
+        t('schedule.steps.step3'),
+        t('schedule.steps.step4'),
+    ];
 
     // Effect to control bottom navigation visibility
     useEffect(() => {
@@ -187,12 +226,28 @@ export default function SchedulePage() {
                             <ChevronLeft className="h-6 w-6" />
                         </button>
                         <div>
-                            <h1 className="text-lg font-bold">동해안 여행 일정</h1>
-                            <p className="text-sm text-gray-600">AI 추천 일정</p>
+                            <h1 className="text-lg font-bold">
+                                {selectedRegion
+                                    ? `${t(`travelData.${selectedRegion}.name`) || selectedRegion} ${t(
+                                          'schedule.manual.planTitle.region'
+                                      )}`
+                                    : t('schedule.manual.planTitle.new')}
+                            </h1>
+                            <p className="text-sm text-gray-600">{dateRange}</p>
                         </div>
                     </div>
                 </div>
-                <AIRecommendedSchedule aiRecommendedScheduleByDay={aiRecommendedScheduleByDay} />
+                <AIRecommendedSchedule
+                    aiRecommendedScheduleByDay={aiRecommendedScheduleByDay}
+                    startDate={startDate}
+                    endDate={endDate}
+                    selectedRegion={selectedRegion}
+                    setAiRecommendedScheduleByDay={setAiRecommendedScheduleByDay}
+                    onSaveOverallPlan={(schedule) => {
+                        console.log('Overall plan saved:', schedule);
+                        // Here you would implement the actual saving logic, e.g., API call
+                    }}
+                />
             </div>
         );
     }
@@ -218,7 +273,7 @@ export default function SchedulePage() {
                         </button>
                     )}
                     <div className="text-center">
-                        <h1 className="text-lg font-bold">여행 일정 만들기</h1>
+                        <h1 className="text-lg font-bold">{t('schedule.common.createScheduleButton')}</h1>
                         <p className="text-sm text-gray-600">{steps[currentStep - 1]}</p>
                     </div>
                 </div>

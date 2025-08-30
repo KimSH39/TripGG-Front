@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 export default function BottomNavigation() {
     const router = useRouter();
     const pathname = usePathname();
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     const tabs = [
         { id: 'home', label: t('navigation.home'), icon: Home, path: '/home' },
@@ -47,7 +47,7 @@ export default function BottomNavigation() {
                             }`}
                         >
                             <Icon className="h-5 w-5" />
-                            <span className="text-xs font-medium">{tab.label}</span>
+                            <span className="text-xs font-medium">{i18n.isInitialized ? tab.label : ''}</span>
                         </button>
                     );
                 })}

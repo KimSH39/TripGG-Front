@@ -23,5 +23,232 @@
     "chat_room_subtitle": "實時本地對話",
     "chat_input_placeholder": "輸入您的消息。",
     "time_am": "上午",
-    "time_pm": "下午"
+    "time_pm": "下午",
+    "hello": "你好",
+    "myPage": "我的頁面",
+    "lovesTraveling": "熱愛旅行",
+    "travel": "旅行",
+    "mySchedules": "我的行程",
+    "manageMyShorts": "我的短片管理",
+    "others": "其他",
+    "logout": "登出",
+    "edit": "編輯",
+    "completed": "已完成",
+    "views": "觀看",
+    "likes": "點贊",
+    "schedule": {
+        "companionSelection": {
+            "title": "您和誰一起旅行？",
+            "subtitle": "選擇類型"
+        },
+        "travelStyleSelection": {
+            "title": "您期待怎麼樣的旅行？",
+            "subtitle": "請選擇您喜歡的旅行風格"
+        },
+        "common": {
+            "nextStepButton": "設定旅行類型",
+            "createScheduleButton": "建立行程"
+        },
+        "dateSelection": {
+            "title": "請告訴我們您的旅行期間",
+            "selectDateButton": "請選擇日期",
+            "startDate": "開始日期",
+            "endDate": "結束日期"
+        },
+        "planTypeSelection": {
+            "title": "您希望如何安排行程？",
+            "subtitle1": "AI 可以為您定制行程，",
+            "subtitle2": "或者您可以自由安排行程",
+            "aiPlanTitle": "獲取AI推薦行程",
+            "aiPlanDescription1": "AI將根據您選擇的資訊",
+            "aiPlanDescription2": "推薦最佳行程",
+            "manualPlanTitle": "手動建立行程",
+            "manualPlanDescription1": "直接選擇您想去的地方",
+            "manualPlanDescription2": "建立您自己的獨特行程"
+        },
+        "regionSelection": {
+            "title": "請選擇您的旅行區域",
+            "subtitle": "我們將根據您選擇的區域推薦地點"
+        },
+        "travelMethodSelection": {
+            "title": "您想要哪種交通方式？",
+            "subtitle": "我們將根據您選擇的交通方式規劃路線",
+            "carTitle": "私家車",
+            "carDescription": "使用個人車輛",
+            "publicTransportTitle": "公共交通",
+            "publicTransportDescription": "巴士、地鐵等",
+            "undecidedTitle": "未決定",
+            "undecidedDescription": "根據推薦決定"
+        },
+        "aiRecommendedSchedule": {
+            "title": "AI推薦行程",
+            "subtitle": "查看AI推薦的定制行程。",
+            "dayUnit": "天",
+            "totalSchedule": "總共 {{count}} 個行程",
+            "timeUnit": "小時",
+            "checkMovementInfo": "✈ 查看移動信息 >",
+            "editScheduleItem": "編輯行程項目",
+            "itemName": "項目名稱",
+            "startTime": "開始時間",
+            "selectTime": "選擇時間",
+            "endTime": "結束時間",
+            "selectEndTime": "選擇結束時間",
+            "address": "地址",
+            "description": "描述",
+            "cancel": "取消",
+            "save": "儲存"
+        },
+        "steps": {
+            "step1": "選擇同伴和風格",
+            "step2": "選擇旅行區域和期間",
+            "step3": "選擇交通方式",
+            "step4": "選擇行程類型"
+        },
+        "manual": {
+            "category": {
+                "default": "其他",
+                "tourism": "觀光",
+                "cafe": "咖啡館",
+                "food": "餐飲",
+                "etc": "其他",
+                "type": "類型"
+            },
+            "savePlan": {
+                "validationMessage": "要保存行程，您必須添加開始日期、結束日期以及至少一個地點。",
+                "errorMessage": "保存行程時發生錯誤。"
+            },
+            "planTitle": {
+                "region": "旅行行程",
+                "new": "新旅行行程"
+            },
+            "time": {
+                "start": "開始時間",
+                "separator": "~",
+                "end": "結束時間"
+            },
+            "addScheduleButton": "添加行程",
+            "noSchedule": "沒有行程！",
+            "checkRoute": "查看路線",
+            "dayCounter": "日",
+            "totalSchedulePrefix": "總共 ",
+            "totalScheduleSuffix": " 個行程",
+            "duration": {
+                "hours": "{{count}}小時",
+                "minutes": "{{count}}分鐘",
+                "zeroMinutes": "0分鐘"
+            },
+            "categoryDuration": "{{category}} {{duration}}",
+            "saveButton": "保存",
+            "monthDayWeekdayFormat": "M月d日 (EEE)"
+        }
+    },
+    "aiRecommendedSchedule": {
+        "title": "東海岸旅行行程",
+        "subtitle": "AI推薦行程",
+        "day1": {
+            "item1": { "name": "利川巴士總站", "category": "其他" },
+            "item2": { "name": "長興會館", "category": "餐飲" },
+            "item3": { "name": "雪峰公園 & 雪峰湖散步", "category": "觀光" },
+            "item4": { "name": "咖啡館夜溫 @ 李鎮商會 (麻長面)", "category": "咖啡館" }
+        },
+        "day2": {
+            "item1": { "name": "江陵站", "category": "其他" },
+            "item2": { "name": "鏡浦海灘", "category": "觀光" },
+            "item3": { "name": "草堂豆腐村", "category": "餐飲" },
+            "item4": { "name": "安木海灘咖啡街", "category": "咖啡館" }
+        },
+        "day3": {
+            "item1": { "name": "正東津站", "category": "觀光" },
+            "item2": { "name": "正東津海灘", "category": "觀光" },
+            "item3": { "name": "日出公園美食店", "category": "餐飲" },
+            "item4": { "name": "太陽遊輪度假村", "category": "觀光" }
+        },
+        "day4": {
+            "item1": { "name": "烏竹軒", "category": "觀光" },
+            "item2": { "name": "江陵中央市場", "category": "餐飲" },
+            "item3": { "name": "Terarosa江陵", "category": "咖啡館" },
+            "item4": { "name": "從江陵站出發", "category": "其他" }
+        }
+    },
+    "travelData": {
+        "category": {
+            "sightseeing": "觀光",
+            "cafe": "咖啡館",
+            "meal": "餐飲",
+            "other": "其他"
+        },
+        "family": {
+            "name": "與家人一起",
+            "desc": "全家人一起的旅行"
+        },
+        "couple": {
+            "name": "與戀人一起",
+            "desc": "甜蜜的兩人之旅"
+        },
+        "Alone": {
+            "name": "獨自旅行",
+            "desc": "一個人的自由旅行"
+        },
+        "Leaf": {
+            "name": "療癒",
+            "desc": "自然，寧靜"
+        },
+        "activity": {
+            "name": "活動",
+            "desc": "體驗，休閒，活動"
+        },
+        "Pic": {
+            "name": "拍照勝地",
+            "desc": "SNS熱門地點，人生照片"
+        },
+        "Art": {
+            "name": "展覽/藝術",
+            "desc": "美術館，博物館"
+        },
+        "Eat": {
+            "name": "美食",
+            "desc": "探索美食餐廳"
+        },
+        "Emotion": {
+            "name": "感性",
+            "desc": "復古，感性咖啡館"
+        },
+        "suwon": {
+            "name": "水原"
+        },
+        "gapyeong": {
+            "name": "加平"
+        },
+        "uijeongbu": {
+            "name": "議政府"
+        },
+        "namyangju": {
+            "name": "南楊州"
+        },
+        "pangyo": {
+            "name": "板橋"
+        },
+        "paju": {
+            "name": "坡州"
+        },
+        "seongnam": {
+            "name": "城南"
+        },
+        "anyang": {
+            "name": "安陽"
+        },
+        "yongin": {
+            "name": "龍仁"
+        },
+        "goyang": {
+            "name": "高陽"
+        },
+        "bucheon": {
+            "name": "富川"
+        },
+        "hwaSeong": {
+            "name": "華城"
+        }
+    },
+    "daysOfWeek": ["日", "一", "二", "三", "四", "五", "六"]
 }

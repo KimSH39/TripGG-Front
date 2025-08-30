@@ -24,7 +24,7 @@ const i18nConfig = {
     fallbackLng: 'en',
     debug: true, // You might want to set this to false in production
     interpolation: { escapeValue: false },
-    react: { useSuspense: false },
+    react: { useSuspense: true },
     ns: ['common'], // Specify your namespaces here
     defaultNS: 'common',
     resources: resources, // Add resources directly here
