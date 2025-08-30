@@ -7,5 +7,15 @@
         "shorts": "ショート動画",
         "chat": "チャット",
         "mytravel": "私の旅行"
-    }
+    },
+    "date_format": "{{date, datetime}}",
+    "hot_place": "人気スポット",
+    "summer_korea": "今年の夏は、",
+    "jeju_island": "済州島に行きませんか？",
+    "tent_parasol": "テント設置費用提供+パラソル無料レンタル",
+    "today_schedule_intro": "今日のスケジュールをお知らせします！",
+    "my_schedule_title": "私のスケジュール",
+    "view_more": "もっと見る",
+    "no_schedule": "スケジュールがありません！",
+    "plan_a_trip": "旅行計画を立てる"
 }

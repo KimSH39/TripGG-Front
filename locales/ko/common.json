@@ -7,5 +7,15 @@
         "shorts": "쇼츠",
         "chat": "채팅",
         "mytravel": "나의여행"
-    }
+    },
+    "date_format": "{{date, datetime}}",
+    "hot_place": "핫 플레이스",
+    "summer_korea": "이번 여름,",
+    "jeju_island": "제주도로 떠나볼까요?",
+    "tent_parasol": "텐트 설치 비용 제공 + 파라솔 무료 대여",
+    "today_schedule_intro": "오늘 일정을 알려 드릴게요!",
+    "my_schedule_title": "내 일정",
+    "view_more": "더보기",
+    "no_schedule": "일정이 없습니다!",
+    "plan_a_trip": "여행 계획 세우기"
 }

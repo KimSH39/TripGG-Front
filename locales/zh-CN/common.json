@@ -7,5 +7,15 @@
         "shorts": "短片",
         "chat": "聊天",
         "mytravel": "我的旅行"
-    }
+    },
+    "date_format": "{{date, datetime}}",
+    "hot_place": "热门地点",
+    "summer_korea": "这个夏天,",
+    "jeju_island": "去济州岛怎么样？",
+    "tent_parasol": "提供帐篷搭建费用 + 免费提供遮阳伞租借",
+    "today_schedule_intro": "这是您今天的日程！",
+    "my_schedule_title": "我的日程",
+    "view_more": "查看更多",
+    "no_schedule": "没有日程！",
+    "plan_a_trip": "计划旅行"
 }

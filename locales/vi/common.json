@@ -7,5 +7,15 @@
         "shorts": "Video ngắn",
         "chat": "Trò chuyện",
         "mytravel": "Chuyến đi của tôi"
-    }
+    },
+    "date_format": "{{date, datetime}}",
+    "hot_place": "Điểm nóng",
+    "summer_korea": "Mùa hè này,",
+    "jeju_island": "Đi đảo Jeju không?",
+    "tent_parasol": "Hỗ trợ chi phí lắp đặt lều + cho thuê dù miễn phí",
+    "today_schedule_intro": "Đây là lịch trình của bạn hôm nay!",
+    "my_schedule_title": "Lịch trình của tôi",
+    "view_more": "Xem thêm",
+    "no_schedule": "Không có lịch trình!",
+    "plan_a_trip": "Lập kế hoạch chuyến đi"
 }

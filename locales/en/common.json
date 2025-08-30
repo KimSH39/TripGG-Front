@@ -7,5 +7,15 @@
         "shorts": "Shorts",
         "chat": "Chat",
         "mytravel": "My Travel"
-    }
+    },
+    "date_format": "{{date, datetime}}",
+    "hot_place": "Hot Place",
+    "summer_korea": "This Summer,",
+    "jeju_island": "How about Jeju Island?",
+    "tent_parasol": "Tent installation cost provided + free parasol rental",
+    "today_schedule_intro": "Here's your schedule for today!",
+    "my_schedule_title": "My Schedule",
+    "view_more": "View More",
+    "no_schedule": "No schedule!",
+    "plan_a_trip": "Plan a Trip"
 }
