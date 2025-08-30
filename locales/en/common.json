@@ -7,5 +7,220 @@
         "shorts": "Shorts",
         "chat": "Chat",
         "mytravel": "My Travel"
-    }
+    },
+    "date_format": "{{date, datetime}}",
+    "hot_place": "Hot Place",
+    "summer_korea": "This Summer,",
+    "jeju_island": "How about Jeju Island?",
+    "tent_parasol": "Tent installation cost provided + free parasol rental",
+    "today_schedule_intro": "Here's your schedule for today!",
+    "my_schedule_title": "My Schedule",
+    "view_more": "View More",
+    "no_schedule": "No schedule!",
+    "plan_a_trip": "Plan a Trip",
+    "chat_room_title": "{regionId} Chat Room",
+    "chat_room_title_default": "Chat Room",
+    "chat_room_subtitle": "Real-time local conversation",
+    "chat_input_placeholder": "Enter your message.",
+    "time_am": "AM",
+    "time_pm": "PM",
+    "hello": "Hello",
+    "myPage": "My Page",
+    "lovesTraveling": "Loves traveling",
+    "travel": "Travel",
+    "mySchedules": "My Schedules",
+    "manageMyShorts": "Manage My Shorts",
+    "others": "Others",
+    "logout": "Logout",
+    "edit": "Edit",
+    "completed": "Completed",
+    "views": "Views",
+    "likes": "Likes",
+    "schedule": {
+        "companionSelection": {
+            "title": "Who are you traveling with?",
+            "subtitle": "Select Type"
+        },
+        "travelStyleSelection": {
+            "title": "What kind of trip are you looking for?",
+            "subtitle": "Please select your preferred travel style"
+        },
+        "common": {
+            "nextStepButton": "Set Travel Type",
+            "createScheduleButton": "Create Schedule"
+        },
+        "dateSelection": {
+            "title": "Please tell us your travel period",
+            "selectDateButton": "Please select a date",
+            "startDate": "Start Date",
+            "endDate": "End Date"
+        },
+        "planTypeSelection": {
+            "title": "How would you like to plan your trip?",
+            "subtitle1": "AI can create a customized itinerary,",
+            "subtitle2": "or you can freely create your own itinerary",
+            "aiPlanTitle": "Get AI Recommended Schedule",
+            "aiPlanDescription1": "AI will recommend the optimal itinerary",
+            "aiPlanDescription2": "based on the information you selected",
+            "manualPlanTitle": "Create Schedule Manually",
+            "manualPlanDescription1": "Select your desired places directly",
+            "manualPlanDescription2": "and create your own unique itinerary"
+        },
+        "regionSelection": {
+            "title": "Please choose your travel region",
+            "subtitle": "We will find recommended places based on your selected region"
+        },
+        "travelMethodSelection": {
+            "title": "What mode of transportation do you prefer?",
+            "subtitle": "We will plan your route based on your selected transportation",
+            "carTitle": "Car",
+            "carDescription": "Personal car usage",
+            "publicTransportTitle": "Public Transport",
+            "publicTransportDescription": "Bus, subway, etc.",
+            "undecidedTitle": "Undecided",
+            "undecidedDescription": "Decide based on recommendations"
+        },
+        "steps": {
+            "step1": "Select travel companion and style",
+            "step2": "Select travel region and period",
+            "step3": "Select travel method",
+            "step4": "Select schedule type"
+        },
+        "manual": {
+            "category": {
+                "default": "Etc",
+                "tourism": "Tourism",
+                "cafe": "Cafe",
+                "food": "Food",
+                "etc": "Etc",
+                "type": "Type"
+            },
+            "savePlan": {
+                "validationMessage": "To save the schedule, you must add a start date, end date, and at least one place.",
+                "errorMessage": "An error occurred while saving the schedule."
+            },
+            "planTitle": {
+                "region": "Travel Schedule",
+                "new": "New Travel Schedule"
+            },
+            "time": {
+                "start": "Start Time",
+                "separator": "~",
+                "end": "End Time"
+            },
+            "addScheduleButton": "Add Schedule",
+            "noSchedule": "No schedule!",
+            "checkRoute": "Check Route",
+            "dayCounter": "Day",
+            "totalSchedulePrefix": "Total ",
+            "totalScheduleSuffix": " schedules",
+            "duration": {
+                "hours": "{{count}}h",
+                "minutes": "{{count}}m",
+                "zeroMinutes": "0m"
+            },
+            "categoryDuration": "{{category}} {{duration}}",
+            "saveButton": "Save",
+            "monthDayWeekdayFormat": "MMM d (EEE)"
+        }
+    },
+    "aiRecommendedSchedule": {
+        "title": "AI Recommended Schedule",
+        "subtitle": "Check out the customized schedule suggested by AI.",
+        "dayUnit": "Day",
+        "totalSchedule": "Total {{count}} schedules",
+        "totalSchedulesUnit": "Total",
+        "checkMovementInfo": "✈ Check movement info >",
+        "editScheduleItem": "Edit Schedule Item",
+        "itemName": "Item Name",
+        "startTime": "Start Time",
+        "selectTime": "Select Time",
+        "endTime": "End Time",
+        "selectEndTime": "Select End Time",
+        "address": "Address",
+        "description": "Description",
+        "cancel": "Cancel",
+        "save": "Save"
+    },
+    "travelData": {
+        "category": {
+            "sightseeing": "Tourism",
+            "cafe": "Cafe",
+            "meal": "Food",
+            "other": "Etc"
+        },
+        "family": {
+            "name": "With Family",
+            "desc": "A trip with the whole family"
+        },
+        "couple": {
+            "name": "With Lover",
+            "desc": "A sweet trip for two"
+        },
+        "Alone": {
+            "name": "Solo Travel",
+            "desc": "A free trip alone"
+        },
+        "Leaf": {
+            "name": "Healing",
+            "desc": "Nature, peacefulness"
+        },
+        "activity": {
+            "name": "Activity",
+            "desc": "Experience, leisure, activities"
+        },
+        "Pic": {
+            "name": "Photo Spot",
+            "desc": "SNS hot place, life shot"
+        },
+        "Art": {
+            "name": "Exhibition/Art",
+            "desc": "Art museum, museum"
+        },
+        "Eat": {
+            "name": "Food Tour",
+            "desc": "Exploring good restaurants"
+        },
+        "Emotion": {
+            "name": "Emotion",
+            "desc": "Retro, emotional cafe"
+        },
+        "suwon": {
+            "name": "Suwon"
+        },
+        "gapyeong": {
+            "name": "Gapyeong"
+        },
+        "uijeongbu": {
+            "name": "Uijeongbu"
+        },
+        "namyangju": {
+            "name": "Namyangju"
+        },
+        "pangyo": {
+            "name": "Pangyo"
+        },
+        "paju": {
+            "name": "Paju"
+        },
+        "seongnam": {
+            "name": "Seongnam"
+        },
+        "anyang": {
+            "name": "Anyang"
+        },
+        "yongin": {
+            "name": "Yongin"
+        },
+        "goyang": {
+            "name": "Goyang"
+        },
+        "bucheon": {
+            "name": "Bucheon"
+        },
+        "hwaSeong": {
+            "name": "HwaSeong"
+        }
+    },
+    "daysOfWeek": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 }

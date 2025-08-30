@@ -1,11 +1,226 @@
 {
     "confirm_button": "確認",
-    "select_language_title": "言語を選択してください!",
+    "select_language_title": "言語を選択",
     "navigation": {
         "home": "ホーム",
         "schedule": "スケジュール",
         "shorts": "ショート動画",
         "chat": "チャット",
-        "mytravel": "私の旅行"
-    }
+        "mytravel": "マイトラベル"
+    },
+    "date_format": "{{date, datetime}}",
+    "hot_place": "今、人気の場所",
+    "summer_korea": "この夏、",
+    "jeju_island": "済州島はどうですか？",
+    "tent_parasol": "テント設置費用提供 + パラソル無料レンタル",
+    "today_schedule_intro": "今日のあなたのスケジュールです！",
+    "my_schedule_title": "私のスケジュール",
+    "view_more": "もっと見る",
+    "no_schedule": "スケジュールがありません",
+    "plan_a_trip": "旅行計画を立てる",
+    "chat_room_title": "{regionId} チャットルーム",
+    "chat_room_title_default": "チャットルーム",
+    "chat_room_subtitle": "リアルタイムで現地と会話",
+    "chat_input_placeholder": "メッセージを入力してください。",
+    "time_am": "午前",
+    "time_pm": "午後",
+    "hello": "こんにちは",
+    "myPage": "マイページ",
+    "lovesTraveling": "旅好き",
+    "travel": "旅行",
+    "mySchedules": "私のスケジュール",
+    "manageMyShorts": "私のショート動画を管理",
+    "others": "その他",
+    "logout": "ログアウト",
+    "edit": "編集",
+    "completed": "完了",
+    "views": "閲覧数",
+    "likes": "いいね",
+    "schedule": {
+        "companionSelection": {
+            "title": "誰と旅行に行きますか？",
+            "subtitle": "タイプを選択してください"
+        },
+        "travelStyleSelection": {
+            "title": "どんな旅行を求めていますか？",
+            "subtitle": "好みの旅行スタイルを選択してください"
+        },
+        "common": {
+            "nextStepButton": "旅行タイプを設定",
+            "createScheduleButton": "スケジュール作成"
+        },
+        "dateSelection": {
+            "title": "旅行期間を教えてください",
+            "selectDateButton": "日付を選択してください",
+            "startDate": "出発日",
+            "endDate": "帰国日"
+        },
+        "planTypeSelection": {
+            "title": "旅行計画をどのように立てますか？",
+            "subtitle1": "AIがカスタマイズされた旅行日程を作成します",
+            "subtitle2": "または、自由に自分だけの日程を作成できます",
+            "aiPlanTitle": "AIにおすすめのスケジュールを立ててもらう",
+            "aiPlanDescription1": "選択した情報に基づいて",
+            "aiPlanDescription2": "AIが最適な日程を推薦します",
+            "manualPlanTitle": "自分でスケジュールを作成する",
+            "manualPlanDescription1": "行きたい場所を直接選択して",
+            "manualPlanDescription2": "自分だけのユニークな日程を作成します"
+        },
+        "regionSelection": {
+            "title": "旅行地域を選択してください",
+            "subtitle": "選択された地域に基づいておすすめの場所を探します"
+        },
+        "travelMethodSelection": {
+            "title": "どのような移動手段を好みますか？",
+            "subtitle": "選択された移動手段に基づいてルートを計画します",
+            "carTitle": "自家用車",
+            "carDescription": "自家用車を利用",
+            "publicTransportTitle": "公共交通機関",
+            "publicTransportDescription": "バス、地下鉄など",
+            "undecidedTitle": "未定",
+            "undecidedDescription": "おすすめの場所を見てから決める"
+        },
+        "steps": {
+            "step1": "旅行の同行者とスタイルを選択",
+            "step2": "旅行の地域と期間を選択",
+            "step3": "旅行の移動手段を選択",
+            "step4": "スケジュールのタイプを選択"
+        },
+        "manual": {
+            "category": {
+                "default": "その他",
+                "tourism": "観光",
+                "cafe": "カフェ",
+                "food": "食事",
+                "etc": "その他",
+                "type": "タイプ"
+            },
+            "savePlan": {
+                "validationMessage": "スケジュールを保存するには、出発日、帰国日、そして少なくとも1つ以上の場所を追加する必要があります。",
+                "errorMessage": "スケジュールの保存中にエラーが発生しました。"
+            },
+            "planTitle": {
+                "region": "旅行スケジュール",
+                "new": "新しい旅行スケジュール"
+            },
+            "time": {
+                "start": "開始時間",
+                "separator": "〜",
+                "end": "終了時間"
+            },
+            "addScheduleButton": "スケジュールを追加",
+            "noSchedule": "スケジュールがありません",
+            "checkRoute": "ルートを確認",
+            "dayCounter": "日目",
+            "totalSchedulePrefix": "合計",
+            "totalScheduleSuffix": "件のスケジュール",
+            "duration": {
+                "hours": "{{count}}時間",
+                "minutes": "{{count}}分",
+                "zeroMinutes": "0分"
+            },
+            "categoryDuration": "{{category}} {{duration}}",
+            "saveButton": "保存",
+            "monthDayWeekdayFormat": "M月d日(EEE)"
+        }
+    },
+    "aiRecommendedSchedule": {
+        "title": "AIおすすめスケジュール",
+        "subtitle": "AIが提案したカスタマイズされたスケジュールを確認してください。",
+        "dayUnit": "日目",
+        "totalSchedule": "合計 {{count}}件のスケジュール",
+        "totalSchedulesUnit": "合計",
+        "checkMovementInfo": "✈ 移動情報を確認 >",
+        "editScheduleItem": "スケジュール項目を編集",
+        "itemName": "項目名",
+        "startTime": "開始時間",
+        "selectTime": "時間を選択",
+        "endTime": "終了時間",
+        "selectEndTime": "終了時間を選択",
+        "address": "住所",
+        "description": "詳細",
+        "cancel": "キャンセル",
+        "save": "保存"
+    },
+    "travelData": {
+        "category": {
+            "sightseeing": "観光",
+            "cafe": "カフェ",
+            "meal": "食事",
+            "other": "その他"
+        },
+        "family": {
+            "name": "家族と",
+            "desc": "家族全員で楽しめる旅行"
+        },
+        "couple": {
+            "name": "恋人と",
+            "desc": "二人だけの甘い旅行"
+        },
+        "Alone": {
+            "name": "一人旅",
+            "desc": "自由気ままな一人旅"
+        },
+        "Leaf": {
+            "name": "ヒーリング",
+            "desc": "自然、静けさ"
+        },
+        "activity": {
+            "name": "アクティビティ",
+            "desc": "体験、レジャー、アクティビティ"
+        },
+        "Pic": {
+            "name": "フォトスポット",
+            "desc": "SNSで人気の場所、最高の写真"
+        },
+        "Art": {
+            "name": "展示/アート",
+            "desc": "美術館、博物館"
+        },
+        "Eat": {
+            "name": "グルメ旅",
+            "desc": "美味しいお店巡り"
+        },
+        "Emotion": {
+            "name": "エモい",
+            "desc": "レトロ、雰囲気の良いカフェ"
+        },
+        "suwon": {
+            "name": "水原"
+        },
+        "gapyeong": {
+            "name": "加平"
+        },
+        "uijeongbu": {
+            "name": "議政府"
+        },
+        "namyangju": {
+            "name": "南楊州"
+        },
+        "pangyo": {
+            "name": "板橋"
+        },
+        "paju": {
+            "name": "坡州"
+        },
+        "seongnam": {
+            "name": "城南"
+        },
+        "anyang": {
+            "name": "安養"
+        },
+        "yongin": {
+            "name": "龍仁"
+        },
+        "goyang": {
+            "name": "高陽"
+        },
+        "bucheon": {
+            "name": "富川"
+        },
+        "hwaSeong": {
+            "name": "華城"
+        }
+    },
+    "daysOfWeek": ["日", "月", "火", "水", "木", "金", "土"]
 }

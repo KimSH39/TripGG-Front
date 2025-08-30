@@ -7,5 +7,220 @@
         "shorts": "短片",
         "chat": "聊天",
         "mytravel": "我的旅行"
-    }
+    },
+    "date_format": "{{date, datetime}}",
+    "hot_place": "热门地点",
+    "summer_korea": "这个夏天,",
+    "jeju_island": "去济州岛怎么样？",
+    "tent_parasol": "提供帐篷搭建费用 + 免费提供遮阳伞租借",
+    "today_schedule_intro": "这是您今天的日程！",
+    "my_schedule_title": "我的日程",
+    "view_more": "查看更多",
+    "no_schedule": "没有日程！",
+    "plan_a_trip": "计划旅行",
+    "chat_room_title": "{regionId} 聊天室",
+    "chat_room_title_default": "聊天室",
+    "chat_room_subtitle": "实时本地对话",
+    "chat_input_placeholder": "输入您的消息。",
+    "time_am": "上午",
+    "time_pm": "下午",
+    "hello": "你好",
+    "myPage": "我的页面",
+    "lovesTraveling": "热爱旅行",
+    "travel": "旅行",
+    "mySchedules": "我的行程",
+    "manageMyShorts": "我的短片管理",
+    "others": "其他",
+    "logout": "注销",
+    "edit": "编辑",
+    "completed": "已完成",
+    "views": "观看",
+    "likes": "点赞",
+    "schedule": {
+        "companionSelection": {
+            "title": "您和谁一起旅行？",
+            "subtitle": "选择类型"
+        },
+        "travelStyleSelection": {
+            "title": "您期待什么样的旅行？",
+            "subtitle": "请选择您喜欢的旅行风格"
+        },
+        "common": {
+            "nextStepButton": "设置旅行类型",
+            "createScheduleButton": "创建行程"
+        },
+        "dateSelection": {
+            "title": "请告诉我们您的旅行时间",
+            "selectDateButton": "请选择日期",
+            "startDate": "开始日期",
+            "endDate": "结束日期"
+        },
+        "planTypeSelection": {
+            "title": "您希望如何安排行程？",
+            "subtitle1": "AI 可以为您定制行程，",
+            "subtitle2": "或者您可以自由安排行程",
+            "aiPlanTitle": "获取AI推荐行程",
+            "aiPlanDescription1": "AI将根据您选择的信息",
+            "aiPlanDescription2": "推荐最佳行程",
+            "manualPlanTitle": "手动创建行程",
+            "manualPlanDescription1": "直接选择您想去的地方",
+            "manualPlanDescription2": "创建您自己的独特行程"
+        },
+        "regionSelection": {
+            "title": "请选择您的旅行区域",
+            "subtitle": "我们将根据您选择的区域推荐地点"
+        },
+        "travelMethodSelection": {
+            "title": "您想要哪种交通方式？",
+            "subtitle": "我们将根据您选择的交通方式规划路线",
+            "carTitle": "私家车",
+            "carDescription": "使用个人车辆",
+            "publicTransportTitle": "公共交通",
+            "publicTransportDescription": "巴士、地铁等",
+            "undecidedTitle": "未决定",
+            "undecidedDescription": "根据推荐决定"
+        },
+        "aiRecommendedSchedule": {
+            "title": "AI推荐行程",
+            "subtitle": "查看AI推荐的定制行程。",
+            "dayUnit": "天",
+            "totalSchedule": "总共 {{count}} 个行程",
+            "timeUnit": "小时",
+            "checkMovementInfo": "✈ 查看移动信息 >",
+            "editScheduleItem": "编辑行程项",
+            "itemName": "项目名称",
+            "startTime": "开始时间",
+            "selectTime": "选择时间",
+            "endTime": "结束时间",
+            "selectEndTime": "选择结束时间",
+            "address": "地址",
+            "description": "描述",
+            "cancel": "取消",
+            "save": "保存"
+        },
+        "steps": {
+            "step1": "选择同伴和风格",
+            "step2": "选择旅行区域和期间",
+            "step3": "选择交通方式",
+            "step4": "选择行程类型"
+        },
+        "manual": {
+            "category": {
+                "default": "其他",
+                "tourism": "观光",
+                "cafe": "咖啡馆",
+                "food": "餐饮",
+                "etc": "其他",
+                "type": "类型"
+            },
+            "savePlan": {
+                "validationMessage": "要保存行程，您必须添加开始日期、结束日期以及至少一个地点。",
+                "errorMessage": "保存行程时发生错误。"
+            },
+            "planTitle": {
+                "region": "旅行日程",
+                "new": "新旅行日程"
+            },
+            "time": {
+                "start": "开始时间",
+                "separator": "~",
+                "end": "结束时间"
+            },
+            "addScheduleButton": "添加日程",
+            "noSchedule": "没有日程！",
+            "checkRoute": "查看路线",
+            "dayCounter": "日",
+            "totalSchedulePrefix": "总共 ",
+            "totalScheduleSuffix": " 个行程",
+            "duration": {
+                "hours": "{{count}}小时",
+                "minutes": "{{count}}分钟",
+                "zeroMinutes": "0分钟"
+            },
+            "categoryDuration": "{{category}} {{duration}}",
+            "saveButton": "保存",
+            "monthDayWeekdayFormat": "M月d日 (EEE)"
+        }
+    },
+    "travelData": {
+        "category": {
+            "sightseeing": "观光",
+            "cafe": "咖啡馆",
+            "meal": "餐饮",
+            "other": "其他"
+        },
+        "family": {
+            "name": "与家人一起",
+            "desc": "全家人一起的旅行"
+        },
+        "couple": {
+            "name": "与恋人一起",
+            "desc": "甜蜜的两人之旅"
+        },
+        "Alone": {
+            "name": "独自旅行",
+            "desc": "一个人的自由旅行"
+        },
+        "Leaf": {
+            "name": "治愈",
+            "desc": "自然，宁静"
+        },
+        "activity": {
+            "name": "活动",
+            "desc": "体验，休闲，活动"
+        },
+        "Pic": {
+            "name": "拍照胜地",
+            "desc": "SNS热门地点，人生照片"
+        },
+        "Art": {
+            "name": "展览/艺术",
+            "desc": "美术馆，博物馆"
+        },
+        "Eat": {
+            "name": "美食",
+            "desc": "探索美食餐厅"
+        },
+        "Emotion": {
+            "name": "情感",
+            "desc": "复古，情感咖啡馆"
+        },
+        "suwon": {
+            "name": "水原"
+        },
+        "gapyeong": {
+            "name": "加平"
+        },
+        "uijeongbu": {
+            "name": "议政府"
+        },
+        "namyangju": {
+            "name": "南杨州"
+        },
+        "pangyo": {
+            "name": "板桥"
+        },
+        "paju": {
+            "name": "坡州"
+        },
+        "seongnam": {
+            "name": "城南"
+        },
+        "anyang": {
+            "name": "安阳"
+        },
+        "yongin": {
+            "name": "龙仁"
+        },
+        "goyang": {
+            "name": "高阳"
+        },
+        "bucheon": {
+            "name": "富川"
+        },
+        "hwaSeong": {
+            "name": "华城"
+        }
+    },
+    "daysOfWeek": ["日", "一", "二", "三", "四", "五", "六"]
 }

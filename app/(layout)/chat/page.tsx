@@ -5,6 +5,7 @@ import { Send, Paperclip } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useRegionStore } from '@/store/regionStore';
+import { useTranslation } from 'react-i18next';
 
 export default function ChatPage() {
     const regionId = useRegionStore((state) => state.regionId); // 전역에서 지역 가져오기
@@ -53,15 +54,17 @@ export default function ChatPage() {
         }
     };
 
+    const { t } = useTranslation();
+
     return (
         <div className="flex flex-col min-h-screen bg-white">
             {/* 헤더 */}
             <div className="bg-white p-4">
                 <div className="text-center">
                     <h2 className="font-semibold text-gray-800">
-                        {regionId ? `${regionId} 지역 채팅방` : '지역 채팅방'}
+                        {regionId ? t('chat_room_title', { regionId }) : t('chat_room_title_default')}
                     </h2>
-                    <p className="text-xs text-gray-500">실시간 지역 대화</p>
+                    <p className="text-xs text-gray-500">{t('chat_room_subtitle')}</p>
                 </div>
             </div>
 
@@ -73,14 +76,22 @@ export default function ChatPage() {
                             {/* 상대방 메시지 */}
                             {!msg.isMine && (
                                 <div className="flex items-end">
-                                    <img src={'/tripgg-icon.png'} alt={msg.sender} className="h-8 w-8 rounded-full mr-2" />
+                                    <img
+                                        src={'/tripgg-icon.png'}
+                                        alt={msg.sender}
+                                        className="h-8 w-8 rounded-full mr-2"
+                                    />
                                     <div className="flex items-end">
                                         <div
                                             className={`px-4 py-2 rounded-2xl max-w-xs lg:max-w-md break-words bg-gray-100 text-gray-800`}
                                         >
                                             {msg.message}
                                         </div>
-                                        <span className={`text-xs mt-1 text-gray-500`}>{msg.time}</span>
+                                        <span className={`text-xs mt-1 text-gray-500`}>
+                                            {msg.time.startsWith('오전')
+                                                ? t('time_am') + msg.time.substring(2)
+                                                : t('time_pm') + msg.time.substring(2)}
+                                        </span>
                                     </div>
                                 </div>
                             )}
@@ -88,7 +99,11 @@ export default function ChatPage() {
                             {/* 내 메시지 */}
                             {msg.isMine && (
                                 <div className="flex items-end">
-                                    <span className={`text-xs text-gray-500 mr-2`}>{msg.time}</span>
+                                    <span className={`text-xs text-gray-500 mr-2`}>
+                                        {msg.time.startsWith('오전')
+                                            ? t('time_am') + msg.time.substring(2)
+                                            : t('time_pm') + msg.time.substring(2)}
+                                    </span>
                                     <div
                                         className={`px-4 py-2 rounded-2xl max-w-xs lg:max-w-md break-words bg-blue-500 text-white`}
                                     >
@@ -108,7 +123,7 @@ export default function ChatPage() {
                         <Input
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
-                            placeholder="메시지를 입력하세요."
+                            placeholder={t('chat_input_placeholder')}
                             className="border-0 bg-transparent focus:ring-0 text-sm"
                             onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                         />

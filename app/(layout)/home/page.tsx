@@ -3,8 +3,10 @@
 import { Clock, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { useTranslation } from 'react-i18next';
 
 export default function HomePage() {
+    const { t } = useTranslation();
     // 이미지에 나온 일정 데이터를 기반으로 한 예시 데이터입니다.
     const scheduleItems = [
         {
@@ -30,9 +32,7 @@ export default function HomePage() {
 
     // 오늘 날짜를 "YYYY년 MM월 DD일" 형식으로 포맷팅합니다.
     const today = new Date();
-    const formattedDate = `${today.getFullYear()}년 ${String(today.getMonth() + 1).padStart(2, '0')}월 ${String(
-        today.getDate()
-    ).padStart(2, '0')}일`;
+    const formattedDate = t('date_format', { date: today, format: 'datetime' });
 
     return (
         // 전체 페이지 배경색과 하단 패딩을 설정합니다.
@@ -48,11 +48,11 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-black/30"></div>
                 <div className="relative z-10">
                     <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-2 py-1 rounded-full">
-                        핫 플레이스
+                        {t('hot_place')}
                     </span>
-                    <h2 className="text-xl font-bold mt-2">이번 여름,</h2>
-                    <h2 className="text-xl font-bold">제주도로 떠나볼까요?</h2>
-                    <p className="text-xs mt-1">텐트 설치 비용 제공 + 파라솔 무료 대여</p>
+                    <h2 className="text-xl font-bold mt-2">{t('summer_korea')}</h2>
+                    <h2 className="text-xl font-bold">{t('jeju_island')}</h2>
+                    <p className="text-xs mt-1">{t('tent_parasol')}</p>
                 </div>
             </div>
 
@@ -61,15 +61,15 @@ export default function HomePage() {
                 {/* 날짜 및 일정 안내 */}
                 <div className="mb-4">
                     <p className="text-base font-medium">{formattedDate},</p>
-                    <p className="text-base font-bold">오늘 일정을 알려 드릴게요!</p>
+                    <p className="text-base font-bold">{t('today_schedule_intro')}</p>
                 </div>
 
                 {/* 내 일정 섹션 */}
                 <div>
                     <div className="flex justify-between items-center mb-3">
-                        <h2 className="text-2xl font-bold">내 일정</h2>
+                        <h2 className="text-2xl font-bold">{t('my_schedule_title')}</h2>
                         {scheduleItems.length > 0 && (
-                            <button className="text-sm text-gray-500 hover:text-gray-800">더보기</button>
+                            <button className="text-sm text-gray-500 hover:text-gray-800">{t('view_more')}</button>
                         )}
                     </div>
 
@@ -77,7 +77,10 @@ export default function HomePage() {
                     {scheduleItems.length > 0 ? (
                         <div className="space-y-4">
                             {scheduleItems.map((item, index) => (
-                                <Card key={index} className="hover:shadow-md transition-shadow bg-white rounded-[10px] h-[80px]">
+                                <Card
+                                    key={index}
+                                    className="hover:shadow-md transition-shadow bg-white rounded-[10px] h-[80px]"
+                                >
                                     <CardContent className="p-0 h-full flex items-center">
                                         <div className="flex items-center">
                                             <img
@@ -106,8 +109,8 @@ export default function HomePage() {
                     ) : (
                         <Card className="bg-white rounded-xl">
                             <CardContent className="p-6 text-center">
-                                <p className="text-gray-500 mb-4">일정이 없습니다!</p>
-                                <Button className="bg-blue-500 hover:bg-blue-600 text-white">여행 계획 세우기</Button>
+                                <p className="text-gray-500 mb-4">{t('no_schedule')}</p>
+                                <Button className="bg-blue-500 hover:bg-blue-600 text-white">{t('plan_a_trip')}</Button>
                             </CardContent>
                         </Card>
                     )}

@@ -5,10 +5,11 @@ import BusIcon from '@/components/icons/BusIcon';
 import CarIcon from '@/components/icons/CarIcon';
 import QuestionIcon from '@/components/icons/QuestionIcon';
 import { regions } from '@/constants/travelData';
+import { useTranslation } from 'react-i18next';
 
 interface RegionTravelSelectionProps {
     selectedRegion: string;
-    setSelectedRegion: (region: string) => void;
+    setSelectedRegion: (regionId: string) => void;
     selectedTravelStyle: string;
     setSelectedTravelStyle: (style: string) => void;
     nextStep: () => void;
@@ -21,28 +22,29 @@ export default function RegionTravelSelection({
     setSelectedTravelStyle,
     nextStep,
 }: RegionTravelSelectionProps) {
+    const { t } = useTranslation('common');
     return (
         <>
             <div className="p-4">
                 <div className="mb-6">
-                    <h2 className="text-xl font-bold text-gray-800 mb-2">여행 지역을 골라 주세요</h2>
-                    <p className="text-gray-600 text-sm">선택하신 지역을 바탕으로 추천 장소를 찾아드려요</p>
+                    <h2 className="text-xl font-bold text-gray-800 mb-2">{t('schedule.regionSelection.title')}</h2>
+                    <p className="text-gray-600 text-sm">{t('schedule.regionSelection.subtitle')}</p>
                 </div>
                 <div className="grid grid-cols-4 gap-2 mb-8">
                     {regions.map((region) => (
                         <button
                             key={region.id}
-                            onClick={() => setSelectedRegion(region.name)}
+                            onClick={() => setSelectedRegion(region.id)}
                             className={`
                 p-2 rounded-lg text-center transition-colors border
                 ${
-                    selectedRegion === region.name
+                    selectedRegion === region.id
                         ? 'bg-blue-50 text-blue-600 border-blue-500'
                         : 'bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-200'
                 }
               `}
                         >
-                            <div className="text-sm font-medium">{region.name}</div>
+                            <div className="text-sm font-medium">{t(`travelData.${region.id}.name`)}</div>
                         </button>
                     ))}
                 </div>
@@ -50,8 +52,10 @@ export default function RegionTravelSelection({
 
             <div className="p-4">
                 <div className="mb-6">
-                    <h2 className="text-xl font-bold text-gray-800 mb-2">어떤 이동 수단을 원하시나요?</h2>
-                    <p className="text-gray-600 text-sm">선택하신 교통 수단을 바탕으로 이동 경로를 구성할게요</p>
+                    <h2 className="text-xl font-bold text-gray-800 mb-2">
+                        {t('schedule.travelMethodSelection.title')}
+                    </h2>
+                    <p className="text-gray-600 text-sm">{t('schedule.travelMethodSelection.subtitle')}</p>
                 </div>
                 <div className="space-y-4 mb-8">
                     <button
@@ -64,8 +68,10 @@ export default function RegionTravelSelection({
                         <div className="flex items-center space-x-4">
                             <CarIcon isSelected={selectedTravelStyle === 'car'} />
                             <div>
-                                <div className="font-semibold">자차</div>
-                                <div className="text-sm text-gray-600 mt-1">개인 차량 이용</div>
+                                <div className="font-semibold">{t('schedule.travelMethodSelection.carTitle')}</div>
+                                <div className="text-sm text-gray-600 mt-1">
+                                    {t('schedule.travelMethodSelection.carDescription')}
+                                </div>
                             </div>
                         </div>
                     </button>
@@ -82,8 +88,12 @@ export default function RegionTravelSelection({
                         <div className="flex items-center space-x-4">
                             <BusIcon isSelected={selectedTravelStyle === 'public'} />
                             <div>
-                                <div className="font-semibold">대중교통</div>
-                                <div className="text-sm text-gray-600 mt-1">버스, 지하철 등</div>
+                                <div className="font-semibold">
+                                    {t('schedule.travelMethodSelection.publicTransportTitle')}
+                                </div>
+                                <div className="text-sm text-gray-600 mt-1">
+                                    {t('schedule.travelMethodSelection.publicTransportDescription')}
+                                </div>
                             </div>
                         </div>
                     </button>
@@ -100,8 +110,12 @@ export default function RegionTravelSelection({
                         <div className="flex items-center space-x-4">
                             <QuestionIcon isSelected={selectedTravelStyle === 'undecided'} />
                             <div>
-                                <div className="font-semibold">상관없음</div>
-                                <div className="text-sm text-gray-600 mt-1">추천에 따라 결정</div>
+                                <div className="font-semibold">
+                                    {t('schedule.travelMethodSelection.undecidedTitle')}
+                                </div>
+                                <div className="text-sm text-gray-600 mt-1">
+                                    {t('schedule.travelMethodSelection.undecidedDescription')}
+                                </div>
                             </div>
                         </div>
                     </button>
@@ -119,7 +133,7 @@ export default function RegionTravelSelection({
                       : 'bg-blue-500 hover:bg-blue-600 text-white'
               }`}
                 >
-                    여행 일정 만들기
+                    {t('schedule.common.createScheduleButton')}
                 </Button>
             </div>
         </>

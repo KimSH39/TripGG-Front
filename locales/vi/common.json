@@ -1,11 +1,226 @@
 {
     "confirm_button": "Xác nhận",
-    "select_language_title": "Chọn ngôn ngữ!",
+    "select_language_title": "Chọn ngôn ngữ",
     "navigation": {
         "home": "Trang chủ",
         "schedule": "Lịch trình",
         "shorts": "Video ngắn",
         "chat": "Trò chuyện",
         "mytravel": "Chuyến đi của tôi"
-    }
+    },
+    "date_format": "{{date, datetime}}",
+    "hot_place": "Địa điểm hot",
+    "summer_korea": "Hè này,",
+    "jeju_island": "Thử đến đảo Jeju không?",
+    "tent_parasol": "Cung cấp chi phí dựng lều + thuê ô miễn phí",
+    "today_schedule_intro": "Đây là lịch trình hôm nay của bạn!",
+    "my_schedule_title": "Lịch trình của tôi",
+    "view_more": "Xem thêm",
+    "no_schedule": "Không có lịch trình!",
+    "plan_a_trip": "Lên kế hoạch chuyến đi",
+    "chat_room_title": "Phòng trò chuyện {regionId}",
+    "chat_room_title_default": "Phòng trò chuyện",
+    "chat_room_subtitle": "Trò chuyện địa phương trong thời gian thực",
+    "chat_input_placeholder": "Nhập tin nhắn của bạn.",
+    "time_am": "SA",
+    "time_pm": "CH",
+    "hello": "Xin chào",
+    "myPage": "Trang của tôi",
+    "lovesTraveling": "Yêu du lịch",
+    "travel": "Du lịch",
+    "mySchedules": "Lịch trình của tôi",
+    "manageMyShorts": "Quản lý video ngắn của tôi",
+    "others": "Khác",
+    "logout": "Đăng xuất",
+    "edit": "Chỉnh sửa",
+    "completed": "Đã hoàn thành",
+    "views": "Lượt xem",
+    "likes": "Lượt thích",
+    "schedule": {
+        "companionSelection": {
+            "title": "Bạn đi du lịch cùng ai?",
+            "subtitle": "Chọn loại hình"
+        },
+        "travelStyleSelection": {
+            "title": "Bạn đang tìm kiếm một chuyến đi như thế nào?",
+            "subtitle": "Hãy chọn phong cách du lịch bạn thích"
+        },
+        "common": {
+            "nextStepButton": "Đặt loại hình du lịch",
+            "createScheduleButton": "Tạo lịch trình"
+        },
+        "dateSelection": {
+            "title": "Vui lòng cho biết khoảng thời gian du lịch của bạn",
+            "selectDateButton": "Vui lòng chọn ngày",
+            "startDate": "Ngày bắt đầu",
+            "endDate": "Ngày kết thúc"
+        },
+        "planTypeSelection": {
+            "title": "Bạn muốn lên kế hoạch cho chuyến đi của mình như thế nào?",
+            "subtitle1": "AI có thể tạo lịch trình tùy chỉnh,",
+            "subtitle2": "hoặc bạn có thể tự do tạo lịch trình của riêng mình",
+            "aiPlanTitle": "Nhận lịch trình do AI đề xuất",
+            "aiPlanDescription1": "AI sẽ đề xuất lịch trình tối ưu",
+            "aiPlanDescription2": "dựa trên thông tin bạn đã chọn",
+            "manualPlanTitle": "Tạo lịch trình thủ công",
+            "manualPlanDescription1": "Trực tiếp chọn những nơi bạn muốn đến",
+            "manualPlanDescription2": "và tạo lịch trình độc đáo của riêng bạn"
+        },
+        "regionSelection": {
+            "title": "Vui lòng chọn khu vực du lịch của bạn",
+            "subtitle": "Chúng tôi sẽ tìm các địa điểm được đề xuất dựa trên khu vực bạn đã chọn"
+        },
+        "travelMethodSelection": {
+            "title": "Bạn thích phương tiện di chuyển nào?",
+            "subtitle": "Chúng tôi sẽ lên kế hoạch lộ trình của bạn dựa trên phương tiện di chuyển bạn đã chọn",
+            "carTitle": "Xe hơi",
+            "carDescription": "Sử dụng xe cá nhân",
+            "publicTransportTitle": "Phương tiện công cộng",
+            "publicTransportDescription": "Xe buýt, tàu điện ngầm, v.v.",
+            "undecidedTitle": "Chưa quyết định",
+            "undecidedDescription": "Quyết định dựa trên các đề xuất"
+        },
+        "steps": {
+            "step1": "Chọn bạn đồng hành và phong cách",
+            "step2": "Chọn khu vực và thời gian du lịch",
+            "step3": "Chọn phương tiện di chuyển",
+            "step4": "Chọn loại lịch trình"
+        },
+        "manual": {
+            "category": {
+                "default": "Khác",
+                "tourism": "Tham quan",
+                "cafe": "Quán cà phê",
+                "food": "Ăn uống",
+                "etc": "Khác",
+                "type": "Loại"
+            },
+            "savePlan": {
+                "validationMessage": "Để lưu lịch trình, bạn phải thêm ngày bắt đầu, ngày kết thúc và ít nhất một địa điểm.",
+                "errorMessage": "Đã xảy ra lỗi khi lưu lịch trình."
+            },
+            "planTitle": {
+                "region": "Lịch trình du lịch",
+                "new": "Lịch trình du lịch mới"
+            },
+            "time": {
+                "start": "Thời gian bắt đầu",
+                "separator": "~",
+                "end": "Thời gian kết thúc"
+            },
+            "addScheduleButton": "Thêm lịch trình",
+            "noSchedule": "Không có lịch trình!",
+            "checkRoute": "Kiểm tra lộ trình",
+            "dayCounter": "Ngày",
+            "totalSchedulePrefix": "Tổng cộng ",
+            "totalScheduleSuffix": " lịch trình",
+            "duration": {
+                "hours": "{{count}} giờ",
+                "minutes": "{{count}} phút",
+                "zeroMinutes": "0 phút"
+            },
+            "categoryDuration": "{{category}} {{duration}}",
+            "saveButton": "Lưu",
+            "monthDayWeekdayFormat": "'Ngày' d MMM (EEE)"
+        }
+    },
+    "aiRecommendedSchedule": {
+        "title": "Lịch trình được đề xuất bởi AI",
+        "subtitle": "Kiểm tra lịch trình tùy chỉnh được đề xuất bởi AI.",
+        "dayUnit": "Ngày",
+        "totalSchedule": "Tổng cộng {{count}} lịch trình",
+        "timeUnit": "giờ",
+        "checkMovementInfo": "✈ Xem thông tin di chuyển >",
+        "editScheduleItem": "Chỉnh sửa mục lịch trình",
+        "itemName": "Tên mục",
+        "startTime": "Thời gian bắt đầu",
+        "selectTime": "Chọn thời gian",
+        "endTime": "Thời gian kết thúc",
+        "selectEndTime": "Chọn thời gian kết thúc",
+        "address": "Địa chỉ",
+        "description": "Mô tả",
+        "cancel": "Hủy",
+        "save": "Lưu"
+    },
+    "travelData": {
+        "category": {
+            "sightseeing": "Tham quan",
+            "cafe": "Quán cà phê",
+            "meal": "Bữa ăn",
+            "other": "Khác"
+        },
+        "family": {
+            "name": "Cùng gia đình",
+            "desc": "Chuyến đi với cả gia đình"
+        },
+        "couple": {
+            "name": "Cùng người yêu",
+            "desc": "Một chuyến đi ngọt ngào cho hai người"
+        },
+        "Alone": {
+            "name": "Du lịch một mình",
+            "desc": "Một chuyến đi tự do một mình"
+        },
+        "Leaf": {
+            "name": "Chữa lành",
+            "desc": "Thiên nhiên, yên bình"
+        },
+        "activity": {
+            "name": "Hoạt động",
+            "desc": "Trải nghiệm, giải trí, hoạt động"
+        },
+        "Pic": {
+            "name": "Địa điểm chụp ảnh",
+            "desc": "Địa điểm hot trên SNS, bức ảnh để đời"
+        },
+        "Art": {
+            "name": "Triển lãm/Nghệ thuật",
+            "desc": "Bảo tàng nghệ thuật, bảo tàng"
+        },
+        "Eat": {
+            "name": "Khám phá ẩm thực",
+            "desc": "Khám phá các nhà hàng ngon"
+        },
+        "Emotion": {
+            "name": "Cảm xúc",
+            "desc": "Quán cà phê retro, cảm xúc"
+        },
+        "suwon": {
+            "name": "Suwon"
+        },
+        "gapyeong": {
+            "name": "Gapyeong"
+        },
+        "uijeongbu": {
+            "name": "Uijeongbu"
+        },
+        "namyangju": {
+            "name": "Namyangju"
+        },
+        "pangyo": {
+            "name": "Pangyo"
+        },
+        "paju": {
+            "name": "Paju"
+        },
+        "seongnam": {
+            "name": "Seongnam"
+        },
+        "anyang": {
+            "name": "Anyang"
+        },
+        "yongin": {
+            "name": "Yongin"
+        },
+        "goyang": {
+            "name": "Goyang"
+        },
+        "bucheon": {
+            "name": "Bucheon"
+        },
+        "hwaSeong": {
+            "name": "HwaSeong"
+        }
+    },
+    "daysOfWeek": ["CN", "T2", "T3", "T4", "T5", "T6", "T7"]
 }

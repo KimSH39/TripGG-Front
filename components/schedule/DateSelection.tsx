@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { useTranslation } from 'react-i18next';
 
 interface DateSelectionProps {
     startDate: Date | null;
@@ -14,6 +15,7 @@ interface DateSelectionProps {
 }
 
 export default function DateSelection({ startDate, setStartDate, endDate, setEndDate, nextStep }: DateSelectionProps) {
+    const { t, i18n } = useTranslation('common');
     const [currentMonth, setCurrentMonth] = useState(new Date(2025, 9));
 
     const getDaysInMonth = (date: Date) => {
@@ -35,7 +37,7 @@ export default function DateSelection({ startDate, setStartDate, endDate, setEnd
     };
 
     const formatDate = (date: Date) => {
-        return `${date.getFullYear()}년 ${date.getMonth() + 1}월`;
+        return new Intl.DateTimeFormat(i18n.language, { year: 'numeric', month: 'long' }).format(date);
     };
 
     const isStartDate = (date: Date | null): boolean => {
@@ -77,7 +79,7 @@ export default function DateSelection({ startDate, setStartDate, endDate, setEnd
     return (
         <div className="p-4 pb-24">
             <div className="mb-6">
-                <h2 className="text-xl font-bold text-gray-800 mb-2">여행 기간을 알려 주세요</h2>
+                <h2 className="text-xl font-bold text-gray-800 mb-2">{t('schedule.dateSelection.title')}</h2>
             </div>
             <Card className="shadow-sm">
                 <CardContent className="p-6">
@@ -101,7 +103,7 @@ export default function DateSelection({ startDate, setStartDate, endDate, setEnd
                         </button>
                     </div>
                     <div className="grid grid-cols-7 text-center text-lg font-medium text-gray-500">
-                        {['일', '월', '화', '수', '목', '금', '토'].map((day) => (
+                        {(t('daysOfWeek', { returnObjects: true }) as string[]).map((day) => (
                             <div key={day} className="py-1">
                                 {day}
                             </div>
@@ -149,7 +151,17 @@ export default function DateSelection({ startDate, setStartDate, endDate, setEnd
             </Card>
             <Button
                 onClick={() => {
-                    console.log('[v0] 일정 만들기 버튼 클릭, 시작일:', startDate, '종료일:', endDate);
+                    console.log(
+                        '[v0]',
+                        t('schedule.common.createScheduleButton'),
+                        ':',
+                        t('schedule.dateSelection.startDate'),
+                        ':',
+                        startDate,
+                        t('schedule.dateSelection.endDate'),
+                        ':',
+                        endDate
+                    );
                     nextStep();
                 }}
                 disabled={!startDate || !endDate}
@@ -159,7 +171,9 @@ export default function DateSelection({ startDate, setStartDate, endDate, setEnd
                         : 'bg-blue-500 hover:bg-blue-600 text-white'
                 }`}
             >
-                {!startDate || !endDate ? '날짜를 선택해주세요' : '여행 일정 만들기'}
+                {!startDate || !endDate
+                    ? t('schedule.dateSelection.selectDateButton')
+                    : t('schedule.common.createScheduleButton')}
             </Button>
         </div>
     );

@@ -2,7 +2,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 // import HttpBackend from 'i18next-http-backend'; // Remove this
-// import LanguageDetector from 'i18next-browser-languagedetector'; // Remove this
+import LanguageDetector from 'i18next-browser-languagedetector'; // Re-enable this
 
 import enCommon from '@/locales/en/common.json';
 import koCommon from '@/locales/ko/common.json';
@@ -24,12 +24,22 @@ const i18nConfig = {
     fallbackLng: 'en',
     debug: true, // You might want to set this to false in production
     interpolation: { escapeValue: false },
-    react: { useSuspense: false },
+    react: { useSuspense: true },
     ns: ['common'], // Specify your namespaces here
     defaultNS: 'common',
     resources: resources, // Add resources directly here
 };
 
-i18n.use(initReactI18next).init(i18nConfig);
+i18n.use(LanguageDetector).use(initReactI18next).init(i18nConfig);
+
+if (i18n.services && i18n.services.formatter) {
+    i18n.services.formatter.add('datetime', (value, lng, _options) => {
+        return new Intl.DateTimeFormat(lng, {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        }).format(value);
+    });
+}
 
 export default i18n;

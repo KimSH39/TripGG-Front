@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button';
 import SvgAi from '@/components/icons/Ai';
 import SvgSelf from '@/components/icons/Self';
+import { useTranslation } from 'react-i18next';
 
 interface PlanTypeSelectionProps {
     selectedPlanType: string;
@@ -17,14 +18,15 @@ export default function PlanTypeSelection({
     setIsAIPlanning,
     setIsManualPlanning,
 }: PlanTypeSelectionProps) {
+    const { t } = useTranslation('common');
     return (
         <div className="p-4 pb-24">
             <div className="mb-6">
-                <h2 className="text-xl font-bold text-gray-800 mb-2">어떻게 일정을 구성할까요?</h2>
+                <h2 className="text-xl font-bold text-gray-800 mb-2">{t('schedule.planTypeSelection.title')}</h2>
                 <p className="text-gray-600 text-sm">
-                    AI가 맞춤형 일정을 짜드리거나,
+                    {t('schedule.planTypeSelection.subtitle1')}
                     <br />
-                    직접 자유롭게 일정을 구성할 수 있어요
+                    {t('schedule.planTypeSelection.subtitle2')}
                 </p>
             </div>
             <div className="space-y-4 mb-8">
@@ -41,11 +43,11 @@ export default function PlanTypeSelection({
                             <SvgAi isSelected={selectedPlanType === 'ai'} className="w-full h-full" />
                         </div>
                         <div>
-                            <div className="font-semibold text-lg">AI 추천 일정 받기</div>
+                            <div className="font-semibold text-lg">{t('schedule.planTypeSelection.aiPlanTitle')}</div>
                             <div className="text-sm text-gray-600 mt-1">
-                                선택한 정보를 바탕으로 AI가
+                                {t('schedule.planTypeSelection.aiPlanDescription1')}
                                 <br />
-                                최적의 일정을 추천해 드려요
+                                {t('schedule.planTypeSelection.aiPlanDescription2')}
                             </div>
                         </div>
                     </div>
@@ -63,11 +65,13 @@ export default function PlanTypeSelection({
                             <SvgSelf isSelected={selectedPlanType === 'manual'} className="w-full h-full" />
                         </div>
                         <div>
-                            <div className="font-semibold text-lg">직접 일정 구성하기</div>
+                            <div className="font-semibold text-lg">
+                                {t('schedule.planTypeSelection.manualPlanTitle')}
+                            </div>
                             <div className="text-sm text-gray-600 mt-1">
-                                원하는 장소를 직접 선택해서
+                                {t('schedule.planTypeSelection.manualPlanDescription1')}
                                 <br />
-                                나만의 일정을 만들어 보세요
+                                {t('schedule.planTypeSelection.manualPlanDescription2')}
                             </div>
                         </div>
                     </div>
@@ -90,7 +94,7 @@ export default function PlanTypeSelection({
                                 : 'bg-blue-500 hover:bg-blue-600 text-white'
                         }`}
             >
-                일정 생성하기
+                {t('schedule.common.createScheduleButton')}
             </Button>
         </div>
     );
