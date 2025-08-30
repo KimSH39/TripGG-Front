@@ -23,5 +23,17 @@
     "chat_room_subtitle": "Trò chuyện địa phương thời gian thực",
     "chat_input_placeholder": "Nhập tin nhắn của bạn.",
     "time_am": "SA",
-    "time_pm": "CH"
+    "time_pm": "CH",
+    "hello": "Xin chào",
+    "myPage": "Trang của tôi",
+    "lovesTraveling": "Yêu du lịch",
+    "travel": "Du lịch",
+    "mySchedules": "Lịch trình của tôi",
+    "manageMyShorts": "Quản lý Shorts của tôi",
+    "others": "Khác",
+    "logout": "Đăng xuất",
+    "edit": "Chỉnh sửa",
+    "completed": "Hoàn thành",
+    "views": "Lượt xem",
+    "likes": "Lượt thích"
 }

@@ -23,5 +23,17 @@
     "chat_room_subtitle": "实时本地对话",
     "chat_input_placeholder": "输入您的消息。",
     "time_am": "上午",
-    "time_pm": "下午"
+    "time_pm": "下午",
+    "hello": "你好",
+    "myPage": "我的页面",
+    "lovesTraveling": "热爱旅行",
+    "travel": "旅行",
+    "mySchedules": "我的行程",
+    "manageMyShorts": "我的短片管理",
+    "others": "其他",
+    "logout": "注销",
+    "edit": "编辑",
+    "completed": "已完成",
+    "views": "观看",
+    "likes": "点赞"
 }

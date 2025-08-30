@@ -23,5 +23,17 @@
     "chat_room_subtitle": "실시간 지역 대화",
     "chat_input_placeholder": "메시지를 입력하세요.",
     "time_am": "오전",
-    "time_pm": "오후"
+    "time_pm": "오후",
+    "hello": "안녕하세요",
+    "myPage": "마이페이지",
+    "lovesTraveling": "여행을 사랑하는",
+    "travel": "여행",
+    "mySchedules": "내가 짠 일정",
+    "manageMyShorts": "나의 쇼츠관리",
+    "others": "기타",
+    "logout": "로그아웃",
+    "edit": "편집",
+    "completed": "완료",
+    "views": "조회수",
+    "likes": "좋아요"
 }

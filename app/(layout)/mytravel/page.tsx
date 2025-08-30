@@ -5,8 +5,10 @@ import { ChevronRight, ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { format } from 'date-fns';
 import { getPlans, TravelPlan } from '@/lib/mockApi';
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
-export default function MyTravelPage() {
+export default function MyTravelPage({ params: { lang } }: { params: { lang: string } }) {
+    const { t } = useTranslation(); // Initialize useTranslation
     const [currentView, setCurrentView] = useState('profile'); // profile, schedule, shorts
     const router = useRouter();
     const [mySchedules, setMySchedules] = useState<any[]>([]);
@@ -24,7 +26,7 @@ export default function MyTravelPage() {
                             'yyyy.MM.dd'
                         )}`,
                         places: plan.places.map((p) => p.name), // Extract place names
-                        status: '완료', // Assuming all saved plans are '완료' for now
+                        status: 'completed', // Using a key for i18n
                     }))
                 );
             } catch (error) {
@@ -72,7 +74,7 @@ export default function MyTravelPage() {
         <div className="min-h-screen bg-white pb-20">
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-100">
-                <h1 className="text-lg font-semibold text-gray-800">마이페이지</h1>
+                <h1 className="text-lg font-semibold text-gray-800">{t('myPage')}</h1>
                 <div className="flex space-x-2">
                     <button className="w-6 h-6 text-gray-400">
                         <svg viewBox="0 0 24 24" fill="currentColor">
@@ -102,12 +104,12 @@ export default function MyTravelPage() {
                     </div>
                 </div>
                 <h2 className="text-lg font-semibold text-gray-800 mb-1">{user.name}</h2>
-                <p className="text-sm text-gray-500">여행을 사랑하는</p>
+                <p className="text-sm text-gray-500">{t('lovesTraveling')}</p>
             </div>
 
             {/* Menu Items */}
             <div className="px-4 space-y-1">
-                <div className="text-xs text-gray-500 px-3 py-2 font-medium">여행</div>
+                <div className="text-xs text-gray-500 px-3 py-2 font-medium">{t('travel')}</div>
 
                 <button
                     onClick={() => setCurrentView('schedule')}
@@ -119,7 +121,7 @@ export default function MyTravelPage() {
                                 <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z" />
                             </svg>
                         </div>
-                        <span className="text-gray-800 font-medium">내가 짠 일정</span>
+                        <span className="text-gray-800 font-medium">{t('mySchedules')}</span>
                     </div>
                     <ChevronRight className="w-5 h-5 text-gray-400" />
                 </button>
@@ -134,12 +136,12 @@ export default function MyTravelPage() {
                                 <path d="M8 5v14l11-7z" />
                             </svg>
                         </div>
-                        <span className="text-gray-800 font-medium">나의 쇼츠관리</span>
+                        <span className="text-gray-800 font-medium">{t('manageMyShorts')}</span>
                     </div>
                     <ChevronRight className="w-5 h-5 text-gray-400" />
                 </button>
 
-                <div className="text-xs text-gray-500 px-3 py-2 font-medium mt-6">기타</div>
+                <div className="text-xs text-gray-500 px-3 py-2 font-medium mt-6">{t('others')}</div>
 
                 <button className="w-full flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg">
                     <div className="flex items-center space-x-3">
@@ -148,7 +150,7 @@ export default function MyTravelPage() {
                                 <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.59L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" />
                             </svg>
                         </div>
-                        <span className="text-gray-800 font-medium">로그아웃</span>
+                        <span className="text-gray-800 font-medium">{t('logout')}</span>
                     </div>
                     <ChevronRight className="w-5 h-5 text-gray-400" />
                 </button>
@@ -165,8 +167,8 @@ export default function MyTravelPage() {
                     <button onClick={() => setCurrentView('profile')} className="mr-3">
                         <ArrowLeft className="w-6 h-6 text-gray-600" />
                     </button>
-                    <h1 className="text-lg font-semibold text-gray-800">내가 짠 일정</h1>
-                    <div className="ml-auto text-sm text-blue-500">편집</div>
+                    <h1 className="text-lg font-semibold text-gray-800">{t('mySchedules')}</h1>
+                    <div className="ml-auto text-sm text-blue-500">{t('edit')}</div>
                 </div>
 
                 {/* Schedule List */}
@@ -193,12 +195,12 @@ export default function MyTravelPage() {
                                     </div>
                                     <span
                                         className={`text-xs px-2 py-1 rounded ${
-                                            schedule.status === '완료'
+                                            schedule.status === 'completed' // Use i18n key
                                                 ? 'bg-green-50 text-green-600'
                                                 : 'bg-orange-50 text-orange-600'
                                         }`}
                                     >
-                                        {schedule.status}
+                                        {t(schedule.status)}
                                     </span>
                                 </div>
                             </div>
@@ -216,8 +218,8 @@ export default function MyTravelPage() {
                 <button onClick={() => setCurrentView('profile')} className="mr-3">
                     <ArrowLeft className="w-6 h-6 text-gray-600" />
                 </button>
-                <h1 className="text-lg font-semibold text-gray-800">나의 쇼츠관리</h1>
-                <div className="ml-auto text-sm text-blue-500">편집</div>
+                <h1 className="text-lg font-semibold text-gray-800">{t('manageMyShorts')}</h1>
+                <div className="ml-auto text-sm text-blue-500">{t('edit')}</div>
             </div>
 
             {/* Shorts List */}
@@ -232,8 +234,12 @@ export default function MyTravelPage() {
                         <div className="flex-1">
                             <h3 className="font-medium text-gray-800 mb-1">{short.title}</h3>
                             <div className="flex items-center space-x-4 text-sm text-gray-500 mb-1">
-                                <span>조회수 {short.views}</span>
-                                <span>좋아요 {short.likes}</span>
+                                <span>
+                                    {t('views')} {short.views}
+                                </span>
+                                <span>
+                                    {t('likes')} {short.likes}
+                                </span>
                             </div>
                             <p className="text-xs text-gray-400">{short.date}</p>
                         </div>

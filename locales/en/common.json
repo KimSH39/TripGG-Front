@@ -23,5 +23,17 @@
     "chat_room_subtitle": "Real-time local conversation",
     "chat_input_placeholder": "Enter your message.",
     "time_am": "AM",
-    "time_pm": "PM"
+    "time_pm": "PM",
+    "hello": "Hello",
+    "myPage": "My Page",
+    "lovesTraveling": "Loves traveling",
+    "travel": "Travel",
+    "mySchedules": "My Schedules",
+    "manageMyShorts": "Manage My Shorts",
+    "others": "Others",
+    "logout": "Logout",
+    "edit": "Edit",
+    "completed": "Completed",
+    "views": "Views",
+    "likes": "Likes"
 }

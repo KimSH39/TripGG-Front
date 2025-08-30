@@ -23,5 +23,17 @@
     "chat_room_subtitle": "リアルタイム地域会話",
     "chat_input_placeholder": "メッセージを入力してください。",
     "time_am": "午前",
-    "time_pm": "午後"
+    "time_pm": "午後",
+    "hello": "こんにちは",
+    "myPage": "マイページ",
+    "lovesTraveling": "旅行好き",
+    "travel": "旅行",
+    "mySchedules": "私の旅程",
+    "manageMyShorts": "マイショーツ管理",
+    "others": "その他",
+    "logout": "ログアウト",
+    "edit": "編集",
+    "completed": "完了",
+    "views": "閲覧数",
+    "likes": "いいね"
 }
