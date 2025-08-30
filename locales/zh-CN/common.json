@@ -17,5 +17,11 @@
     "my_schedule_title": "我的日程",
     "view_more": "查看更多",
     "no_schedule": "没有日程！",
-    "plan_a_trip": "计划旅行"
+    "plan_a_trip": "计划旅行",
+    "chat_room_title": "{regionId} 聊天室",
+    "chat_room_title_default": "聊天室",
+    "chat_room_subtitle": "实时本地对话",
+    "chat_input_placeholder": "输入您的消息。",
+    "time_am": "上午",
+    "time_pm": "下午"
 }

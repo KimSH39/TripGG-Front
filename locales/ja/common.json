@@ -17,5 +17,11 @@
     "my_schedule_title": "私のスケジュール",
     "view_more": "もっと見る",
     "no_schedule": "スケジュールがありません！",
-    "plan_a_trip": "旅行計画を立てる"
+    "plan_a_trip": "旅行計画",
+    "chat_room_title": "{regionId} チャットルーム",
+    "chat_room_title_default": "チャットルーム",
+    "chat_room_subtitle": "リアルタイム地域会話",
+    "chat_input_placeholder": "メッセージを入力してください。",
+    "time_am": "午前",
+    "time_pm": "午後"
 }

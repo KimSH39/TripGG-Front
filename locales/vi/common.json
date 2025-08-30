@@ -17,5 +17,11 @@
     "my_schedule_title": "Lịch trình của tôi",
     "view_more": "Xem thêm",
     "no_schedule": "Không có lịch trình!",
-    "plan_a_trip": "Lập kế hoạch chuyến đi"
+    "plan_a_trip": "Lên kế hoạch chuyến đi",
+    "chat_room_title": "Phòng chat {regionId}",
+    "chat_room_title_default": "Phòng chat",
+    "chat_room_subtitle": "Trò chuyện địa phương thời gian thực",
+    "chat_input_placeholder": "Nhập tin nhắn của bạn.",
+    "time_am": "SA",
+    "time_pm": "CH"
 }

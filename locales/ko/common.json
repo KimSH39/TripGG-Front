@@ -17,5 +17,11 @@
     "my_schedule_title": "내 일정",
     "view_more": "더보기",
     "no_schedule": "일정이 없습니다!",
-    "plan_a_trip": "여행 계획 세우기"
+    "plan_a_trip": "여행 계획하기",
+    "chat_room_title": "{regionId} 지역 채팅방",
+    "chat_room_title_default": "지역 채팅방",
+    "chat_room_subtitle": "실시간 지역 대화",
+    "chat_input_placeholder": "메시지를 입력하세요.",
+    "time_am": "오전",
+    "time_pm": "오후"
 }

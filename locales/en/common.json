@@ -17,5 +17,11 @@
     "my_schedule_title": "My Schedule",
     "view_more": "View More",
     "no_schedule": "No schedule!",
-    "plan_a_trip": "Plan a Trip"
+    "plan_a_trip": "Plan a Trip",
+    "chat_room_title": "{regionId} Chat Room",
+    "chat_room_title_default": "Chat Room",
+    "chat_room_subtitle": "Real-time local conversation",
+    "chat_input_placeholder": "Enter your message.",
+    "time_am": "AM",
+    "time_pm": "PM"
 }
