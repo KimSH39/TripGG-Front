@@ -42,12 +42,14 @@
             "subtitle": "タイプを選択してください"
         },
         "travelStyleSelection": {
-            "title": "どんな旅行を求めていますか？",
-            "subtitle": "好みの旅行スタイルを選択してください"
+            "title": "どのような旅行をお探しですか？",
+            "subtitle": "ご希望の旅行スタイルを選択してください",
+            "selectButton": "旅行地域を選択"
         },
         "common": {
-            "nextStepButton": "旅行タイプを設定",
-            "createScheduleButton": "スケジュール作成"
+            "nextStepButton": "旅行地域を選択",
+            "createScheduleButton": "スケジュール作成",
+            "nextButton": "旅行地域を選択"
         },
         "dateSelection": {
             "title": "旅行期間を教えてください",
@@ -84,7 +86,9 @@
             "step1": "旅行の同行者とスタイルを選択",
             "step2": "旅行の地域と期間を選択",
             "step3": "旅行の移動手段を選択",
-            "step4": "スケジュールのタイプを選択"
+            "step4": "スケジュールのタイプを選択",
+            "step5": "旅行スタイル選択",
+            "step6": "同行者選択"
         },
         "manual": {
             "category": {
@@ -182,8 +186,84 @@
             "desc": "美味しいお店巡り"
         },
         "Emotion": {
-            "name": "エモい",
-            "desc": "レトロ、雰囲気の良いカフェ"
+            "name": "感情",
+            "desc": "レトロ、感情的なカフェ"
+        },
+        "History": {
+            "name": "歴史",
+            "desc": "史跡探索、伝統文化"
+        },
+        "Self": {
+            "name": "自己啓発",
+            "desc": "自己反省、成長、新しい挑戦"
+        },
+        "Question": {
+            "name": "カスタム",
+            "desc": "あなただけの特別な旅行を作成"
+        },
+        "Bus": {
+            "name": "市内バス",
+            "desc": "市外バス、地域の公共交通機関"
+        },
+        "Car": {
+            "name": "レンタカー",
+            "desc": "国内レンタカー、自由に移動"
+        },
+        "Air": {
+            "name": "飛行機",
+            "desc": "国内線、素早く快適な旅行"
+        },
+        "Train": {
+            "name": "電車",
+            "desc": "鉄道旅行、車窓からの景色"
+        },
+        "Ship": {
+            "name": "船",
+            "desc": "フェリー、クルーズ、島旅行"
+        },
+        "Bicycle": {
+            "name": "自転車",
+            "desc": "自転車旅行、のんびり観光"
+        },
+        "Motorcycle": {
+            "name": "バイク",
+            "desc": "バイク旅行、ダイナミックな体験"
+        },
+        "Walk": {
+            "name": "徒歩",
+            "desc": "ウォーキングツアー、路地裏散策"
+        },
+        "ThemePark": {
+            "name": "テーマパーク",
+            "desc": "遊園地、様々なアトラクションと楽しむ"
+        },
+        "Nature": {
+            "name": "自然",
+            "desc": "山、川、海、森など、自然を満喫"
+        },
+        "CityTour": {
+            "name": "都市観光",
+            "desc": "都市探索、文化体験、ショッピング"
+        },
+        "FoodTour": {
+            "name": "美食ツアー",
+            "desc": "地元の美味しい店を探訪、グルメを楽しむ"
+        },
+        "Relax": {
+            "name": "リラックス",
+            "desc": "スパ、リゾート、癒しの休暇"
+        },
+        "Adventure": {
+            "name": "冒険",
+            "desc": "エクストリームスポーツ、挑戦的な活動"
+        },
+        "Culture": {
+            "name": "文化",
+            "desc": "史跡、伝統芸能、芸術鑑賞"
+        },
+        "Shopping": {
+            "name": "ショッピング",
+            "desc": "商店街、免税店、市場巡り"
         },
         "suwon": {
             "name": "水原"
@@ -218,8 +298,90 @@
         "bucheon": {
             "name": "富川"
         },
-        "hwaSeong": {
+        "hwaseong": {
             "name": "華城"
+        },
+        "gwacheon": {
+            "name": "果川"
+        },
+        "gwangju": {
+            "name": "光州"
+        },
+        "seoul_city": {
+            "name": "ソウル全域",
+            "desc": "ソウル全体を中心に旅行"
+        },
+        "seoul_nearby": {
+            "name": "ソウル + 近郊",
+            "desc": "ソウル + 仁川・高陽・城南など日帰り圏"
+        },
+        "gyeonggi_hotspots": {
+            "name": "京畿人気地域",
+            "desc": "水原、龍仁、加平、坡州など"
+        },
+        "capital_area_mix": {
+            "name": "首都圏総合",
+            "desc": "ソウル + 仁川 + 京畿全体"
+        },
+        "incheon": {
+            "name": "仁川"
+        },
+        "gwangmyeong": {
+            "name": "光明"
+        },
+        "guri": {
+            "name": "九里"
+        },
+        "gunpo": {
+            "name": "軍浦"
+        },
+        "gimpo": {
+            "name": "金浦"
+        },
+        "dongducheon": {
+            "name": "東豆川"
+        },
+        "siheung": {
+            "name": "始興"
+        },
+        "ansan": {
+            "name": "安山"
+        },
+        "anseong": {
+            "name": "安城"
+        },
+        "yangju": {
+            "name": "楊州"
+        },
+        "yeoju": {
+            "name": "驪州"
+        },
+        "osan": {
+            "name": "烏山"
+        },
+        "uiwang": {
+            "name": "義王"
+        },
+        "icheon": {
+            "name": "利川"
+        },
+        "pyeongtaek": {
+            "name": "平沢"
+        },
+        "pocheon": {
+            "name": "抱川"
+        },
+        "hanam": {
+            "name": "河南"
+        },
+        "hwaseong": {
+            "name": "華城"
+        },
+        "yangpyeong": {
+            "name": "楊平"
+        },
+        "yeoncheon": {
+            "name": "漣川"
         }
     },
     "daysOfWeek": ["日", "月", "火", "水", "木", "金", "土"]

@@ -43,11 +43,13 @@
         },
         "travelStyleSelection": {
             "title": "What kind of trip are you looking for?",
-            "subtitle": "Please select your preferred travel style"
+            "subtitle": "Please select your preferred travel style",
+            "selectButton": "Select Travel Region"
         },
         "common": {
-            "nextStepButton": "Set Travel Type",
-            "createScheduleButton": "Create Schedule"
+            "nextStepButton": "Select Travel Region",
+            "createScheduleButton": "Create Schedule",
+            "nextButton": "Select Travel Region"
         },
         "dateSelection": {
             "title": "Please tell us your travel period",
@@ -84,7 +86,9 @@
             "step1": "Select travel companion and style",
             "step2": "Select travel region and period",
             "step3": "Select travel method",
-            "step4": "Select schedule type"
+            "step4": "Select schedule type",
+            "step5": "Select Travel Style",
+            "step6": "Select Companion"
         },
         "manual": {
             "category": {
@@ -185,6 +189,82 @@
             "name": "Emotion",
             "desc": "Retro, emotional cafe"
         },
+        "History": {
+            "name": "History",
+            "desc": "Exploring historical sites, traditional culture"
+        },
+        "Self": {
+            "name": "Self-improvement",
+            "desc": "Self-reflection, growth, new challenges"
+        },
+        "Question": {
+            "name": "Custom",
+            "desc": "Create your own unique trip"
+        },
+        "Bus": {
+            "name": "Local Bus",
+            "desc": "Intercity bus, public transportation for the region"
+        },
+        "Car": {
+            "name": "Rented Car",
+            "desc": "Domestic car rental, freedom to travel"
+        },
+        "Air": {
+            "name": "Airplane",
+            "desc": "Domestic flights, quick and comfortable travel"
+        },
+        "Train": {
+            "name": "Train",
+            "desc": "Railroad travel, scenic routes"
+        },
+        "Ship": {
+            "name": "Ship",
+            "desc": "Ferry, cruise, island travel"
+        },
+        "Bicycle": {
+            "name": "Bicycle",
+            "desc": "Bicycle travel, leisurely sightseeing"
+        },
+        "Motorcycle": {
+            "name": "Motorcycle",
+            "desc": "Motorcycle travel, dynamic experience"
+        },
+        "Walk": {
+            "name": "Walking",
+            "desc": "Walking tour, exploring alleys"
+        },
+        "ThemePark": {
+            "name": "Theme Park",
+            "desc": "Amusement park, fun with various rides"
+        },
+        "Nature": {
+            "name": "Nature",
+            "desc": "Mountains, rivers, seas, forests, enjoying nature"
+        },
+        "CityTour": {
+            "name": "City Tour",
+            "desc": "Urban exploration, cultural experiences, shopping"
+        },
+        "FoodTour": {
+            "name": "Food Tour",
+            "desc": "Local delicacies, gourmet exploration"
+        },
+        "Relax": {
+            "name": "Relaxation",
+            "desc": "Spa, resort, healing vacation"
+        },
+        "Adventure": {
+            "name": "Adventure",
+            "desc": "Extreme sports, challenging activities"
+        },
+        "Culture": {
+            "name": "Culture",
+            "desc": "Historical sites, traditional performances, art"
+        },
+        "Shopping": {
+            "name": "Shopping",
+            "desc": "Shopping streets, duty-free shops, markets"
+        },
         "suwon": {
             "name": "Suwon"
         },
@@ -218,8 +298,90 @@
         "bucheon": {
             "name": "Bucheon"
         },
-        "hwaSeong": {
-            "name": "HwaSeong"
+        "hwaseong": {
+            "name": "Hwaseong"
+        },
+        "gwacheon": {
+            "name": "Gwacheon"
+        },
+        "gwangju": {
+            "name": "Gwangju"
+        },
+        "seoul_city": {
+            "name": "Seoul City",
+            "desc": "Travel around the entire Seoul area"
+        },
+        "seoul_nearby": {
+            "name": "Seoul & Nearby",
+            "desc": "Seoul + Incheon, Goyang, Seongnam, etc. (day trip)"
+        },
+        "gyeonggi_hotspots": {
+            "name": "Gyeonggi Hotspots",
+            "desc": "Suwon, Yongin, Gapyeong, Paju, etc."
+        },
+        "capital_area_mix": {
+            "name": "Capital Area Mix",
+            "desc": "Seoul + Incheon + entire Gyeonggi area"
+        },
+        "incheon": {
+            "name": "Incheon"
+        },
+        "gwangmyeong": {
+            "name": "Gwangmyeong"
+        },
+        "guri": {
+            "name": "Guri"
+        },
+        "gunpo": {
+            "name": "Gunpo"
+        },
+        "gimpo": {
+            "name": "Gimpo"
+        },
+        "dongducheon": {
+            "name": "Dongducheon"
+        },
+        "siheung": {
+            "name": "Siheung"
+        },
+        "ansan": {
+            "name": "Ansan"
+        },
+        "anseong": {
+            "name": "Anseong"
+        },
+        "yangju": {
+            "name": "Yangju"
+        },
+        "yeoju": {
+            "name": "Yeoju"
+        },
+        "osan": {
+            "name": "Osan"
+        },
+        "uiwang": {
+            "name": "Uiwang"
+        },
+        "icheon": {
+            "name": "Icheon"
+        },
+        "pyeongtaek": {
+            "name": "Pyeongtaek"
+        },
+        "pocheon": {
+            "name": "Pocheon"
+        },
+        "hanam": {
+            "name": "Hanam"
+        },
+        "hwaseong": {
+            "name": "Hwaseong"
+        },
+        "yangpyeong": {
+            "name": "Yangpyeong"
+        },
+        "yeoncheon": {
+            "name": "Yeoncheon"
         }
     },
     "daysOfWeek": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
