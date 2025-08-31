@@ -1,14 +1,17 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { ChevronLeft } from 'lucide-react';
-import DateSelection from '@/components/schedule/DateSelection';
-import ScheduleManual from '@/components/schedule/ScheduleManual';
-import RegionTravelSelection from '@/components/schedule/RegionTravelSelection';
 import CompanionSelection from '@/components/schedule/CompanionSelection';
 import PlanTypeSelection from '@/components/schedule/PlanTypeSelection';
+import ScheduleManual from '@/components/schedule/ScheduleManual';
+import TravelTypeSelection, { TravelTypeCard } from '@/components/schedule/TravelTypeSelection';
+import DateSelection from '@/components/schedule/DateSelection';
 import AIRecommendedSchedule from '@/components/schedule/AIRecommendedSchedule';
-import { useUiStore } from '@/store/uiStore'; //
+import RegionSelection from '@/components/schedule/RegionSelection';
+import TransportationSelection from '@/components/schedule/TransportationSelection';
+
+import { ChevronLeft } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { useUiStore } from '@/store/uiStore';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/navigation';
 
@@ -17,10 +20,11 @@ export default function SchedulePage() {
     const { setHideBottomNav } = useUiStore(); //
     const [startDate, setStartDate] = useState<Date | null>(null);
     const [endDate, setEndDate] = useState<Date | null>(null);
-    const [selectedRegion, setSelectedRegion] = useState('');
-    const [selectedCompanion, setSelectedCompanion] = useState('');
-    const [selectedPlanType, setSelectedPlanType] = useState('');
-    const [selectedTravelStyle, setSelectedTravelStyle] = useState('');
+    const [selectedRegion, setSelectedRegion] = useState<string>('');
+    const [selectedCompanion, setSelectedCompanion] = useState<string>('');
+    const [selectedTravelType, setSelectedTravelType] = useState<TravelTypeCard | null>(null);
+    const [selectedPlanType, setSelectedPlanType] = useState<string>('');
+    const [selectedTravelStyle, setSelectedTravelStyle] = useState<string>('');
     const [isManualPlanning, setIsManualPlanning] = useState(false);
     const [isAIPlanning, setIsAIPlanning] = useState(false);
 
@@ -202,6 +206,8 @@ export default function SchedulePage() {
         t('schedule.steps.step2'),
         t('schedule.steps.step3'),
         t('schedule.steps.step4'),
+        t('schedule.steps.step5'),
+        t('schedule.steps.step6'),
     ];
 
     // Effect to control bottom navigation visibility
@@ -289,15 +295,29 @@ export default function SchedulePage() {
                 />
             )}
             {currentStep === 2 && (
-                <RegionTravelSelection
-                    selectedRegion={selectedRegion}
-                    setSelectedRegion={setSelectedRegion}
-                    selectedTravelStyle={selectedTravelStyle}
-                    setSelectedTravelStyle={setSelectedTravelStyle}
+                <TravelTypeSelection
+                    selectedTravelType={selectedTravelType}
+                    setSelectedTravelType={setSelectedTravelType}
                     nextStep={nextStep}
                 />
             )}
             {currentStep === 3 && (
+                <RegionSelection
+                    selectedRegion={selectedRegion}
+                    setSelectedRegion={setSelectedRegion}
+                    nextStep={nextStep}
+                    selectedTravelType={selectedTravelType}
+                />
+            )}
+            {currentStep === 4 && (
+                <TransportationSelection
+                    selectedTravelStyle={selectedTravelStyle}
+                    setSelectedTravelStyle={setSelectedTravelStyle}
+                    nextStep={nextStep}
+                    prevStep={prevStep}
+                />
+            )}
+            {currentStep === 5 && (
                 <CompanionSelection
                     selectedCompanion={selectedCompanion}
                     setSelectedCompanion={setSelectedCompanion}
@@ -307,7 +327,7 @@ export default function SchedulePage() {
                 />
             )}
 
-            {currentStep === 4 && (
+            {currentStep === 6 && (
                 <PlanTypeSelection
                     selectedPlanType={selectedPlanType}
                     setSelectedPlanType={setSelectedPlanType}

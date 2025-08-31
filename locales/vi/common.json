@@ -42,12 +42,14 @@
             "subtitle": "Chọn loại hình"
         },
         "travelStyleSelection": {
-            "title": "Bạn đang tìm kiếm một chuyến đi như thế nào?",
-            "subtitle": "Hãy chọn phong cách du lịch bạn thích"
+            "title": "Bạn đang tìm kiếm loại hình du lịch nào?",
+            "subtitle": "Vui lòng chọn phong cách du lịch ưa thích của bạn",
+            "selectButton": "Chọn khu vực du lịch"
         },
         "common": {
-            "nextStepButton": "Đặt loại hình du lịch",
-            "createScheduleButton": "Tạo lịch trình"
+            "nextStepButton": "Chọn khu vực du lịch",
+            "createScheduleButton": "Tạo lịch trình",
+            "nextButton": "Chọn khu vực du lịch"
         },
         "dateSelection": {
             "title": "Vui lòng cho biết khoảng thời gian du lịch của bạn",
@@ -84,7 +86,9 @@
             "step1": "Chọn bạn đồng hành và phong cách",
             "step2": "Chọn khu vực và thời gian du lịch",
             "step3": "Chọn phương tiện di chuyển",
-            "step4": "Chọn loại lịch trình"
+            "step4": "Chọn loại lịch trình",
+            "step5": "Chọn phong cách du lịch",
+            "step6": "Chọn bạn đồng hành"
         },
         "manual": {
             "category": {
@@ -183,7 +187,83 @@
         },
         "Emotion": {
             "name": "Cảm xúc",
-            "desc": "Quán cà phê retro, cảm xúc"
+            "desc": "Quán cà phê cổ điển, đầy cảm xúc"
+        },
+        "History": {
+            "name": "Lịch sử",
+            "desc": "Khám phá di tích lịch sử, văn hóa truyền thống"
+        },
+        "Self": {
+            "name": "Phát triển bản thân",
+            "desc": "Tự nhìn lại, trưởng thành, thử thách mới"
+        },
+        "Question": {
+            "name": "Tùy chỉnh",
+            "desc": "Tạo chuyến đi độc đáo của riêng bạn"
+        },
+        "Bus": {
+            "name": "Xe buýt địa phương",
+            "desc": "Xe buýt liên tỉnh, phương tiện công cộng trong vùng"
+        },
+        "Car": {
+            "name": "Xe thuê",
+            "desc": "Thuê xe trong nước, tự do di chuyển"
+        },
+        "Air": {
+            "name": "Máy bay",
+            "desc": "Các chuyến bay nội địa, di chuyển nhanh chóng và thoải mái"
+        },
+        "Train": {
+            "name": "Tàu hỏa",
+            "desc": "Du lịch bằng tàu hỏa, ngắm cảnh đẹp"
+        },
+        "Ship": {
+            "name": "Tàu thủy",
+            "desc": "Phà, du thuyền, du lịch đảo"
+        },
+        "Bicycle": {
+            "name": "Xe đạp",
+            "desc": "Du lịch bằng xe đạp, tham quan leisurely"
+        },
+        "Motorcycle": {
+            "name": "Xe máy",
+            "desc": "Du lịch bằng xe máy, trải nghiệm năng động"
+        },
+        "Walk": {
+            "name": "Đi bộ",
+            "desc": "Đi bộ khám phá, khám phá các con hẻm"
+        },
+        "ThemePark": {
+            "name": "Công viên giải trí",
+            "desc": "Công viên giải trí, vui chơi với nhiều trò chơi khác nhau"
+        },
+        "Nature": {
+            "name": "Thiên nhiên",
+            "desc": "Núi, sông, biển, rừng, tận hưởng thiên nhiên"
+        },
+        "CityTour": {
+            "name": "Tham quan thành phố",
+            "desc": "Khám phá đô thị, trải nghiệm văn hóa, mua sắm"
+        },
+        "FoodTour": {
+            "name": "Du lịch ẩm thực",
+            "desc": "Khám phá đặc sản địa phương, thưởng thức ẩm thực"
+        },
+        "Relax": {
+            "name": "Thư giãn",
+            "desc": "Spa, resort, kỳ nghỉ dưỡng"
+        },
+        "Adventure": {
+            "name": "Phiêu lưu",
+            "desc": "Thể thao mạo hiểm, các hoạt động thử thách"
+        },
+        "Culture": {
+            "name": "Văn hóa",
+            "desc": "Di tích lịch sử, biểu diễn truyền thống, nghệ thuật"
+        },
+        "Shopping": {
+            "name": "Mua sắm",
+            "desc": "Phố mua sắm, cửa hàng miễn thuế, chợ"
         },
         "suwon": {
             "name": "Suwon"
@@ -218,8 +298,90 @@
         "bucheon": {
             "name": "Bucheon"
         },
-        "hwaSeong": {
-            "name": "HwaSeong"
+        "hwaseong": {
+            "name": "Hwaseong"
+        },
+        "gwacheon": {
+            "name": "Gwacheon"
+        },
+        "gwangju": {
+            "name": "Gwangju"
+        },
+        "seoul_city": {
+            "name": "Thành phố Seoul",
+            "desc": "Du lịch khắp khu vực Seoul"
+        },
+        "seoul_nearby": {
+            "name": "Seoul & Vùng lân cận",
+            "desc": "Seoul + Incheon, Goyang, Seongnam, v.v. (chuyến đi trong ngày)"
+        },
+        "gyeonggi_hotspots": {
+            "name": "Điểm nóng Gyeonggi",
+            "desc": "Suwon, Yongin, Gapyeong, Paju, v.v."
+        },
+        "capital_area_mix": {
+            "name": "Hỗn hợp khu vực thủ đô",
+            "desc": "Seoul + Incheon + toàn bộ khu vực Gyeonggi"
+        },
+        "incheon": {
+            "name": "Incheon"
+        },
+        "gwangmyeong": {
+            "name": "Gwangmyeong"
+        },
+        "guri": {
+            "name": "Guri"
+        },
+        "gunpo": {
+            "name": "Gunpo"
+        },
+        "gimpo": {
+            "name": "Gimpo"
+        },
+        "dongducheon": {
+            "name": "Dongducheon"
+        },
+        "siheung": {
+            "name": "Siheung"
+        },
+        "ansan": {
+            "name": "Ansan"
+        },
+        "anseong": {
+            "name": "Anseong"
+        },
+        "yangju": {
+            "name": "Yangju"
+        },
+        "yeoju": {
+            "name": "Yeoju"
+        },
+        "osan": {
+            "name": "Osan"
+        },
+        "uiwang": {
+            "name": "Uiwang"
+        },
+        "icheon": {
+            "name": "Icheon"
+        },
+        "pyeongtaek": {
+            "name": "Pyeongtaek"
+        },
+        "pocheon": {
+            "name": "Pocheon"
+        },
+        "hanam": {
+            "name": "Hanam"
+        },
+        "hwaseong": {
+            "name": "Hwaseong"
+        },
+        "yangpyeong": {
+            "name": "Yangpyeong"
+        },
+        "yeoncheon": {
+            "name": "Yeoncheon"
         }
     },
     "daysOfWeek": ["CN", "T2", "T3", "T4", "T5", "T6", "T7"]

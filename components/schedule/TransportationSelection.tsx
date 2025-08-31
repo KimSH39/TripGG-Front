@@ -1,55 +1,25 @@
-'use client';
-
 import { Button } from '@/components/ui/button';
 import BusIcon from '@/components/icons/BusIcon';
 import CarIcon from '@/components/icons/CarIcon';
 import QuestionIcon from '@/components/icons/QuestionIcon';
-import { regions } from '@/constants/travelData';
 import { useTranslation } from 'react-i18next';
 
-interface RegionTravelSelectionProps {
-    selectedRegion: string;
-    setSelectedRegion: (regionId: string) => void;
+interface TransportationSelectionProps {
     selectedTravelStyle: string;
     setSelectedTravelStyle: (style: string) => void;
     nextStep: () => void;
+    prevStep: () => void;
 }
 
-export default function RegionTravelSelection({
-    selectedRegion,
-    setSelectedRegion,
+export default function TransportationSelection({
     selectedTravelStyle,
     setSelectedTravelStyle,
     nextStep,
-}: RegionTravelSelectionProps) {
+    prevStep,
+}: TransportationSelectionProps) {
     const { t } = useTranslation('common');
     return (
         <>
-            <div className="p-4">
-                <div className="mb-6">
-                    <h2 className="text-xl font-bold text-gray-800 mb-2">{t('schedule.regionSelection.title')}</h2>
-                    <p className="text-gray-600 text-sm">{t('schedule.regionSelection.subtitle')}</p>
-                </div>
-                <div className="grid grid-cols-4 gap-2 mb-8">
-                    {regions.map((region) => (
-                        <button
-                            key={region.id}
-                            onClick={() => setSelectedRegion(region.id)}
-                            className={`
-                p-2 rounded-lg text-center transition-colors border
-                ${
-                    selectedRegion === region.id
-                        ? 'bg-blue-50 text-blue-600 border-blue-500'
-                        : 'bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-200'
-                }
-              `}
-                        >
-                            <div className="text-sm font-medium">{t(`travelData.${region.id}.name`)}</div>
-                        </button>
-                    ))}
-                </div>
-            </div>
-
             <div className="p-4">
                 <div className="mb-6">
                     <h2 className="text-xl font-bold text-gray-800 mb-2">
@@ -61,9 +31,8 @@ export default function RegionTravelSelection({
                     <button
                         onClick={() => setSelectedTravelStyle('car')}
                         className={`w-full p-4 rounded-lg border-2 transition-colors text-left
-              ${
-                  selectedTravelStyle === 'car' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
-              }`}
+              ${selectedTravelStyle === 'car' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}
+              `}
                     >
                         <div className="flex items-center space-x-4">
                             <CarIcon isSelected={selectedTravelStyle === 'car'} />
@@ -83,7 +52,8 @@ export default function RegionTravelSelection({
                   selectedTravelStyle === 'public'
                       ? 'border-blue-500 bg-blue-50'
                       : 'border-gray-200 hover:border-gray-300'
-              }`}
+              }
+              `}
                     >
                         <div className="flex items-center space-x-4">
                             <BusIcon isSelected={selectedTravelStyle === 'public'} />
@@ -105,7 +75,8 @@ export default function RegionTravelSelection({
                   selectedTravelStyle === 'undecided'
                       ? 'border-blue-500 bg-blue-50'
                       : 'border-gray-200 hover:border-gray-300'
-              }`}
+              }
+              `}
                     >
                         <div className="flex items-center space-x-4">
                             <QuestionIcon isSelected={selectedTravelStyle === 'undecided'} />
@@ -122,16 +93,17 @@ export default function RegionTravelSelection({
                 </div>
             </div>
 
-            <div className="bottom-0 left-0 right-0 p-4 ">
+            <div className="bottom-0 left-0 right-0 p-4 flex gap-2">
                 <Button
                     onClick={nextStep}
-                    disabled={!selectedRegion || !selectedTravelStyle}
+                    disabled={!selectedTravelStyle}
                     className={`w-full h-14 text-lg font-semibold
               ${
-                  !selectedRegion || !selectedTravelStyle
+                  !selectedTravelStyle
                       ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                       : 'bg-blue-500 hover:bg-blue-600 text-white'
-              }`}
+              }
+              `}
                 >
                     {t('schedule.common.createScheduleButton')}
                 </Button>

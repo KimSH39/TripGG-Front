@@ -42,12 +42,14 @@
             "subtitle": "타입 선택"
         },
         "travelStyleSelection": {
-            "title": "어떤 여행을 기대하시나요?",
-            "subtitle": "선호하는 여행 스타일을 선택해 주세요"
+            "title": "어떤 여행을 찾으시나요?",
+            "subtitle": "원하는 여행 스타일을 선택해주세요",
+            "selectButton": "여행 지역 선택"
         },
         "common": {
-            "nextStepButton": "여행 타입 정하기",
-            "createScheduleButton": "일정 생성하기"
+            "nextStepButton": "여행 지역 선택",
+            "createScheduleButton": "일정 생성하기",
+            "nextButton": "여행 지역 선택"
         },
         "dateSelection": {
             "title": "여행 기간을 알려 주세요",
@@ -67,7 +69,7 @@
             "manualPlanDescription2": "나만의 일정을 만들어 보세요"
         },
         "regionSelection": {
-            "title": "여행 지역을 골라 주세요",
+            "title": "여행 지역을 선택해 주세요",
             "subtitle": "선택하신 지역을 바탕으로 추천 장소를 찾아드려요"
         },
         "travelMethodSelection": {
@@ -84,7 +86,9 @@
             "step1": "동반자와 스타일 선택",
             "step2": "여행 지역과 기간 선택",
             "step3": "이동 수단 선택",
-            "step4": "일정 타입 선택"
+            "step4": "일정 타입 선택",
+            "step5": "여행 스타일 선택",
+            "step6": "동반자 선택"
         },
         "manual": {
             "category": {
@@ -183,7 +187,83 @@
         },
         "Emotion": {
             "name": "감성",
-            "desc": "레트로, 감성 카페"
+            "desc": "레트로, 감성카페"
+        },
+        "History": {
+            "name": "역사",
+            "desc": "역사 유적지 탐방, 전통문화"
+        },
+        "Self": {
+            "name": "자기계발",
+            "desc": "나를 돌아보고 성장, 새로운 도전"
+        },
+        "Question": {
+            "name": "맞춤",
+            "desc": "나만의 특별한 여행을 만들어보세요"
+        },
+        "Bus": {
+            "name": "시내버스",
+            "desc": "시외버스, 지역 대중교통 이용"
+        },
+        "Car": {
+            "name": "렌터카",
+            "desc": "국내 렌터카, 자유로운 이동"
+        },
+        "Air": {
+            "name": "비행기",
+            "desc": "국내 항공편, 빠르고 편안한 이동"
+        },
+        "Train": {
+            "name": "기차",
+            "desc": "기차 여행, 풍경 감상"
+        },
+        "Ship": {
+            "name": "선박",
+            "desc": "페리, 유람선, 섬 여행"
+        },
+        "Bicycle": {
+            "name": "자전거",
+            "desc": "자전거 여행, 여유로운 관광"
+        },
+        "Motorcycle": {
+            "name": "오토바이",
+            "desc": "오토바이 여행, 역동적인 경험"
+        },
+        "Walk": {
+            "name": "도보",
+            "desc": "도보 여행, 골목길 탐방"
+        },
+        "ThemePark": {
+            "name": "테마파크",
+            "desc": "놀이동산, 다양한 놀이기구와 함께 즐거운 시간"
+        },
+        "Nature": {
+            "name": "자연",
+            "desc": "산, 강, 바다, 숲 등 자연을 만끽"
+        },
+        "CityTour": {
+            "name": "도시관광",
+            "desc": "도시 탐험, 문화 체험, 쇼핑"
+        },
+        "FoodTour": {
+            "name": "음식여행",
+            "desc": "지역 맛집 탐방, 미식 즐기기"
+        },
+        "Relax": {
+            "name": "휴식",
+            "desc": "스파, 리조트, 힐링 휴가"
+        },
+        "Adventure": {
+            "name": "모험",
+            "desc": "익스트림 스포츠, 도전적인 활동"
+        },
+        "Culture": {
+            "name": "문화",
+            "desc": "역사 유적지, 전통 공연, 예술 감상"
+        },
+        "Shopping": {
+            "name": "쇼핑",
+            "desc": "쇼핑 거리, 면세점, 시장 구경"
         },
         "suwon": {
             "name": "수원"
@@ -218,8 +298,90 @@
         "bucheon": {
             "name": "부천"
         },
-        "hwaSeong": {
+        "hwaseong": {
             "name": "화성"
+        },
+        "gwacheon": {
+            "name": "과천"
+        },
+        "gwangju": {
+            "name": "광주"
+        },
+        "seoul_city": {
+            "name": "서울 전역",
+            "desc": "서울 전체를 중심으로 여행해요"
+        },
+        "seoul_nearby": {
+            "name": "서울 + 근교",
+            "desc": "서울 + 인천·고양·성남 등 당일권"
+        },
+        "gyeonggi_hotspots": {
+            "name": "경기 인기 지역",
+            "desc": "수원, 용인, 가평, 파주 등"
+        },
+        "capital_area_mix": {
+            "name": "수도권 종합",
+            "desc": "서울 + 인천 + 경기 전체"
+        },
+        "incheon": {
+            "name": "인천"
+        },
+        "gwangmyeong": {
+            "name": "광명"
+        },
+        "guri": {
+            "name": "구리"
+        },
+        "gunpo": {
+            "name": "군포"
+        },
+        "gimpo": {
+            "name": "김포"
+        },
+        "dongducheon": {
+            "name": "동두천"
+        },
+        "siheung": {
+            "name": "시흥"
+        },
+        "ansan": {
+            "name": "안산"
+        },
+        "anseong": {
+            "name": "안성"
+        },
+        "yangju": {
+            "name": "양주"
+        },
+        "yeoju": {
+            "name": "여주"
+        },
+        "osan": {
+            "name": "오산"
+        },
+        "uiwang": {
+            "name": "의왕"
+        },
+        "icheon": {
+            "name": "이천"
+        },
+        "pyeongtaek": {
+            "name": "평택"
+        },
+        "pocheon": {
+            "name": "포천"
+        },
+        "hanam": {
+            "name": "하남"
+        },
+        "hwaseong": {
+            "name": "화성"
+        },
+        "yangpyeong": {
+            "name": "양평"
+        },
+        "yeoncheon": {
+            "name": "연천"
         }
     },
     "daysOfWeek": ["일", "월", "화", "수", "목", "금", "토"]

@@ -42,12 +42,14 @@
             "subtitle": "选择类型"
         },
         "travelStyleSelection": {
-            "title": "您期待什么样的旅行？",
-            "subtitle": "请选择您喜欢的旅行风格"
+            "title": "您在寻找什么样的旅行？",
+            "subtitle": "请选择您偏爱的旅行方式",
+            "selectButton": "选择旅行地区"
         },
         "common": {
-            "nextStepButton": "设置旅行类型",
-            "createScheduleButton": "创建行程"
+            "nextStepButton": "选择旅行区域",
+            "createScheduleButton": "创建行程",
+            "nextButton": "选择旅行区域"
         },
         "dateSelection": {
             "title": "请告诉我们您的旅行时间",
@@ -102,7 +104,9 @@
             "step1": "选择同伴和风格",
             "step2": "选择旅行区域和期间",
             "step3": "选择交通方式",
-            "step4": "选择行程类型"
+            "step4": "选择行程类型",
+            "step5": "选择旅行风格",
+            "step6": "选择同行伙伴"
         },
         "manual": {
             "category": {
@@ -183,7 +187,83 @@
         },
         "Emotion": {
             "name": "情感",
-            "desc": "复古，情感咖啡馆"
+            "desc": "复古、情感咖啡馆"
+        },
+        "History": {
+            "name": "历史",
+            "desc": "探索历史遗迹，传统文化"
+        },
+        "Self": {
+            "name": "自我提升",
+            "desc": "自我反思，成长，新挑战"
+        },
+        "Question": {
+            "name": "定制",
+            "desc": "创建您自己独特的旅行"
+        },
+        "Bus": {
+            "name": "市内巴士",
+            "desc": "城际巴士，区域公共交通"
+        },
+        "Car": {
+            "name": "租车",
+            "desc": "国内租车，自由出行"
+        },
+        "Air": {
+            "name": "飞机",
+            "desc": "国内航班，快速舒适的旅行"
+        },
+        "Train": {
+            "name": "火车",
+            "desc": "铁路旅行，沿途风景"
+        },
+        "Ship": {
+            "name": "船舶",
+            "desc": "渡轮，游轮，海岛旅行"
+        },
+        "Bicycle": {
+            "name": "自行车",
+            "desc": "自行车旅行，悠闲观光"
+        },
+        "Motorcycle": {
+            "name": "摩托车",
+            "desc": "摩托车旅行，动态体验"
+        },
+        "Walk": {
+            "name": "步行",
+            "desc": "徒步旅行，探索小巷"
+        },
+        "ThemePark": {
+            "name": "主题公园",
+            "desc": "游乐园，各种游乐设施，享受乐趣"
+        },
+        "Nature": {
+            "name": "自然",
+            "desc": "山川、河流、海洋、森林，享受大自然"
+        },
+        "CityTour": {
+            "name": "城市观光",
+            "desc": "城市探索，文化体验，购物"
+        },
+        "FoodTour": {
+            "name": "美食之旅",
+            "desc": "探索当地美食，享受美食"
+        },
+        "Relax": {
+            "name": "休闲",
+            "desc": "水疗，度假村，疗愈假期"
+        },
+        "Adventure": {
+            "name": "冒险",
+            "desc": "极限运动，挑战性活动"
+        },
+        "Culture": {
+            "name": "文化",
+            "desc": "历史遗迹，传统表演，艺术"
+        },
+        "Shopping": {
+            "name": "购物",
+            "desc": "购物街，免税店，市场"
         },
         "suwon": {
             "name": "水原"
@@ -218,8 +298,90 @@
         "bucheon": {
             "name": "富川"
         },
-        "hwaSeong": {
+        "hwaseong": {
             "name": "华城"
+        },
+        "gwacheon": {
+            "name": "果川"
+        },
+        "gwangju": {
+            "name": "光州"
+        },
+        "seoul_city": {
+            "name": "首尔全境",
+            "desc": "以首尔全境为中心旅行"
+        },
+        "seoul_nearby": {
+            "name": "首尔 + 近郊",
+            "desc": "首尔 + 仁川·高阳·城南等当日圈"
+        },
+        "gyeonggi_hotspots": {
+            "name": "京畿热门地区",
+            "desc": "水原、龙仁、加平、坡州等"
+        },
+        "capital_area_mix": {
+            "name": "首都圈综合",
+            "desc": "首尔 + 仁川 + 京畿全境"
+        },
+        "incheon": {
+            "name": "仁川"
+        },
+        "gwangmyeong": {
+            "name": "光明"
+        },
+        "guri": {
+            "name": "九里"
+        },
+        "gunpo": {
+            "name": "军浦"
+        },
+        "gimpo": {
+            "name": "金浦"
+        },
+        "dongducheon": {
+            "name": "东豆川"
+        },
+        "siheung": {
+            "name": "始兴"
+        },
+        "ansan": {
+            "name": "安山"
+        },
+        "anseong": {
+            "name": "安城"
+        },
+        "yangju": {
+            "name": "杨州"
+        },
+        "yeoju": {
+            "name": "骊州"
+        },
+        "osan": {
+            "name": "乌山"
+        },
+        "uiwang": {
+            "name": "义王"
+        },
+        "icheon": {
+            "name": "利川"
+        },
+        "pyeongtaek": {
+            "name": "平泽"
+        },
+        "pocheon": {
+            "name": "抱川"
+        },
+        "hanam": {
+            "name": "河南"
+        },
+        "hwaseong": {
+            "name": "华城"
+        },
+        "yangpyeong": {
+            "name": "杨平"
+        },
+        "yeoncheon": {
+            "name": "涟川"
         }
     },
     "daysOfWeek": ["日", "一", "二", "三", "四", "五", "六"]

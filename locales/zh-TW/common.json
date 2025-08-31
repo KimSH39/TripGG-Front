@@ -42,12 +42,14 @@
             "subtitle": "選擇類型"
         },
         "travelStyleSelection": {
-            "title": "您期待怎麼樣的旅行？",
-            "subtitle": "請選擇您喜歡的旅行風格"
+            "title": "您在尋找什麼樣的旅行？",
+            "subtitle": "請選擇您偏愛的旅行方式",
+            "selectButton": "選擇旅行地區"
         },
         "common": {
-            "nextStepButton": "設定旅行類型",
-            "createScheduleButton": "建立行程"
+            "nextStepButton": "選擇旅行區域",
+            "createScheduleButton": "建立行程",
+            "nextButton": "選擇旅行區域"
         },
         "dateSelection": {
             "title": "請告訴我們您的旅行期間",
@@ -102,7 +104,9 @@
             "step1": "選擇同伴和風格",
             "step2": "選擇旅行區域和期間",
             "step3": "選擇交通方式",
-            "step4": "選擇行程類型"
+            "step4": "選擇行程類型",
+            "step5": "選擇旅行風格",
+            "step6": "選擇同行夥伴"
         },
         "manual": {
             "category": {
@@ -210,8 +214,84 @@
             "desc": "探索美食餐廳"
         },
         "Emotion": {
-            "name": "感性",
-            "desc": "復古，感性咖啡館"
+            "name": "情感",
+            "desc": "復古、情感咖啡館"
+        },
+        "History": {
+            "name": "歷史",
+            "desc": "探索歷史遺跡，傳統文化"
+        },
+        "Self": {
+            "name": "自我提升",
+            "desc": "自我反思，成長，新挑戰"
+        },
+        "Question": {
+            "name": "訂製",
+            "desc": "創建您自己獨特的旅行"
+        },
+        "Bus": {
+            "name": "市內巴士",
+            "desc": "城際巴士，區域公共交通"
+        },
+        "Car": {
+            "name": "租車",
+            "desc": "國內租車，自由出行"
+        },
+        "Air": {
+            "name": "飛機",
+            "desc": "國內航班，快速舒適的旅行"
+        },
+        "Train": {
+            "name": "火車",
+            "desc": "鐵路旅行，沿途風景"
+        },
+        "Ship": {
+            "name": "船舶",
+            "desc": "渡輪，遊輪，海島旅行"
+        },
+        "Bicycle": {
+            "name": "自行車",
+            "desc": "自行車旅行，悠閒觀光"
+        },
+        "Motorcycle": {
+            "name": "摩托車",
+            "desc": "摩托車旅行，動態體驗"
+        },
+        "Walk": {
+            "name": "步行",
+            "desc": "徒步旅行，探索小巷"
+        },
+        "ThemePark": {
+            "name": "主題公園",
+            "desc": "遊樂園，各種遊樂設施，享受樂趣"
+        },
+        "Nature": {
+            "name": "自然",
+            "desc": "山川、河流、海洋、森林，享受大自然"
+        },
+        "CityTour": {
+            "name": "城市觀光",
+            "desc": "城市探索，文化體驗，購物"
+        },
+        "FoodTour": {
+            "name": "美食之旅",
+            "desc": "探索當地美食，享受美食"
+        },
+        "Relax": {
+            "name": "休閒",
+            "desc": "水療，度假村，療癒假期"
+        },
+        "Adventure": {
+            "name": "冒險",
+            "desc": "極限運動，挑戰性活動"
+        },
+        "Culture": {
+            "name": "文化",
+            "desc": "歷史遺跡，傳統表演，藝術"
+        },
+        "Shopping": {
+            "name": "購物",
+            "desc": "購物街，免稅店，市場"
         },
         "suwon": {
             "name": "水原"
@@ -246,8 +326,90 @@
         "bucheon": {
             "name": "富川"
         },
-        "hwaSeong": {
+        "hwaseong": {
             "name": "華城"
+        },
+        "gwacheon": {
+            "name": "果川"
+        },
+        "gwangju": {
+            "name": "光州"
+        },
+        "seoul_city": {
+            "name": "首爾全境",
+            "desc": "以首爾全境為中心旅行"
+        },
+        "seoul_nearby": {
+            "name": "首爾 + 近郊",
+            "desc": "首爾 + 仁川·高陽·城南等當日圈"
+        },
+        "gyeonggi_hotspots": {
+            "name": "京畿熱門地區",
+            "desc": "水原、龍仁、加平、坡州等"
+        },
+        "capital_area_mix": {
+            "name": "首都圈綜合",
+            "desc": "首爾 + 仁川 + 京畿全境"
+        },
+        "incheon": {
+            "name": "仁川"
+        },
+        "gwangmyeong": {
+            "name": "光明"
+        },
+        "guri": {
+            "name": "九里"
+        },
+        "gunpo": {
+            "name": "軍浦"
+        },
+        "gimpo": {
+            "name": "金浦"
+        },
+        "dongducheon": {
+            "name": "東豆川"
+        },
+        "siheung": {
+            "name": "始興"
+        },
+        "ansan": {
+            "name": "安山"
+        },
+        "anseong": {
+            "name": "安城"
+        },
+        "yangju": {
+            "name": "楊州"
+        },
+        "yeoju": {
+            "name": "驪州"
+        },
+        "osan": {
+            "name": "烏山"
+        },
+        "uiwang": {
+            "name": "義王"
+        },
+        "icheon": {
+            "name": "利川"
+        },
+        "pyeongtaek": {
+            "name": "平澤"
+        },
+        "pocheon": {
+            "name": "抱川"
+        },
+        "hanam": {
+            "name": "河南"
+        },
+        "hwaseong": {
+            "name": "華城"
+        },
+        "yangpyeong": {
+            "name": "楊平"
+        },
+        "yeoncheon": {
+            "name": "漣川"
         }
     },
     "daysOfWeek": ["日", "一", "二", "三", "四", "五", "六"]

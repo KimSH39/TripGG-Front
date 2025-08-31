@@ -47,7 +47,7 @@ export default function BottomNavigation() {
                             }`}
                         >
                             <Icon className="h-5 w-5" />
-                            <span className="text-xs font-medium">{i18n.isInitialized ? tab.label : ''}</span>
+                            <span className="text-xs font-medium">{tab.label}</span>
                         </button>
                     );
                 })}

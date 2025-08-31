@@ -2,47 +2,64 @@
 
 import { useState, useRef } from 'react';
 import { ChevronLeft } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
-interface TravelTypeCard {
+export interface TravelTypeCard {
     id: number;
     title: string;
     description: string;
     image: string;
 }
 
-export default function TravelTypePage() {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [isDragging, setIsDragging] = useState(false);
-    const [startX, setStartX] = useState(0);
-    const [currentX, setCurrentX] = useState(0);
+interface TravelTypeSelectionProps {
+    selectedTravelType: TravelTypeCard | null;
+    setSelectedTravelType: (travelType: TravelTypeCard) => void;
+    nextStep: () => void;
+    prevStep: () => void;
+}
+
+export default function TravelTypeSelection({
+    selectedTravelType,
+    setSelectedTravelType,
+    nextStep,
+    prevStep,
+}: TravelTypeSelectionProps) {
+    const { t } = useTranslation();
     const containerRef = useRef<HTMLDivElement>(null);
 
     const travelTypes: TravelTypeCard[] = [
         {
             id: 1,
-            title: '서울',
-            description: '서울 전체를 중심으로 여행해요',
-            image: '/seoul-pic.png'
+            title: t('travelData.seoul_city.name'),
+            description: t('travelData.seoul_city.desc'),
+            image: '/seoul-pic.png',
         },
         {
             id: 2,
-            title: '경기도',
-            description: '경기도 지역을 중심으로 여행해요',
-            image: '/gg-pic.png'
+            title: t('travelData.seoul_nearby.name'),
+            description: t('travelData.seoul_nearby.desc'),
+            image: '/gg-pic.png',
         },
         {
             id: 3,
-            title: '서울+경기',
-            description: '서울과 경기도를 함께 여행해요',
-            image: '/seoul-gg-pic.png'
+            title: t('travelData.gyeonggi_hotspots.name'),
+            description: t('travelData.gyeonggi_hotspots.desc'),
+            image: '/seoul-gg-pic.png',
         },
         {
             id: 4,
-            title: '기타',
-            description: '다른 지역을 선택해요',
-            image: '/placeholder-1llmm.png'
-        }
+            title: t('travelData.capital_area_mix.name'),
+            description: t('travelData.capital_area_mix.desc'),
+            image: '/placeholder-1llmm.png',
+        },
     ];
+
+    const [currentIndex, setCurrentIndex] = useState(
+        selectedTravelType ? travelTypes.findIndex((type) => type.id === selectedTravelType.id) : 0
+    );
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [currentX, setCurrentX] = useState(0);
 
     const handleTouchStart = (e: React.TouchEvent) => {
         setIsDragging(true);
@@ -57,7 +74,7 @@ export default function TravelTypePage() {
 
     const handleTouchEnd = () => {
         if (!isDragging) return;
-        
+
         const diff = startX - currentX;
         const threshold = 50;
 
@@ -85,7 +102,7 @@ export default function TravelTypePage() {
 
     const handleMouseUp = () => {
         if (!isDragging) return;
-        
+
         const diff = startX - currentX;
         const threshold = 50;
 
@@ -104,40 +121,28 @@ export default function TravelTypePage() {
         setCurrentIndex(index);
     };
 
-
-
     return (
-        <div className="min-h-screen bg-white" style={{ 
-            height: '100svh',
-            overflow: 'hidden',
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0
-        }}>
-            {/* 헤더 */}
-            <div className="bg-white p-4">
-                <div className="relative flex items-center justify-center">
-                    <button className="absolute left-4 p-1">
-                        <ChevronLeft className="h-6 w-6" />
-                    </button>
-                    <div className="text-center">
-                        <h1 className="text-lg font-bold">여행 일정 만들기</h1>
-                        <p className="text-sm text-gray-600">타입 선택</p>
-                    </div>
-                </div>
-            </div>
-
+        <div
+            className="bg-white"
+            // style={{
+            //     height: '100svh',
+            //     overflow: 'hidden',
+            //     position: 'fixed',
+            //     top: 0,
+            //     left: 0,
+            //     right: 0,
+            //     bottom: 0,
+            // }}
+        >
             {/* 메인 콘텐츠 */}
             <div className="p-4">
                 <div className="mb-6">
-                    <h2 className="text-xl font-bold text-gray-800 mb-2">여행할 지역을 정해 주세요</h2>
-                    <p className="text-gray-600 text-sm">선택하신 지역을 바탕으로 추천 장소를 찾아드려요</p>
+                    <h2 className="text-xl font-bold text-gray-800 mb-2">{t('schedule.regionSelection.title')}</h2>
+                    <p className="text-gray-600 text-sm">{t('schedule.regionSelection.subtitle')}</p>
                 </div>
 
-                {/* 카드 컨테이너 */}
-                <div 
+                {/* 카드 컨테iner */}
+                <div
                     ref={containerRef}
                     className="relative w-full max-w-[400px] mx-auto mb-8 overflow-hidden"
                     onTouchStart={handleTouchStart}
@@ -153,7 +158,7 @@ export default function TravelTypePage() {
                             const isActive = index === currentIndex;
                             const isNext = index === currentIndex + 1;
                             const isPrev = index === currentIndex - 1;
-                            
+
                             let transform = '';
                             let opacity = 0;
                             let zIndex = 0;
@@ -183,9 +188,9 @@ export default function TravelTypePage() {
                                     }}
                                     onClick={() => handleCardClick(index)}
                                 >
-                                                                        <div className="h-full w-full overflow-hidden border-0 shadow-lg rounded-[10px] relative">
+                                    <div className="h-full w-full overflow-hidden border-0 shadow-lg rounded-[10px] relative">
                                         {/* 배경 이미지 */}
-                                        <div 
+                                        <div
                                             className="absolute inset-0 bg-cover bg-center"
                                             style={{
                                                 backgroundImage: `url(${type.image})`,
@@ -193,18 +198,25 @@ export default function TravelTypePage() {
                                                 backgroundSize: '250% 250%',
                                             }}
                                         />
-                                        
+
                                         {/* 오버레이 */}
                                         <div className="absolute inset-0 bg-black/40 rounded-[10px]" />
-                                        
+
                                         {/* 카드 내용 */}
                                         <div className="relative z-10 h-full flex flex-col justify-center items-center text-center p-6 text-white">
-                                            <h3 className="text-4xl font-bold mb-2 tracking-wider">
-                                                {type.title}
-                                            </h3>
-                                            <p className="text-sm font-semibold tracking-wide">
-                                                {type.description}
-                                            </p>
+                                            <h3 className="text-4xl font-bold mb-2 tracking-wider">{type.title}</h3>
+                                            <p className="text-sm font-semibold tracking-wide">{type.description}</p>
+                                            <div className="absolute bottom-6 left-0 right-0 px-6">
+                                                <button
+                                                    onClick={() => {
+                                                        setSelectedTravelType(travelTypes[currentIndex]);
+                                                        nextStep();
+                                                    }}
+                                                    className="w-full py-3 bg-white/20 backdrop-blur-sm text-white text-lg font-semibold rounded-[16px] transition-all duration-300 hover:bg-white/30 border border-[#838383]"
+                                                >
+                                                    {t('schedule.travelStyleSelection.selectButton')}
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -219,16 +231,12 @@ export default function TravelTypePage() {
                         <button
                             key={index}
                             className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                                index === currentIndex 
-                                    ? 'bg-gray-600' 
-                                    : 'bg-gray-300'
+                                index === currentIndex ? 'bg-gray-600' : 'bg-gray-300'
                             }`}
                             onClick={() => setCurrentIndex(index)}
                         />
                     ))}
                 </div>
-
-
             </div>
         </div>
     );
