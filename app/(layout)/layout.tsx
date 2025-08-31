@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import BottomNavigation from '@/components/bottom-navigation';
+import BottomNavigation from '@/components/layout/bottom-navigation';
 import { useRegionStore } from '@/store/regionStore';
 import { useUiStore } from '@/store/uiStore';
 
