@@ -250,7 +250,7 @@ export default function AIRecommendedSchedule({
             {!isEditing ? (
                 <>
                     <div className="bg-white border-b">
-                        <div className="flex space-x-2 pb-2">
+                        <div className="flex space-x-2">
                             <Carousel className="w-full pl-0" opts={{ align: 'start' }} setApi={setCarouselApi}>
                                 <CarouselContent className="-ml-0">
                                     {[...Array(numberOfDays)].map((_, index) => {
