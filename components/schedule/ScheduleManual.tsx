@@ -455,7 +455,7 @@ export default function ScheduleManual({
                             </Carousel>
                         </div>
                         {currentDay && (
-                            <div className="mt-4 p-0 bg-gray-50 rounded-lg flex flex-col space-y-2">
+                            <div className="mt-4 p-0 rounded-lg flex flex-col space-y-2">
                                 <div className="flex items-center justify-between text-gray-700">
                                     <div className="flex items-center space-x-2">
                                         {/* You can replace this with a weather icon component */}
