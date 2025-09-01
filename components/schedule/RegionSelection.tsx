@@ -41,7 +41,7 @@ export default function RegionSelection({
                     <h2 className="text-xl font-bold text-gray-800 mb-2">{t('schedule.regionSelection.title')}</h2>
                     <p className="text-gray-600 text-sm">{t('schedule.regionSelection.subtitle')}</p>
                 </div>
-                <div className="grid grid-cols-4 gap-2 mb-8">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mb-8">
                     {displayRegions.map((region) => (
                         <button
                             key={region.id}

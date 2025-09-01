@@ -9,10 +9,10 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { format, addDays, isSameDay, Locale } from 'date-fns';
 import { enUS, ko, zhCN, zhTW, ja, vi } from 'date-fns/locale';
-import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem, CarouselApi } from '@/components/ui/carousel';
 import { useRouter } from 'next/navigation';
 import { savePlan, TravelPlan } from '@/lib/mockApi';
-import { regions } from '@/constants/travelData';
+import { allRegions } from '@/constants/travelData';
 
 interface ScheduleManualProps {
     setIsManualPlanning: (value: boolean) => void;
@@ -50,20 +50,40 @@ export default function ScheduleManual({
 
     const [currentDay, setCurrentDay] = useState<Date | null>(startDate);
 
-    useEffect(() => {
-        if (startDate) {
-            setCurrentDay(startDate);
-        }
-    }, [startDate]);
+    const [scheduleDays, setScheduleDays] = useState<Date[]>([]);
+    const [currentEndDate, setCurrentEndDate] = useState<Date | null>(endDate);
+    const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
 
-    const days = [];
-    if (startDate && endDate) {
-        let day = startDate;
-        while (day <= endDate) {
-            days.push(day);
-            day = addDays(day, 1);
+    useEffect(() => {
+        if (startDate && endDate) {
+            const initialDays = [];
+            let day = startDate;
+            while (day <= endDate) {
+                initialDays.push(day);
+                day = addDays(day, 1);
+            }
+            setScheduleDays(initialDays);
+            setCurrentDay(startDate);
+            setCurrentEndDate(endDate);
         }
-    }
+    }, [startDate, endDate]);
+
+    useEffect(() => {
+        if (carouselApi && currentDay) {
+            const currentDayIndex = scheduleDays.findIndex((day) => isSameDay(day, currentDay));
+            if (currentDayIndex !== -1) {
+                carouselApi.scrollTo(currentDayIndex);
+            }
+        }
+    }, [currentDay, carouselApi, scheduleDays]);
+
+    const handleAddDay = () => {
+        if (currentEndDate) {
+            const newEndDate = addDays(currentEndDate, 1);
+            setScheduleDays([...scheduleDays, newEndDate]);
+            setCurrentEndDate(newEndDate);
+        }
+    };
 
     const handleSavePlan = async () => {
         if (!startDate || !endDate || selectedPlaces.length === 0) {
@@ -326,9 +346,9 @@ export default function ScheduleManual({
 
         return (
             <div className="pb-20">
-                <div className="relative pt-4 pl-8 pr-4">
+                <div className="relative p-4">
                     {placesForCurrentDay.map((place, index) => (
-                        <div key={index} className="relative flex items-start mb-12 last:mb-0">
+                        <div key={index} className="relative flex items-start space-y-4">
                             {/* Time */}
                             <div className="text-sm font-bold text-gray-800 absolute top-0 left-[-5px] w-[45px] text-right z-10">
                                 {place.time}
@@ -381,8 +401,8 @@ export default function ScheduleManual({
 
     return (
         <div className="bg-white relative flex flex-col">
-            <div className="bg-white border-b py-6 px-4 sticky top-0 z-10">
-                <div className="flex items-center space-x-3 mb-4">
+            <div className="bg-white border-b sticky top-0 z-10">
+                <div className="flex items-center space-x-3 mb-4 p-4">
                     <button
                         onClick={() => {
                             if (planningStep === 1) {
@@ -410,17 +430,17 @@ export default function ScheduleManual({
                         </h1>
                         <p className="text-sm text-gray-600">
                             {format(startDate || new Date(), 'yyyy.MM.dd')} -{' '}
-                            {format(days[days.length - 1] || new Date(), 'yyyy.MM.dd')}
+                            {format(currentEndDate || new Date(), 'yyyy.MM.dd')}
                         </p>
                     </div>
                 </div>
 
                 {planningStep === 1 && (
                     <div className="mb-0">
-                        <div className="flex space-x-2 pb-2">
-                            <Carousel opts={{ align: 'start' }} className="w-full pl-0">
+                        <div className="flex space-x-2">
+                            <Carousel opts={{ align: 'start' }} className="w-full pl-0" setApi={setCarouselApi}>
                                 <CarouselContent className="-ml-0">
-                                    {days.map((day, index) => (
+                                    {scheduleDays.map((day, index) => (
                                         <CarouselItem key={index} className="basis-1/4 pl-0">
                                             <button
                                                 onClick={() => setCurrentDay(day)}
@@ -441,11 +461,9 @@ export default function ScheduleManual({
                                             </button>
                                         </CarouselItem>
                                     ))}
-                                    <CarouselItem key={days.length} className="basis-1/4 pl-0 bg-gray-100 ">
+                                    <CarouselItem key={scheduleDays.length} className="basis-1/4 pl-0 bg-gray-100 ">
                                         <button
-                                            onClick={() => {
-                                                /* Adding days is not applicable on this page */
-                                            }}
+                                            onClick={handleAddDay}
                                             className="flex-shrink-0 text-sm font-medium text-gray-700 h-full flex items-center justify-center w-full py-4 "
                                         >
                                             <Plus className="h-5 w-5 bg-gray-100 text-gray-700 border-gray-200" />
@@ -455,8 +473,8 @@ export default function ScheduleManual({
                             </Carousel>
                         </div>
                         {currentDay && (
-                            <div className="mt-4 p-0 bg-gray-50 rounded-lg flex flex-col space-y-2">
-                                <div className="flex items-center justify-between text-gray-700">
+                            <div className="p-4 bg-white border-b">
+                                <div className="flex items-center justify-between mb-3 text-gray-700">
                                     <div className="flex items-center space-x-2">
                                         {/* You can replace this with a weather icon component */}
                                         <span role="img" aria-label="weather">
@@ -464,9 +482,11 @@ export default function ScheduleManual({
                                         </span>
                                         <span className="font-semibold">
                                             {currentDay
-                                                ? `${days.findIndex((day) => isSameDay(day, currentDay)) + 1}${t(
-                                                      'schedule.manual.dayCounter'
-                                                  )} - ${format(
+                                                ? `${
+                                                      scheduleDays.findIndex((day: Date) =>
+                                                          isSameDay(day, currentDay)
+                                                      ) + 1
+                                                  }${t('schedule.manual.dayCounter')} - ${format(
                                                       currentDay,
                                                       t('schedule.manual.monthDayWeekdayFormat'),
                                                       {
@@ -476,7 +496,7 @@ export default function ScheduleManual({
                                                 : ''}
                                         </span>
                                     </div>
-                                    <span className="text-sm text-gray-500">
+                                    <span className="text-sm text-gray-500 whitespace-nowrap">
                                         {t('schedule.manual.totalSchedulePrefix')}
                                         {
                                             selectedPlaces.filter((place) =>
@@ -486,7 +506,7 @@ export default function ScheduleManual({
                                         {t('schedule.manual.totalScheduleSuffix')}
                                     </span>
                                 </div>
-                                <div className="flex items-center justify-between text-xs text-gray-600 py-2">
+                                <div className="flex items-center space-x-4 text-xs text-gray-600">
                                     {Object.entries(calculateCategorySummary(currentDay)).map(
                                         ([category, duration]) => {
                                             const hours = Math.floor(duration / 60);
@@ -504,12 +524,12 @@ export default function ScheduleManual({
                                                     .join(' ') || t('schedule.manual.duration.zeroMinutes');
                                             return (
                                                 <div key={category} className="flex items-center space-x-1">
-                                                    <span
+                                                    <div
                                                         className={`w-2 h-2 rounded-full ${
                                                             categoryColors[category as keyof typeof categoryColors]
                                                         }`}
-                                                    ></span>
-                                                    <span>
+                                                    ></div>
+                                                    <span className="whitespace-nowrap">
                                                         {t('schedule.manual.categoryDuration', {
                                                             category: category,
                                                             duration: durationString,
