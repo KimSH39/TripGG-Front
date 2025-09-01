@@ -117,8 +117,8 @@ export default function ChatPage() {
             </div>
 
             {/* 입력바 */}
-            <div className="fixed bottom-16 left-0 w-full bg-white border-t border-gray-200 p-4">
-                <div className="flex items-center space-x-2">
+            <div className="fixed bottom-16 left-0 right-0 z-10 bg-white border-t border-gray-200 px-4 py-1 max-w-3xl mx-auto">
+                <div className="flex items-center space-x-2 px-0 py-0">
                     <div className="flex-1 flex items-center bg-gray-100 rounded-full px-4 py-2">
                         <Input
                             value={message}
