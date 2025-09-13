@@ -57,21 +57,6 @@
             "startDate": "Start Date",
             "endDate": "End Date"
         },
-        "planTypeSelection": {
-            "title": "How would you like to plan your trip?",
-            "subtitle1": "AI can create a customized itinerary,",
-            "subtitle2": "or you can freely create your own itinerary",
-            "aiPlanTitle": "Get AI Recommended Schedule",
-            "aiPlanDescription1": "AI will recommend the optimal itinerary",
-            "aiPlanDescription2": "based on the information you selected",
-            "manualPlanTitle": "Create Schedule Manually",
-            "manualPlanDescription1": "Select your desired places directly",
-            "manualPlanDescription2": "and create your own unique itinerary"
-        },
-        "regionSelection": {
-            "title": "Please choose your travel region",
-            "subtitle": "We will find recommended places based on your selected region"
-        },
         "travelMethodSelection": {
             "title": "What mode of transportation do you prefer?",
             "subtitle": "We will plan your route based on your selected transportation",
@@ -383,6 +368,40 @@
         "yeoncheon": {
             "name": "Yeoncheon"
         }
+    },
+    "regions": {
+        "title": "Select Travel Region",
+        "subtitle": "Choose your desired region for a customized travel plan",
+        "nextStep": "Next Step",
+        "seoul-all": {
+            "name": "All Seoul",
+            "description": "Entire Seoul metropolitan area"
+        },
+        "seoul-gg": {
+            "name": "Seoul + Nearby",
+            "description": "Seoul and adjacent Gyeonggi areas"
+        },
+        "gg-popular": {
+            "name": "Popular Gyeonggi",
+            "description": "Popular tourist spots in Gyeonggi Province"
+        },
+        "capital-area": {
+            "name": "Capital Area",
+            "description": "Seoul, Gyeonggi, and Incheon combined"
+        }
+    },
+    "keywords": {
+        "title": "Select Travel Keywords",
+        "subtitle": "You can select multiple keywords",
+        "nextStep": "Next Step",
+        "kpop": "K-POP",
+        "history": "History",
+        "squidgame": "Squid Game",
+        "kpopdemons": "K-Pop Demon Hunters",
+        "koreanfood": "Korean Food",
+        "koreanwave": "Korean Wave",
+        "koreanbeauty": "K-Beauty",
+        "koreandrama": "K-Drama"
     },
     "daysOfWeek": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 }

@@ -57,21 +57,6 @@
             "startDate": "Ngày bắt đầu",
             "endDate": "Ngày kết thúc"
         },
-        "planTypeSelection": {
-            "title": "Bạn muốn lên kế hoạch cho chuyến đi của mình như thế nào?",
-            "subtitle1": "AI có thể tạo lịch trình tùy chỉnh,",
-            "subtitle2": "hoặc bạn có thể tự do tạo lịch trình của riêng mình",
-            "aiPlanTitle": "Nhận lịch trình do AI đề xuất",
-            "aiPlanDescription1": "AI sẽ đề xuất lịch trình tối ưu",
-            "aiPlanDescription2": "dựa trên thông tin bạn đã chọn",
-            "manualPlanTitle": "Tạo lịch trình thủ công",
-            "manualPlanDescription1": "Trực tiếp chọn những nơi bạn muốn đến",
-            "manualPlanDescription2": "và tạo lịch trình độc đáo của riêng bạn"
-        },
-        "regionSelection": {
-            "title": "Vui lòng chọn khu vực du lịch của bạn",
-            "subtitle": "Chúng tôi sẽ tìm các địa điểm được đề xuất dựa trên khu vực bạn đã chọn"
-        },
         "travelMethodSelection": {
             "title": "Bạn thích phương tiện di chuyển nào?",
             "subtitle": "Chúng tôi sẽ lên kế hoạch lộ trình của bạn dựa trên phương tiện di chuyển bạn đã chọn",
@@ -383,6 +368,40 @@
         "yeoncheon": {
             "name": "Yeoncheon"
         }
+    },
+    "regions": {
+        "title": "Chọn khu vực du lịch",
+        "subtitle": "Chọn khu vực mong muốn để lập kế hoạch du lịch tùy chỉnh",
+        "nextStep": "Bước tiếp theo",
+        "seoul-all": {
+            "name": "Toàn bộ Seoul",
+            "description": "Toàn bộ khu vực thành phố Seoul"
+        },
+        "seoul-gg": {
+            "name": "Seoul + Lân cận",
+            "description": "Seoul và các khu vực Gyeonggi liền kề"
+        },
+        "gg-popular": {
+            "name": "Gyeonggi Nổi tiếng",
+            "description": "Các điểm du lịch nổi tiếng trong tỉnh Gyeonggi"
+        },
+        "capital-area": {
+            "name": "Khu vực Thủ đô",
+            "description": "Seoul, Gyeonggi và Incheon kết hợp"
+        }
+    },
+    "keywords": {
+        "title": "Chọn từ khóa du lịch",
+        "subtitle": "Bạn có thể chọn nhiều từ khóa",
+        "nextStep": "Bước tiếp theo",
+        "kpop": "K-POP",
+        "history": "Lịch sử",
+        "squidgame": "Trò chơi con mực",
+        "kpopdemons": "K-POP Demon Hunters",
+        "koreanfood": "Ẩm thực Hàn Quốc",
+        "koreanwave": "Làn sóng Hàn Quốc",
+        "koreanbeauty": "K-Beauty",
+        "koreandrama": "K-Drama"
     },
     "daysOfWeek": ["CN", "T2", "T3", "T4", "T5", "T6", "T7"]
 }

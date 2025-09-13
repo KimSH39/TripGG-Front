@@ -57,21 +57,6 @@
             "startDate": "開始日期",
             "endDate": "結束日期"
         },
-        "planTypeSelection": {
-            "title": "您希望如何安排行程？",
-            "subtitle1": "AI 可以為您定制行程，",
-            "subtitle2": "或者您可以自由安排行程",
-            "aiPlanTitle": "獲取AI推薦行程",
-            "aiPlanDescription1": "AI將根據您選擇的資訊",
-            "aiPlanDescription2": "推薦最佳行程",
-            "manualPlanTitle": "手動建立行程",
-            "manualPlanDescription1": "直接選擇您想去的地方",
-            "manualPlanDescription2": "建立您自己的獨特行程"
-        },
-        "regionSelection": {
-            "title": "請選擇您的旅行區域",
-            "subtitle": "我們將根據您選擇的區域推薦地點"
-        },
         "travelMethodSelection": {
             "title": "您想要哪種交通方式？",
             "subtitle": "我們將根據您選擇的交通方式規劃路線",
@@ -411,6 +396,40 @@
         "yeoncheon": {
             "name": "漣川"
         }
+    },
+    "regions": {
+        "title": "請選擇旅行地區",
+        "subtitle": "選擇您想要的地區來制定定制旅行計劃",
+        "nextStep": "下一步",
+        "seoul-all": {
+            "name": "首爾全域",
+            "description": "首爾市整個地區"
+        },
+        "seoul-gg": {
+            "name": "首爾+近郊",
+            "description": "首爾及鄰近京畿地區"
+        },
+        "gg-popular": {
+            "name": "京畿熱門地區",
+            "description": "京畿道內熱門旅遊景點"
+        },
+        "capital-area": {
+            "name": "首都圈綜合",
+            "description": "首爾、京畿、仁川整體"
+        }
+    },
+    "keywords": {
+        "title": "請選擇旅行關鍵詞",
+        "subtitle": "您可以選擇多個關鍵詞",
+        "nextStep": "下一步",
+        "kpop": "K-POP",
+        "history": "歷史",
+        "squidgame": "魷魚遊戲",
+        "kpopdemons": "K-POP惡魔獵人",
+        "koreanfood": "韓式料理",
+        "koreanwave": "韓流",
+        "koreanbeauty": "K-美容",
+        "koreandrama": "K-電視劇"
     },
     "daysOfWeek": ["日", "一", "二", "三", "四", "五", "六"]
 }
