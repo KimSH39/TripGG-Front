@@ -57,21 +57,6 @@
             "startDate": "出発日",
             "endDate": "帰国日"
         },
-        "planTypeSelection": {
-            "title": "旅行計画をどのように立てますか？",
-            "subtitle1": "AIがカスタマイズされた旅行日程を作成します",
-            "subtitle2": "または、自由に自分だけの日程を作成できます",
-            "aiPlanTitle": "AIにおすすめのスケジュールを立ててもらう",
-            "aiPlanDescription1": "選択した情報に基づいて",
-            "aiPlanDescription2": "AIが最適な日程を推薦します",
-            "manualPlanTitle": "自分でスケジュールを作成する",
-            "manualPlanDescription1": "行きたい場所を直接選択して",
-            "manualPlanDescription2": "自分だけのユニークな日程を作成します"
-        },
-        "regionSelection": {
-            "title": "旅行地域を選択してください",
-            "subtitle": "選択された地域に基づいておすすめの場所を探します"
-        },
         "travelMethodSelection": {
             "title": "どのような移動手段を好みますか？",
             "subtitle": "選択された移動手段に基づいてルートを計画します",
@@ -383,6 +368,40 @@
         "yeoncheon": {
             "name": "漣川"
         }
+    },
+    "regions": {
+        "title": "旅行地域を選択してください",
+        "subtitle": "希望する地域を選択してカスタマイズされた旅行を計画しましょう",
+        "nextStep": "次のステップ",
+        "seoul-all": {
+            "name": "ソウル全域",
+            "description": "ソウル市全体の地域"
+        },
+        "seoul-gg": {
+            "name": "ソウル+近郊",
+            "description": "ソウルおよび隣接する京畿地域"
+        },
+        "gg-popular": {
+            "name": "京畿人気地域",
+            "description": "京畿道内の人気観光地"
+        },
+        "capital-area": {
+            "name": "首都圏総合",
+            "description": "ソウル、京畿、仁川全体"
+        }
+    },
+    "keywords": {
+        "title": "旅行キーワードを選択してください",
+        "subtitle": "複数のキーワードを選択できます",
+        "nextStep": "次のステップ",
+        "kpop": "K-POP",
+        "history": "歴史",
+        "squidgame": "イカゲーム",
+        "kpopdemons": "K-POPデモンハンターズ",
+        "koreanfood": "韓国料理",
+        "koreanwave": "韓流",
+        "koreanbeauty": "K-ビューティー",
+        "koreandrama": "K-ドラマ"
     },
     "daysOfWeek": ["日", "月", "火", "水", "木", "金", "土"]
 }
